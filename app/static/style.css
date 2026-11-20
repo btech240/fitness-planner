@@ -189,6 +189,14 @@ table.sets { width: 100%; border-collapse: collapse; font: 14px var(--font-mono)
 .rest-fill { display: block; height: 100%; width: 0; background: var(--primary-ink); border-radius: 2px; }
 .rest-skip { border: 0; border-radius: 8px; min-height: 44px; padding: 0 14px; background: var(--primary-ink); color: var(--text); font-weight: 600; font-size: 14px; }
 .rest.over { background: var(--secondary); }
+.rest-sound {
+  width: 44px; min-height: 44px; border: 0; border-radius: 8px; background: transparent; color: var(--primary-ink);
+  display: inline-flex; align-items: center; justify-content: center; padding: 0;
+}
+.rest-sound svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.rest-sound[aria-pressed="true"] .icon-off, .rest-sound[aria-pressed="false"] .icon-on { display: none; }
+.rest-time { min-width: 0; }
+@media (max-width: 360px) { .rest-track { display: none; } }
 
 /* ---- bottom tab bar ---- */
 .tabbar {

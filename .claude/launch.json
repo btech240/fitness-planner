@@ -6,6 +6,12 @@
       "runtimeExecutable": ".venv/Scripts/python.exe",
       "runtimeArgs": ["-m", "uvicorn", "app.main:app", "--port", "8000"],
       "port": 8000
+    },
+    {
+      "name": "fitness-planner-qa",
+      "runtimeExecutable": ".venv/Scripts/python.exe",
+      "runtimeArgs": ["-c", "import os, uvicorn; os.environ['FP_DB'] = 'data/qa.db'; uvicorn.run('app.main:app', port=8001)"],
+      "port": 8001
     }
   ]
 }
