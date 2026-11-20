@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}History · Workout{% endblock %}
+{% block content %}
+<h1>History</h1>
+{% if not entries %}
+  <p class="muted">No finished workouts yet.</p>
+{% endif %}
+{% for e in entries %}
+  <section class="card">
+    <div class="card-head">
+      <h2>{{ e.w.created_at|local }}</h2>
+      <span class="muted small">{{ goals[e.w.goal].label }}</span>
+    </div>
+    <ul class="history">
+      {% for it in e.lines if it.sets %}
+        <li>
+          <strong>{{ it.exercise.name }}</strong>
+          <span class="muted">{% for st in it.sets %}{{ st.reps }}{% if st.weight %}×{{ st.weight|w }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %} {{ s.units }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+services:
+  fitness-planner:
+    build: .
+    container_name: fitness-planner
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      TZ: Etc/UTC           # set to your timezone (e.g. America/New_York); used for dates in History
+    volumes:
+      - ./data:/data        # SQLite database lives here; back up data/fitness.db

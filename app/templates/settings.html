@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block title %}Settings · Workout{% endblock %}
+{% block content %}
+{% set inv = s.inventory %}
+<h1>Settings</h1>
+{% if saved %}<p class="notice ok">Saved. {{ pool_size }} exercises fit your gym.</p>{% endif %}
+{% if errors %}<p class="notice">Some fields need fixing; nothing was saved.</p>{% endif %}
+
+<form method="post" action="/settings" class="settings">
+  <section class="card">
+    <h2>Training</h2>
+    <label class="row">Goal
+      <select name="goal">
+        {% for key, g in goals.items() %}
+          <option value="{{ key }}" {% if s.goal == key %}selected{% endif %}>{{ g.label }} ({{ g.sets }}×{{ g.reps }}, {{ g.rest_seconds }}s rest)</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label class="row">Exercises per workout
+      <input name="n_exercises" type="number" inputmode="numeric" min="2" max="10" value="{{ s.n_exercises }}">
+    </label>
+    <label class="row">Units
+      <select name="units">
+        <option value="lb" {% if s.units == 'lb' %}selected{% endif %}>lb</option>
+        <option value="kg" {% if s.units == 'kg' %}selected{% endif %}>kg</option>
+      </select>
+    </label>
+  </section>
+
+  <section class="card">
+    <h2>Equipment</h2>
+    <p class="muted small">Bodyweight exercises are always available. Weights: list them (<code>10, 15, 20</code>) or give a range (<code>5-50/2.5</code>).</p>
+    {% for kind, kdef in kinds.items() %}
+      {% set label, tag, spec = kdef %}
+      {% set cfg = inv[kind] %}
+      <fieldset class="equip">
+        <label class="check"><input type="checkbox" name="{{ kind }}_enabled" {% if cfg.enabled %}checked{% endif %}> {{ label }}</label>
+        {% if spec == 'plates' %}
+          <label class="row">Bar weight<input name="{{ kind }}_bar" type="number" inputmode="decimal" step="any" min="0" value="{{ cfg.bar|w }}"></label>
+        {% elif spec == 'list' %}
+          <label class="row">Weights<input name="{{ kind }}_weights" type="text" value="{{ cfg.weights }}" autocapitalize="off" autocomplete="off"></label>
+        {% endif %}
+        {% if errors[kind] %}<p class="error">{{ errors[kind] }}</p>{% endif %}
+        {% if cfg.enabled and preview[kind] %}
+          <p class="muted small">Loadable: {{ preview[kind][0]|w }}–{{ preview[kind][-1]|w }} ({{ preview[kind]|length }} options)</p>
+        {% endif %}
+      </fieldset>
+    {% endfor %}
+    <fieldset class="equip">
+      <label class="row">Plates (total owned, shared by barbell & EZ bar)
+        <input name="plates" type="text" value="{{ inv.plates }}" autocapitalize="off" autocomplete="off" placeholder="45x2, 25x2, 10x4">
+      </label>
+      {% if errors.plates %}<p class="error">{{ errors.plates }}</p>{% endif %}
+    </fieldset>
+    <fieldset class="equip">
+      <legend>Stations</legend>
+      {% for key, label in stations.items() %}
+        <label class="check"><input type="checkbox" name="station_{{ key }}" {% if key in inv.stations %}checked{% endif %}> {{ label }}</label>
+      {% endfor %}
+    </fieldset>
+  </section>
+
+  <button class="primary big">Save settings</button>
+</form>
+
+<section class="card" id="excluded">
+  <h2>Never suggest</h2>
+  {% if not excluded %}
+    <p class="muted small">Nothing excluded. Use "Never suggest this" on a workout card.</p>
+  {% else %}
+    <ul class="excluded">
+      {% for e in excluded %}
+        <li><span>{{ e.name }}</span>
+          <form method="post" action="/excluded/{{ e.id }}/remove"><button class="link">Allow again</button></form></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
+{% endblock %}

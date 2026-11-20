@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Workout">
+  <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/static/icon.svg">
+  <link rel="stylesheet" href="/static/style.css">
+  <title>{% block title %}Workout{% endblock %}</title>
+</head>
+<body>
+  <nav class="tabs">
+    {% set path = request.url.path %}
+    <a href="/" {% if path == '/' %}aria-current="page"{% endif %}>Today</a>
+    <a href="/history" {% if path == '/history' %}aria-current="page"{% endif %}>History</a>
+    <a href="/recovery" {% if path == '/recovery' %}aria-current="page"{% endif %}>Recovery</a>
+    <a href="/settings" {% if path == '/settings' %}aria-current="page"{% endif %}>Settings</a>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  {% block after %}{% endblock %}
+</body>
+</html>

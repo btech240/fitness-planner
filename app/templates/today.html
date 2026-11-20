@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Today · Workout{% endblock %}
+{% block content %}
+{% set units = s.units %}
+{% if not workout %}
+  <h1>Today</h1>
+  {% if pool_size == 0 %}
+    <p class="notice">No exercises match your equipment yet. <a href="/settings">Set up your gym</a> first.</p>
+  {% else %}
+    <p class="muted">Goal: {{ goals[s.goal].label }} · {{ s.n_exercises }} exercises · {{ pool_size }} exercises fit your gym</p>
+    <form method="post" action="/workout/new">
+      <button class="primary big">Generate workout</button>
+    </form>
+  {% endif %}
+  <h2 class="section">Most recovered</h2>
+  <ul class="recovery compact">
+    {% for m, pct in ready[:6] %}
+      <li><span class="label">{{ m|title }}</span><span class="bar"><span style="width: {{ pct }}%"></span></span><span class="pct">{{ pct }}%</span></li>
+    {% endfor %}
+  </ul>
+  <p><a href="/recovery">All muscles →</a></p>
+{% else %}
+  <h1>Today <span class="muted small">{{ goals[workout.goal].label }}</span></h1>
+  {% if not items %}
+    <p class="notice">Couldn't find exercises for your equipment. Check <a href="/settings">Settings</a>.</p>
+  {% endif %}
+  {% for it in items %}
+    {% set we = it.we %}{% set ex = it.exercise %}
+    {% set n_done = it.sets|length %}
+    <section class="card {% if n_done >= we.target_sets %}done{% endif %}" id="ex-{{ we.id }}">
+      <div class="card-head">
+        <h2>{{ ex.name }}</h2>
+        <span class="count">{{ n_done }}/{{ we.target_sets }}</span>
+      </div>
+      <p class="target">
+        {{ we.target_sets }} × {{ we.target_reps }}
+        {% if we.suggested_weight %} @ <strong>{{ we.suggested_weight|w }} {{ units }}</strong>
+        {% elif ex.equipment not in ('body only', 'bands') %} · <span class="muted">first time: pick a weight</span>{% endif %}
+      </p>
+      <p class="muscles">{{ ex.primary|join(', ') }}{% if ex.secondary %} <span class="muted">· {{ ex.secondary|join(', ') }}</span>{% endif %} <span class="muted">· {{ ex.equipment }}</span></p>
+
+      {% if it.sets %}
+      <ol class="sets">
+        {% for st in it.sets %}
+          <li>
+            <span>{{ st.reps }} reps{% if st.weight %} × {{ st.weight|w }} {{ units }}{% endif %}</span>
+            <form method="post" action="/set/{{ st.id }}/delete"><button class="link" aria-label="Delete set">✕</button></form>
+          </li>
+        {% endfor %}
+      </ol>
+      {% endif %}
+
+      {% set last = it.sets[-1] if it.sets else None %}
+      {% set w_default = last.weight if last and last.weight else we.suggested_weight %}
+      <form class="log" method="post" action="/we/{{ we.id }}/set">
+        <label>Reps<input name="reps" type="number" inputmode="numeric" min="0" required value="{{ last.reps if last else we.target_reps }}"></label>
+        <label>{{ units }}<input name="weight" type="number" inputmode="decimal" step="any" min="0" value="{{ w_default|w }}" placeholder="{{ 'BW' if ex.equipment in ('body only', 'bands') else '' }}"></label>
+        <button class="primary">Log set</button>
+      </form>
+
+      <details>
+        <summary>How to</summary>
+        <ol class="howto">{% for step in ex.instructions %}<li>{{ step }}</li>{% endfor %}</ol>
+      </details>
+      {% if not it.sets %}
+      <form method="post" action="/we/{{ we.id }}/exclude" data-msg="Never suggest {{ ex.name }} again?" onsubmit="return confirm(this.dataset.msg)">
+        <button class="link danger">Never suggest this</button>
+      </form>
+      {% endif %}
+    </section>
+  {% endfor %}
+
+  <div class="actions">
+    <form method="post" action="/workout/{{ workout.id }}/finish"><button class="primary">Finish workout</button></form>
+    {% if not has_sets %}
+      <form method="post" action="/workout/{{ workout.id }}/regenerate"><button>Regenerate</button></form>
+      <form method="post" action="/workout/{{ workout.id }}/discard"><button class="link danger">Discard</button></form>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}
+
+{% block after %}
+{% if workout and last_set %}
+  <div id="rest" class="rest" hidden data-last="{{ last_set }}" data-rest="{{ rest }}">
+    <span class="rest-label">Rest</span> <span class="rest-time">0:00</span>
+    <button class="link" type="button" id="rest-dismiss" aria-label="Hide timer">✕</button>
+  </div>
+  <script src="/static/timer.js"></script>
+{% endif %}
+{% endblock %}

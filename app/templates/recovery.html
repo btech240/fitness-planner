@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Recovery · Workout{% endblock %}
+{% block content %}
+<h1>Recovery</h1>
+<p class="muted small">Based on sets logged in the last 3 days. Muscles at 60% or more can be picked for a workout.</p>
+<ul class="recovery">
+  {% for m, pct in rows %}
+    <li class="{% if pct < 60 %}low{% endif %}"><span class="label">{{ m|title }}</span><span class="bar"><span style="width: {{ pct }}%"></span></span><span class="pct">{{ pct }}%</span></li>
+  {% endfor %}
+</ul>
+{% endblock %}
