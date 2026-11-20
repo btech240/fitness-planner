@@ -142,7 +142,9 @@
 "Keeping your head and chest up, extend through the elbow to press one side directly over head.",
 "After pausing at the top, return to the starting position and repeat on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Alternating_Deltoid_Raise",
@@ -1189,7 +1191,9 @@
 "Slowly lower the weight back to the starting position as you breathe in.",
 "Repeat for the recommended amount of repetitions and repeat the movement with the other arm."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Bent_Over_One-Arm_Long_Bar_Row",
@@ -1501,7 +1505,9 @@
 "Once you reach failure, keep your abs tight and raise your torso into plank position so your back is elevated off the Bosu Ball.",
 "Lower your arms down to your side; keep them straight. Start doing alternating side bends; reach for your heels! This finishing movement will focus on your obliques."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Bottoms_Up",
@@ -1644,7 +1650,9 @@
 "After pausing at full extension, return to th starting position, keeping tension on the cables.",
 "You can also execute this movement with your back off the pad, at an incline or decline, or alternate hands."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Cable_Crossover",
@@ -1665,7 +1673,9 @@
 "Return your arms back to the starting position as you breathe out. Make sure to use the same arc of motion used to lower the weights.",
 "Hold for a second at the starting position and repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Cable_Crunch",
@@ -1685,7 +1695,9 @@
 "Slowly return to the starting position as you inhale. Tip: Make sure that you keep constant tension on the abs throughout the movement. Also, do not choose a weight so heavy that the lower back handles the brunt of the work.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Cable_Deadlifts",
@@ -1708,7 +1720,9 @@
 "After grasping them, begin your ascent. Driving through your heels extend your hips and knees keeping your hands hanging at your side. Keep your head and chest up throughout the movement.",
 "After reaching a full standing position, Return to the starting position and repeat."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Hammer_Curls_-_Rope_Attachment",
@@ -1728,7 +1742,9 @@
 "After a 1 second contraction where you squeeze your biceps, slowly start to bring the weight back to the original position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Hip_Adduction",
@@ -1749,7 +1765,9 @@
 "Slowly return to the starting position as you breathe in.",
 "Repeat for the recommended amount of repetitions and then repeat the same movement with the opposite leg."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Incline_Pushdown",
@@ -1769,7 +1787,8 @@
 "Repeat for the recommended amount of repetitions."
 ],
 "requires": [
-"bench"
+"bench",
+"pulley_high"
 ]
 },
 {
@@ -1790,7 +1809,8 @@
 "Repeat for the recommended amount of repetitions."
 ],
 "requires": [
-"bench"
+"bench",
+"pulley_low"
 ]
 },
 {
@@ -1810,7 +1830,9 @@
 "Slowly go back to the initial position.",
 "Repeat for the recommended amount of repetitions and then repeat the movement with the next arm."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Cable_Iron_Cross",
@@ -1829,7 +1851,9 @@
 "Return your arms back to the starting position after a pause at the peak contraction.",
 "Continue the movement for the prescribed number of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Cable_Judo_Flip",
@@ -1848,7 +1872,9 @@
 "Return to the starting position and repeat until failure.",
 "Then, reposition and repeat the same series of movements on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Cable_Lying_Triceps_Extension",
@@ -1867,7 +1893,9 @@
 "Flex the triceps as you lift the bar back to its starting position. Exhale as you perform this portion of the movement.",
 "Hold for a second at the contracted position and repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_One_Arm_Tricep_Extension",
@@ -1887,7 +1915,9 @@
 "Slowly return the handle to the starting position.",
 "Repeat for the recommended amount of repetitions and then perform the same movement with the other arm."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Cable_Preacher_Curl",
@@ -1910,7 +1940,9 @@
 "Now slowly lower the weight to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Rear_Delt_Fly",
@@ -1928,7 +1960,9 @@
 "Initiate the movement by moving your arms back and outward, keeping your arms straight as you execute the movement.",
 "Pause at the end of the motion before returning the handles to the start position."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Cable_Reverse_Crunch",
@@ -1948,7 +1982,9 @@
 "Pause for a moment and in a slow and controlled manner drop your hips and bring your legs back to the starting 90-degree angle. You should still have tension on your abs in the resting position.",
 "Repeat the same movement to failure."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Rope_Overhead_Triceps_Extension",
@@ -1967,7 +2003,9 @@
 "Return to the starting position by flexing your triceps as you breathe out.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Rope_Rear-Delt_Rows",
@@ -1990,7 +2028,9 @@
 "Go back to the initial position where the arms are extended and the shoulders are stretched forward. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Cable_Russian_Twists",
@@ -2011,7 +2051,9 @@
 "Repeat the same movement to failure.",
 "Then, reposition and repeat the same series of movements on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Cable_Seated_Crunch",
@@ -2030,7 +2072,9 @@
 "As you inhale, go back to the initial position slowly.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Cable_Seated_Lateral_Raise",
@@ -2054,7 +2098,9 @@
 "Slowly lower your arms to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions. Tip: Maintain upper arms perpendicular to torso and a fixed elbow position (10 degree to 30 degree angle) throughout exercise."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Shoulder_Press",
@@ -2074,7 +2120,9 @@
 "Keeping your head and chest up, extend through the elbow to press the handles directly over head.",
 "After pausing at the top, return to the starting position and repeat."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Shrugs",
@@ -2093,7 +2141,9 @@
 "Lower the bar back to the original position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Cable_Wrist_Curl",
@@ -2113,7 +2163,9 @@
 "Your forearms should be stationary as your wrist is the only movement needed to perform this exercise.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Calf_Raise_On_A_Dumbbell",
@@ -2365,7 +2417,9 @@
 "After a second in the contracted position, while squeezing your shoulder blades together, slowly raise the bar back to the starting position when your arms are fully extended and the lats are fully stretched. Inhale during this portion of the movement.",
 "6. Repeat this motion for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Close-Grip_Push-Up_off_of_a_Dumbbell",
@@ -3717,7 +3771,9 @@
 "Keeping the torso stationary, pull the handles back towards your torso while keeping the arms close to it until you touch the abdominals. Breathe out as you perform that movement. At that point you should be squeezing your back muscles hard. Hold that contraction for a second and slowly go back to the original position while breathing in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Extended_Range_One-Arm_Kettlebell_Floor_Press",
@@ -3793,7 +3849,9 @@
 "With your upper arm in position, your elbow should be flexed to 90 degrees with your hand reaching across the front of your torso. This will be your starting position.",
 "Execute the movement by rotating your arm in a backhand motion, keeping your elbow in place."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Face_Pull",
@@ -3810,7 +3868,9 @@
 "instructions": [
 "Facing a high pulley with a rope or dual handles attached, pull the weight directly towards your face, separating your hands as you do so. Keep your upper arms parallel to the ground."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Finger_Curls",
@@ -3850,7 +3910,8 @@
 "Repeat for the recommended amount of repetitions."
 ],
 "requires": [
-"bench"
+"bench",
+"pulley_low"
 ]
 },
 {
@@ -4072,7 +4133,9 @@
 "Now as you inhale lower the arm back down slowly to the starting position.",
 "Once all of the recommended amount of repetitions have been performed for this arm, switch arms and perform the exercise with the right one."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Front_Dumbbell_Raise",
@@ -4216,7 +4279,9 @@
 "Either standing or seated on a high bench, grasp two stirrup cables that are attached to the high pulleys. Grab with the opposing hand so your arms are crisscrossed about you and your palms are facing forward.",
 "Keeping your chest up and maintaining a slight arch in your lower back, pull the handles down as if you were doing a regular pulldown. The range of motion will be more of an arc. During the movement, rotate your hands so that in the bottom position your palms face each other rather than forward. Return slowly to the starting position and repeat."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Glute_Kickback",
@@ -4470,7 +4535,9 @@
 "Slowly bring back the arms to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Hip_Extension_with_Bands",
@@ -4624,7 +4691,8 @@
 "After pausing at full extension, return to the starting position, keeping tension on the cables."
 ],
 "requires": [
-"bench"
+"bench",
+"pulley_low"
 ]
 },
 {
@@ -4648,7 +4716,8 @@
 "Repeat the movement for the prescribed amount of repetitions."
 ],
 "requires": [
-"bench"
+"bench",
+"pulley_low"
 ]
 },
 {
@@ -5525,7 +5594,9 @@
 "Repeat the same movement as before, but alternate the other elbow to the opposite knee.",
 "Continue this series of movements to failure."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Kneeling_Cable_Triceps_Extension",
@@ -5546,7 +5617,9 @@
 "Slowly return to the starting position as you breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Kneeling_High_Pulley_Row",
@@ -5566,7 +5639,9 @@
 "Initiate the movement by flexing the elbows and fully retracting your shoulders, pulling the rope toward your upper chest with your elbows out.",
 "After pausing briefly, slowly return to the starting position."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Kneeling_Single-Arm_High_Pulley_Row",
@@ -5587,7 +5662,9 @@
 "Starting with your palm facing forward, pull the weight down to your torso by flexing the elbow and retract the shoulder blade. As you do so, rotate the wrist so that at the completion of the movement, your palm is now facing you.",
 "After a brief pause, return to the starting position."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Kneeling_Squat",
@@ -5756,7 +5833,9 @@
 "With a slight bend in your arms, draw your hands upward and toward the midline of your body. Your hands should come together in front of your chest, palms facing up.",
 "Return your arms back to the starting position after a brief pause."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Low_Cable_Triceps_Extension",
@@ -5776,7 +5855,9 @@
 "As you breathe in slowly return to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Low_Pulley_Row_To_Neck",
@@ -5799,7 +5880,9 @@
 "After holding for a second or so at the contracted position, come back slowly to the starting position as you inhale. Tip: Again, during no part of the movement should the torso move.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Lunge_Pass_Through",
@@ -5842,7 +5925,9 @@
 "After a second squeeze at the top of the movement, slowly return to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Lying_Cambered_Barbell_Row",
@@ -5885,7 +5970,9 @@
 "Return to starting position slowly.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head",
@@ -6276,7 +6363,9 @@
 "Pause at the bottom of the motion, and then slowly return the handle to the starting position.",
 "For multiple repetitions, avoid completely returning the weight to keep tension on the muscles being worked."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "One_Arm_Pronated_Dumbbell_Triceps_Extension",
@@ -6413,7 +6502,9 @@
 "Repeat to failure.",
 "Then, reposition and repeat the same series of movements on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "One-Arm_Incline_Lateral_Raise",
@@ -6819,7 +6910,9 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch legs and repeat the movement for the other side."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Open_Palm_Kettlebell_Clean",
@@ -6861,7 +6954,9 @@
 "While inhaling, move your forearms back to the starting position. Note: Your entire body is stationary during this exercise except for the forearms.",
 "Repeat for the recommended amount of repetitions prescribed in your program."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Pallof_Press",
@@ -6885,7 +6980,9 @@
 "Hold the repetition for several seconds before returning to the starting position.",
 "At the conclusion of the set, repeat facing the other direction."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Pallof_Press_With_Rotation",
@@ -6912,7 +7009,9 @@
 "Repeat to failure.",
 "Then, reposition and repeat the same series of movements on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Palms-Down_Dumbbell_Wrist_Curl_Over_A_Bench",
@@ -7237,7 +7336,9 @@
 "Begin standing a few feet in front of a low pulley with a rope or handle attached. Face away from the machine, straddling the cable, with your feet set wide apart.",
 "Begin the movement by reaching through your legs as far as possible, bending at the hips. Keep your knees slightly bent. Keeping your arms straight, extend through the hip to stand straight up. Avoid pulling upward through the shoulders; all of the motion should originate through the hips."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Pullups",
@@ -7476,7 +7577,9 @@
 "Slowly begin to bring the bar back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Reverse_Crunch",
@@ -7578,7 +7681,9 @@
 "Then begin to lower the cable bar back down to the original staring position while exhaling and contracting the triceps hard.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Reverse_Triceps_Bench_Press",
@@ -7667,7 +7772,9 @@
 "Pause at the bottom of the motion, and then slowly return to the starting position.",
 "These can be done with twists or to the side to hit the obliques."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Rope_Straight-Arm_Pulldown",
@@ -7685,7 +7792,9 @@
 "Pause at the bottom of the motion, squeezing your lats.",
 "Return to the starting position without allowing the weight to fully rest on the stack."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Russian_Twist",
@@ -7831,7 +7940,9 @@
 "Keeping the torso stationary, pull the handles back towards your torso while keeping the arms close to it until you touch the abdominals. Breathe out as you perform that movement. At that point you should be squeezing your back muscles hard. Hold that contraction for a second and slowly go back to the original position while breathing in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Seated_Cable_Shoulder_Press",
@@ -7851,7 +7962,9 @@
 "After pausing at the top, return the handles to the starting position. Ensure that you maintain tension on the cables.",
 "You can also execute this movement with your back off the pad and alternate hands."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Seated_Close-Grip_Concentration_Barbell_Curl",
@@ -8095,7 +8208,9 @@
 "Hold that contraction for a second and slowly go back to the original position while breathing in. Tip: Remember to rotate the wrist as you go back to the starting position so that the palms are facing down again.",
 "Repeat for the recommended amount of repetitions and then perform the same movement with the right hand."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Seated_Palm-Up_Barbell_Wrist_Curl",
@@ -8192,7 +8307,9 @@
 "After a second contraction at the top go back to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "See-Saw_Press_Alternating_Side_Press",
@@ -8235,7 +8352,9 @@
 "Perform the movement by retracting the shoulder and flexing the elbow. As you pull, supinate the wrist, turning the palm upward as you go.",
 "After a brief pause, return to the starting position."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Shoulder_Press_-_With_Bands",
@@ -8381,7 +8500,9 @@
 "Return your arm back to the starting position by pulling your hand back to the midline of the body.",
 "Hold for a second at the starting position and repeat the movement on the opposite side. Continue alternating back and forth for the prescribed number of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Single-Arm_Linear_Jammer",
@@ -8813,7 +8934,9 @@
 "Slowly begin to bring the curl bar back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Standing_Bradford_Press",
@@ -8856,7 +8979,9 @@
 "Keeping the rest of the body stationary, extend through the elbows to press the handles forward, drawing them together in front of you.",
 "Pause at the top of the motion, and return to the starting position."
 ],
-"requires": []
+"requires": [
+"pulley_mid"
+]
 },
 {
 "id": "Standing_Cable_Lift",
@@ -8880,7 +9005,9 @@
 "Repeat to failure.",
 "Then, reposition and repeat the same series of movements on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Standing_Cable_Wood_Chop",
@@ -8904,7 +9031,9 @@
 "Repeat to failure.",
 "Then, reposition and repeat the same series of movements on the opposite side."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Standing_Concentration_Curl",
@@ -9102,7 +9231,9 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Standing_Low-Pulley_One-Arm_Triceps_Extension",
@@ -9124,7 +9255,9 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Standing_Military_Press",
@@ -9166,7 +9299,9 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms while performing this exercise."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Standing_One-Arm_Dumbbell_Curl_Over_Incline_Bench",
@@ -9313,7 +9448,9 @@
 "Perform the movement by flexing the spine, crunching the weight down as far as you can.",
 "Hold the peak contraction for a moment before returning to the starting position."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Standing_Towel_Triceps_Extension",
@@ -9505,7 +9642,9 @@
 "While keeping the arms straight, go back to the starting position while breathing in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Sumo_Deadlift",
@@ -9611,7 +9750,9 @@
 "To perform the movement, extend through the elbow while keeping the upper arm in position, raising your hands above your head.",
 "Squeeze your triceps at the top of the movement, and slowly lower the weight back to the start position."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Triceps_Pushdown",
@@ -9630,7 +9771,9 @@
 "After a second hold at the contracted position, bring the bar slowly up to the starting point. Breathe in as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Triceps_Pushdown_-_Rope_Attachment",
@@ -9649,7 +9792,9 @@
 "After holding for a second, at the contracted position, bring the rope slowly up to the starting point. Breathe in as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Triceps_Pushdown_-_V-Bar_Attachment",
@@ -9668,7 +9813,9 @@
 "After a second hold at the contracted position, bring the V-Bar slowly up to the starting point. Breathe in as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Tuck_Crunch",
@@ -9809,7 +9956,9 @@
 "After a second on the contracted position, while breathing in, slowly bring the bar back to the starting position when your arms are fully extended and the lats are fully stretched.",
 "Repeat this motion for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Upright_Barbell_Row",
@@ -9849,7 +9998,9 @@
 "Lower the bar back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_low"
+]
 },
 {
 "id": "Upright_Row_-_With_Bands",
@@ -9893,7 +10044,9 @@
 "After a second hold on the contracted position, slowly bring the bar back to the starting position as you breathe in.",
 "Repeat for the prescribed number of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "V-Bar_Pullup",
@@ -10091,7 +10244,9 @@
 "After a second at the contracted position squeezing your shoulder blades together, slowly raise the bar back to the starting position when your arms are fully extended and the lats are fully stretched. Inhale during this portion of the movement.",
 "Repeat this motion for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Wide-Grip_Pulldown_Behind_The_Neck",
@@ -10115,7 +10270,9 @@
 "After a second on the contracted position squeezing your shoulder blades together, slowly raise the bar back to the starting position when your arms are fully extended and the lats are fully stretched. Inhale during this portion of the movement.",
 "Repeat this motion for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [
+"pulley_high"
+]
 },
 {
 "id": "Wide-Grip_Rear_Pull-Up",

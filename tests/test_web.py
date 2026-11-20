@@ -66,6 +66,25 @@ def test_never_suggest_replaces_and_lists(client):
     assert name in client.get("/settings").text
 
 
+def test_pattern_label_and_pinning(client):
+    client.post("/settings", data=GYM_FORM)
+    r = client.post("/workout/new")
+    assert re.search(r"<h1>(Push|Pull|Legs|Upper|Lower|Full body) day</h1>", r.text)
+    first = we_ids(r.text)[0]
+    name = re.search(r'id="ex-%d" data-exercise="([^"]+)"' % first, r.text).group(1)
+    r = client.post(f"/we/{first}/pin")
+    assert "Unpin core lift" in r.text
+    assert name in client.get("/settings").text.split('id="pinned"')[1].split('id="excluded"')[0]
+
+
+def test_cable_pulleys_saved(client):
+    form = dict(GYM_FORM, cable_enabled="on", cable_weights="10-100/10", cable_pulley_high="on", cable_pulley_low="on")
+    client.post("/settings", data=form)
+    html = client.get("/settings").text
+    assert 'name="cable_pulley_high" checked' in html
+    assert 'name="cable_pulley_mid" checked' not in html
+
+
 def test_bad_weights_are_rejected(client):
     form = dict(GYM_FORM, dumbbell_weights="lots")
     r = client.post("/settings", data=form)

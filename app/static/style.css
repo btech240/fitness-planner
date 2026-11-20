@@ -134,7 +134,8 @@ table.sets { width: 100%; border-collapse: collapse; font: 14px var(--font-mono)
 .howto summary { cursor: pointer; color: var(--muted); padding: 8px 0; font-size: 13px; }
 .howto ol { margin: 0 0 6px; padding-left: 20px; color: var(--muted); }
 .howto li { margin-bottom: 4px; }
-.ex-foot .link { align-self: flex-start; padding-left: 0; }
+.ex-links { display: flex; justify-content: space-between; gap: 12px; }
+.ex-links .link { padding-left: 0; padding-right: 0; }
 
 .actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 16px 0; }
 .actions form:first-child { flex: 1 1 100%; }
@@ -167,6 +168,9 @@ table.sets { width: 100%; border-collapse: collapse; font: 14px var(--font-mono)
 .equip legend { font: 700 17px var(--font-display); text-transform: uppercase; padding: 0; margin-bottom: 4px; }
 .check { display: flex; align-items: center; gap: 10px; font-weight: 600; padding: 8px 0; }
 .check input { width: 22px; height: 22px; min-height: 0; accent-color: var(--primary); }
+.inline-checks { display: flex; flex-wrap: wrap; gap: 0 18px; }
+.inline-checks .check { font-weight: 500; }
+.title-row { flex-wrap: wrap; }
 .excluded { list-style: none; padding: 0; margin: 0; }
 .excluded li { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--line); }
 

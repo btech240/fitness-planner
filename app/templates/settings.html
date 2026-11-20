@@ -40,6 +40,14 @@
           <label class="row">Bar weight<input name="{{ kind }}_bar" type="number" inputmode="decimal" step="any" min="0" value="{{ cfg.bar|w }}"></label>
         {% elif spec == 'list' %}
           <label class="row">Weights<input name="{{ kind }}_weights" type="text" value="{{ cfg.weights }}" autocapitalize="off" autocomplete="off"></label>
+          {% if kind == 'cable' %}
+            <p class="muted small" style="margin: 8px 0 0">Pulley positions</p>
+            <div class="inline-checks">
+              {% for p, plabel in pulleys.items() %}
+                <label class="check"><input type="checkbox" name="cable_pulley_{{ p }}" {% if p in cfg.pulleys %}checked{% endif %}> {{ plabel }}</label>
+              {% endfor %}
+            </div>
+          {% endif %}
         {% endif %}
         {% if errors[kind] %}<p class="error">{{ errors[kind] }}</p>{% endif %}
         {% if cfg.enabled and preview[kind] %}
@@ -63,6 +71,20 @@
 
   <button class="btn primary block">Save settings</button>
 </form>
+
+<section class="card" id="pinned">
+  <h2>Core lifts</h2>
+  {% if not pinned %}
+    <p class="muted small">None pinned. Core lifts are picked from what you log most. Use "Pin as core lift" on a workout card to always include one when its muscle is trained.</p>
+  {% else %}
+    <ul class="excluded">
+      {% for e in pinned %}
+        <li><span>{{ e.name }} <span class="muted small">· {{ e.primary|join(', ') }}</span></span>
+          <form method="post" action="/pinned/{{ e.id }}/remove"><button class="link">Unpin</button></form></li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</section>
 
 <section class="card" id="excluded">
   <h2>Never suggest</h2>

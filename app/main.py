@@ -81,6 +81,7 @@ def today(request: Request):
             ctx.update(
                 items=items,
                 active_id=service.active_exercise_id(items),
+                pattern_label=generator.PATTERNS[w["pattern"]][0] if w["pattern"] in generator.PATTERNS else None,
                 targets=[(m, rec.get(m, 100)) for m in targets[:3]],
                 has_sets=service.workout_has_sets(conn, w["id"]),
                 last_set=service.last_set_time(conn, w["id"]),
@@ -148,6 +149,22 @@ def delete_set(set_id: int):
     return redirect(f"/#ex-{row['workout_exercise_id']}" if row else "/")
 
 
+@app.post("/we/{we_id}/pin")
+def pin(we_id: int):
+    with tx() as conn:
+        row = conn.execute("SELECT exercise_id FROM workout_exercises WHERE id = ?", (we_id,)).fetchone()
+        if row:
+            service.toggle_pin(conn, row["exercise_id"])
+    return redirect(f"/#ex-{we_id}")
+
+
+@app.post("/pinned/{exercise_id}/remove")
+def unpin(exercise_id: str):
+    with tx() as conn:
+        conn.execute("DELETE FROM pinned WHERE exercise_id = ?", (exercise_id,))
+    return redirect("/settings#pinned")
+
+
 @app.post("/we/{we_id}/exclude")
 def exclude(we_id: int):
     with tx() as conn:
@@ -187,8 +204,9 @@ def _settings_ctx(conn, s, errors=None, saved=False):
         if ws:
             preview[kind] = ws
     excl = sorted((catalog.get(i) for i in service.excluded_ids(conn)), key=lambda e: e["name"])
-    return {"s": s, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "preview": preview,
-            "excluded": excl, "errors": errors or {}, "saved": saved,
+    pins = sorted((catalog.get(i) for i in service.pinned_ids(conn)), key=lambda e: e["name"])
+    return {"s": s, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "pulleys": inv.PULLEYS,
+            "preview": preview, "excluded": excl, "pinned": pins, "errors": errors or {}, "saved": saved,
             "pool_size": len(service._pool(conn, s)) if not errors else None}
 
 
@@ -225,6 +243,8 @@ async def save_settings(request: Request):
                 errors[kind] = "Bar weight must be a number"
         elif spec == "list":
             cfg["weights"] = str(form.get(f"{kind}_weights", "")).strip()
+            if kind == "cable":
+                cfg["pulleys"] = [p for p in inv.PULLEYS if form.get(f"cable_pulley_{p}")]
             try:
                 inv.parse_weight_list(cfg["weights"])
             except inv.WeightSyntaxError:

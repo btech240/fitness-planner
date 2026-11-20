@@ -25,8 +25,13 @@ There is no login, so don't expose port 8000 to the internet. Keep it behind you
 ## How it decides
 
 - **Recovery:** each logged set adds fatigue to the muscles it works (primary 1.0, secondary 0.5), which fades over 72 hours. 10 sets takes a muscle to 0%. Muscles at 60% or above can be picked.
-- **Workout:** it picks up to 3 target muscles, ranked by recovery plus a priority for big muscle groups. It fills exercises round-robin across those targets, favoring well-known staple lifts and ones you've done before, with some randomness so days vary. Exercises on the "never suggest" list are skipped.
+- **Day pattern:** each workout is Push, Pull, Legs, Upper, Lower or Full body, whichever pattern's main muscles are most recovered. It won't repeat the previous workout's pattern unless that pattern is clearly the freshest.
+- **Slots:** exercises are handed out round-robin over the pattern's recovered muscles (below 60% recovery gets nothing).
+- **Core lifts + rotation:** a muscle's first slot goes to one of its 2 core lifts: pinned ones first, then your most-logged, then defaults like Bench Press and Squat. The two core lifts alternate between sessions. Extra slots rotate through other variations, avoiding what you did recently or often, Olympic lifts, and bodyweight filler when you have weights.
+- **No near-duplicates:** exercises in the same family (e.g. any pull-up/chin-up, any squat, any flat press) never share a workout.
 - **Weights:** it estimates your one-rep max from last session's best set and converts it to today's rep target. If you hit every rep last time, it goes up one loadable step (at most +15%). Suggestions are always weights your inventory can actually load. The first time you do an exercise, you choose the weight.
+- **Bodyweight moves:** the rep target is last session's average + 1, up to the goal's reps + 5. Once you hit that on every set, it suggests adding weight.
+- **Cable stack:** each cable exercise is tagged high, low or mid pulley; tick the positions you have.
 
 Tuning knobs are constants at the top of `app/generator.py` and `app/recovery.py`.
 

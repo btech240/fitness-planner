@@ -37,6 +37,9 @@ CREATE TABLE IF NOT EXISTS sets (
 CREATE TABLE IF NOT EXISTS excluded (
     exercise_id TEXT PRIMARY KEY
 );
+CREATE TABLE IF NOT EXISTS pinned (
+    exercise_id TEXT PRIMARY KEY
+);
 CREATE INDEX IF NOT EXISTS idx_sets_logged ON sets(logged_at);
 CREATE INDEX IF NOT EXISTS idx_we_exercise ON workout_exercises(exercise_id);
 """
@@ -54,7 +57,16 @@ def connect(path: str | None = None) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.executescript(SCHEMA)
+    _migrate(conn)
     return conn
+
+
+def _migrate(conn: sqlite3.Connection) -> None:
+    """Add columns introduced after a database was first created."""
+    cols = {r["name"] for r in conn.execute("PRAGMA table_info(workouts)")}
+    if "pattern" not in cols:
+        conn.execute("ALTER TABLE workouts ADD COLUMN pattern TEXT")
+        conn.commit()
 
 
 def get_setting(conn: sqlite3.Connection, key: str, default=None):

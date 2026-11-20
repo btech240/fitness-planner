@@ -3,7 +3,7 @@
 {% block content %}
 {% set units = s.units %}
 {% set g = goals[workout.goal if workout else s.goal] %}
-{% set head_title = "Today" %}
+{% set head_title = (pattern_label ~ " day") if workout and pattern_label else "Today" %}
 {% set head_meta = goal_codes[workout.goal if workout else s.goal] ~ " · " ~ g.sets ~ "×" ~ g.reps ~ " · " ~ g.rest_seconds ~ "s" %}
 {% include "_head.html" %}
 
@@ -45,7 +45,7 @@
       <summary>
         <span class="num">{% if done %}✓{% else %}{{ '%02d' % loop.index }}{% endif %}</span>
         <span class="title">
-          <span class="eyebrow open-only">{{ '%02d' % loop.index }} · {{ ex.primary|join(' / ') }}</span>
+          <span class="eyebrow open-only">{{ '%02d' % loop.index }} · {{ ex.primary|join(' / ') }}{% if it.pinned %} · core{% endif %}</span>
           <span class="name">{{ ex.name }}</span>
         </span>
         <span class="spec closed-only">{{ we.target_sets }}×{{ we.target_reps }}{% if we.suggested_weight %} @{{ we.suggested_weight|w }}{% endif %}</span>
@@ -88,15 +88,21 @@
 
       <div class="ex-foot">
         {% if not we.suggested_weight and not bw and not it.prev %}<p class="hint">First time: pick a weight you can do {{ we.target_reps }} clean reps with.</p>{% endif %}
+        {% if it.add_weight %}<p class="hint">You hit {{ we.target_reps }} on every set last time. Try adding weight (vest or a dumbbell) and log it.</p>{% endif %}
         <details class="howto">
           <summary>How to</summary>
           <ol>{% for step in ex.instructions %}<li>{{ step }}</li>{% endfor %}</ol>
         </details>
-        {% if not it.sets %}
-        <form method="post" action="/we/{{ we.id }}/exclude" data-msg="Never suggest {{ ex.name }} again?" onsubmit="return confirm(this.dataset.msg)">
-          <button class="link danger">Never suggest this</button>
-        </form>
-        {% endif %}
+        <div class="ex-links">
+          <form method="post" action="/we/{{ we.id }}/pin">
+            <button class="link">{% if it.pinned %}Unpin core lift{% else %}Pin as core lift{% endif %}</button>
+          </form>
+          {% if not it.sets %}
+          <form method="post" action="/we/{{ we.id }}/exclude" data-msg="Never suggest {{ ex.name }} again?" onsubmit="return confirm(this.dataset.msg)">
+            <button class="link danger">Never suggest this</button>
+          </form>
+          {% endif %}
+        </div>
       </div>
     </details>
   {% endfor %}

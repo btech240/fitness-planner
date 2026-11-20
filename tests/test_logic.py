@@ -78,23 +78,107 @@ def test_enabled_equipment_without_weights_is_ignored():
     assert all(e["equipment"] != "dumbbell" for e in pool)
 
 
+FRESH = {m: 100 for m in generator.TARGET_MUSCLES}
+H = generator.ExerciseHistory
+
+
+def gen(pool, rec=None, history=None, pins=frozenset(), n=5, seed=0, last=None):
+    return generator.generate(pool, rec or FRESH, history or {}, set(pins), n, random.Random(seed), last)
+
+
 def test_generate_avoids_fatigued_muscles():
     pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
-    rec = {m: 100 for m in generator.TARGET_MUSCLES}
-    rec.update(chest=10, triceps=20, shoulders=30)
+    rec = dict(FRESH, chest=10, triceps=20, shoulders=30)
     for seed in range(20):
-        chosen = generator.generate(pool, rec, set(), 5, random.Random(seed))
-        assert len(chosen) == 5
-        assert len({e["id"] for e in chosen}) == 5
-        for e in chosen:
+        plan = gen(pool, rec, seed=seed)
+        assert plan.pattern != "push"
+        assert len(plan.exercises) == 5
+        for e in plan.exercises:
             assert not {"chest", "triceps", "shoulders"} & set(e["primary"]), e["name"]
+
+
+def test_day_follows_a_pattern():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    for seed in range(30):
+        plan = gen(pool, seed=seed)
+        allowed = set(generator.PATTERNS[plan.pattern][1])
+        assert all(set(e["primary"]) & allowed for e in plan.exercises), (plan.pattern, [e["name"] for e in plan.exercises])
+
+
+def test_pattern_does_not_repeat_when_everything_is_fresh():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    for seed in range(20):
+        assert gen(pool, seed=seed, last="push").pattern != "push"
+
+
+def test_tired_muscles_pick_the_other_pattern():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    legs_done = dict(FRESH, quadriceps=20, hamstrings=25, glutes=30)
+    assert all(gen(pool, legs_done, seed=s).pattern in ("push", "pull", "upper") for s in range(20))
+
+
+def test_no_near_duplicates_in_one_workout():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    for seed in range(40):
+        plan = gen(pool, seed=seed, n=8)
+        names = [e["name"] for e in plan.exercises]
+        fams = [generator.families(n) for n in names]
+        for i in range(len(fams)):
+            for j in range(i + 1, len(fams)):
+                assert not fams[i] & fams[j], names
+
+
+def test_core_lift_leads_and_alternates():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    rng = random.Random(0)
+    first = generator.choose_exercise(pool, "chest", [], FRESH, {}, set(), rng, core_slot=True)
+    assert first["id"] == "Barbell_Bench_Press_-_Medium_Grip"
+    hist = {"Barbell_Bench_Press_-_Medium_Grip": H(sessions=3, last_ago=0),
+            "Dumbbell_Bench_Press": H(sessions=3, last_ago=2)}
+    second = generator.choose_exercise(pool, "chest", [], FRESH, hist, set(), rng, core_slot=True)
+    assert second["id"] == "Dumbbell_Bench_Press"
+
+
+def test_rotation_slot_skips_last_sessions_exercise():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    chosen = [catalog.get("Barbell_Bench_Press_-_Medium_Grip")]
+    for seed in range(15):
+        hist = {"Incline_Dumbbell_Press": H(sessions=1, last_ago=0)}
+        e = generator.choose_exercise(pool, "chest", chosen, FRESH, hist, set(), random.Random(seed), core_slot=False)
+        assert e["id"] != "Incline_Dumbbell_Press"
+
+
+def test_pinned_lift_always_included_for_its_muscle():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    for seed in range(15):
+        e = generator.choose_exercise(pool, "chest", [], FRESH, {}, {"Dumbbell_Flyes"}, random.Random(seed), True)
+        assert e["id"] == "Dumbbell_Flyes"
+
+
+def test_bodyweight_filler_avoided_when_weights_exist():
+    pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
+    for seed in range(30):
+        for e in gen(pool, seed=seed).exercises:
+            assert e["equipment"] != "body only" or e["id"] in generator.BODYWEIGHT_KEEPERS, e["name"]
+
+
+def test_cable_pulleys_filter_exercises():
+    gym = inv.merged({"cable": {"enabled": True, "weights": "10-100/10", "pulleys": ["high", "low"]}})
+    ids = {e["id"] for e in generator.available_exercises(catalog.EXERCISES, gym, set())}
+    assert "Triceps_Pushdown" in ids and "Seated_Cable_Rows" in ids
+    assert "Pallof_Press" not in ids and "Standing_Cable_Chest_Press" not in ids
 
 
 def test_generate_varies_between_days():
     pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, set())
-    rec = {m: 100 for m in generator.TARGET_MUSCLES}
-    picks = {tuple(e["id"] for e in generator.generate(pool, rec, set(), 5, random.Random(s))) for s in range(10)}
+    picks = {tuple(e["id"] for e in gen(pool, seed=s).exercises) for s in range(10)}
     assert len(picks) > 3
+
+
+def test_bodyweight_reps_progress_and_cap():
+    assert generator.suggest_bodyweight_reps([], 10) == 10
+    assert generator.suggest_bodyweight_reps([(8, None), (7, None), (6, None)], 10) == 8
+    assert generator.suggest_bodyweight_reps([(15, None)] * 3, 10) == 15
 
 
 # ---- weight suggestions ---------------------------------------------------------------

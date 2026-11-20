@@ -28,6 +28,8 @@ EQUIPMENT_KINDS = {
     "bands": ("Resistance bands", "bands", "none"),
 }
 
+PULLEYS = {"high": "High", "low": "Low", "mid": "Mid (chest height)"}
+
 STATIONS = {
     "bench": "Adjustable bench",
     "rack": "Squat rack / stands",
@@ -41,7 +43,7 @@ DEFAULT_INVENTORY = {
     "plates": "45x2, 25x2, 10x2, 5x2, 2.5x2",
     "dumbbell": {"enabled": False, "weights": "5-50/5"},
     "kettlebell": {"enabled": False, "weights": ""},
-    "cable": {"enabled": False, "weights": "10-150/10"},
+    "cable": {"enabled": False, "weights": "10-150/10", "pulleys": ["high", "low", "mid"]},
     "bands": {"enabled": False},
     "stations": [],
 }
@@ -117,6 +119,15 @@ def available_equipment_tags(inventory: dict) -> set[str]:
         if (inventory.get(kind) or {}).get("enabled"):
             tags.add(tag)
     return tags
+
+
+def available_features(inventory: dict) -> set[str]:
+    """Station and pulley-position tags an exercise's `requires` list is checked against."""
+    have = set(inventory.get("stations") or [])
+    cable = inventory.get("cable") or {}
+    if cable.get("enabled"):
+        have |= {f"pulley_{p}" for p in cable.get("pulleys", PULLEYS)}
+    return have
 
 
 def kind_for_tag(tag: str) -> str | None:
