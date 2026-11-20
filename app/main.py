@@ -32,7 +32,15 @@ def local_time(iso: str | None, fmt: str = "%a %b %d, %I:%M %p") -> str:
     return datetime.fromisoformat(iso).astimezone().strftime(fmt)
 
 
+def fmt_set(s) -> str:
+    """'8·BW' / '10·45' for the PREV column."""
+    reps, weight = s
+    return f"{reps}·{fmt_weight(weight) if weight else 'BW'}"
+
+
 templates.env.filters["w"] = fmt_weight
+templates.env.filters["setfmt"] = fmt_set
+templates.env.globals["goal_codes"] = {"strength": "STR", "hypertrophy": "HYP", "endurance": "END"}
 templates.env.filters["local"] = local_time
 
 
@@ -64,8 +72,16 @@ def today(request: Request):
         rec = service.current_recovery(conn)
         ctx = {"s": s, "workout": w, "recovery": rec}
         if w:
+            items = service.workout_detail(conn, w["id"])
+            targets = []
+            for it in items:
+                for m in it["exercise"]["primary"]:
+                    if m not in targets:
+                        targets.append(m)
             ctx.update(
-                items=service.workout_detail(conn, w["id"]),
+                items=items,
+                active_id=service.active_exercise_id(items),
+                targets=[(m, rec.get(m, 100)) for m in targets[:3]],
                 has_sets=service.workout_has_sets(conn, w["id"]),
                 last_set=service.last_set_time(conn, w["id"]),
                 rest=generator.GOALS[w["goal"]].rest_seconds,

@@ -8,13 +8,14 @@
   var rest = parseInt(el.dataset.rest, 10) * 1000;
   var timeEl = el.querySelector(".rest-time");
   var labelEl = el.querySelector(".rest-label");
-  var buzzed = false;
+  var fillEl = el.querySelector(".rest-fill");
   var dismissed = false;
   var SHOW_FOR_MS = rest + 120 * 1000; // hide 2 minutes after rest is over
+  var buzzed = Date.now() - last > rest; // don't buzz for a rest that ended before the page loaded
 
   function fmt(ms) {
     var s = Math.ceil(Math.abs(ms) / 1000);
-    return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0");
+    return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0");
   }
 
   function tick() {
@@ -22,13 +23,14 @@
     if (dismissed || elapsed < 0 || elapsed > SHOW_FOR_MS) { el.hidden = true; return; }
     el.hidden = false;
     var left = rest - elapsed;
+    fillEl.style.width = Math.min(100, (elapsed / rest) * 100) + "%";
     if (left > 0) {
       el.classList.remove("over");
       labelEl.textContent = "Rest";
       timeEl.textContent = fmt(left);
     } else {
       el.classList.add("over");
-      labelEl.textContent = "Go! Rested";
+      labelEl.textContent = "Go";
       timeEl.textContent = "+" + fmt(-left);
       if (!buzzed && navigator.vibrate) navigator.vibrate([200, 100, 200]);
       buzzed = true;
@@ -39,7 +41,6 @@
     dismissed = true; tick();
   });
   document.addEventListener("visibilitychange", tick);
-  buzzed = Date.now() - last > rest; // don't buzz for a rest that ended before the page loaded
   tick();
   setInterval(tick, 250);
 })();

@@ -25,6 +25,7 @@ It's doable. Fitbod's real advantage is exercise data tagged with muscles and eq
 | 13 | Workout content | **Strength only** | No generated warm-up, cardio or core |
 | 14 | Progress views | **History list + recovery % per muscle** | No charts or body map in v1 |
 | 15 | Rest timer | **Auto-start after each logged set**, length set by the goal, **visual only** | Phone browsers can't reliably alert while the screen is locked |
+| 17 | Visual style | **"Miami Night"**: Athletic Console layout (condensed uppercase headings, mono numbers, set table with SET / PREV / REPS / LB) on deep indigo. Hot pink #FF3EA5 for actions and the active exercise, aqua #2EE6D6 for progress, neon yellow #FFD23F for the stripe and warnings. Dark only, bottom tab bar. | Picked from 15 mockups on the style canvas. Fonts load from Google Fonts with system fallbacks. |
 | 16 | Stack | **One container: Python FastAPI + server-rendered pages + SQLite on a mounted volume** | Little build tooling; backing up means copying one file. Plain HTML forms turned out to be enough, so HTMX was not added. |
 
 ## Implementer defaults (no user decision needed)

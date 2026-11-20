@@ -2,7 +2,8 @@
 {% block title %}Settings · Workout{% endblock %}
 {% block content %}
 {% set inv = s.inventory %}
-<h1>Settings</h1>
+{% set head_title = "Settings" %}{% set head_meta = "" %}
+{% include "_head.html" %}
 {% if saved %}<p class="notice ok">Saved. {{ pool_size }} exercises fit your gym.</p>{% endif %}
 {% if errors %}<p class="notice">Some fields need fixing; nothing was saved.</p>{% endif %}
 
@@ -60,7 +61,7 @@
     </fieldset>
   </section>
 
-  <button class="primary big">Save settings</button>
+  <button class="btn primary block">Save settings</button>
 </form>
 
 <section class="card" id="excluded">

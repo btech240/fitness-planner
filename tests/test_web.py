@@ -41,7 +41,8 @@ def test_full_flow(client):
     assert len(ids) == 4
 
     r = client.post(f"/we/{ids[0]}/set", data={"reps": "10", "weight": "95"})
-    assert "10 reps × 95 lb" in r.text
+    logged = re.search(r'<tr class="logged">(.*?)</tr>', r.text, re.S).group(1)
+    assert re.findall(r"<td>([^<]+)</td>", logged) == ["10", "95"]
     assert 'id="rest"' in r.text
     assert "Regenerate" not in r.text
 
@@ -58,10 +59,10 @@ def test_never_suggest_replaces_and_lists(client):
     client.post("/settings", data=GYM_FORM)
     r = client.post("/workout/new")
     first = we_ids(r.text)[0]
-    name = re.search(r'id="ex-%d">\s*<div class="card-head">\s*<h2>([^<]+)</h2>' % first, r.text).group(1)
+    name = re.search(r'id="ex-%d" data-exercise="([^"]+)"' % first, r.text).group(1)
     r = client.post(f"/we/{first}/exclude")
     assert len(we_ids(r.text)) == 4
-    assert f"<h2>{name}</h2>" not in r.text
+    assert f'data-exercise="{name}"' not in r.text
     assert name in client.get("/settings").text
 
 

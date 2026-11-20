@@ -148,8 +148,24 @@ def workout_detail(conn: sqlite3.Connection, workout_id: int) -> list[dict]:
             "SELECT * FROM workout_exercises WHERE workout_id = ? ORDER BY position, id", (workout_id,)):
         sets = conn.execute(
             "SELECT * FROM sets WHERE workout_exercise_id = ? ORDER BY id", (we["id"],)).fetchall()
-        items.append({"we": we, "exercise": catalog.get(we["exercise_id"]), "sets": sets})
+        items.append({
+            "we": we,
+            "exercise": catalog.get(we["exercise_id"]),
+            "sets": sets,
+            "prev": last_session_sets(conn, we["exercise_id"], workout_id),
+        })
     return items
+
+
+def active_exercise_id(items: list[dict]) -> int | None:
+    """The exercise to show expanded: the first one started but unfinished, else the first not started."""
+    for it in items:
+        if 0 < len(it["sets"]) < it["we"]["target_sets"]:
+            return it["we"]["id"]
+    for it in items:
+        if not it["sets"]:
+            return it["we"]["id"]
+    return None
 
 
 def last_set_time(conn: sqlite3.Connection, workout_id: int) -> str | None:

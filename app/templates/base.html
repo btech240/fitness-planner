@@ -3,26 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#111418" media="(prefers-color-scheme: dark)">
-  <meta name="theme-color" content="#f6f7f9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#140B24">
+  <meta name="color-scheme" content="dark">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="Workout">
   <link rel="icon" href="/static/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/static/icon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="/static/style.css">
   <title>{% block title %}Workout{% endblock %}</title>
 </head>
 <body>
-  <nav class="tabs">
-    {% set path = request.url.path %}
-    <a href="/" {% if path == '/' %}aria-current="page"{% endif %}>Today</a>
-    <a href="/history" {% if path == '/history' %}aria-current="page"{% endif %}>History</a>
-    <a href="/recovery" {% if path == '/recovery' %}aria-current="page"{% endif %}>Recovery</a>
-    <a href="/settings" {% if path == '/settings' %}aria-current="page"{% endif %}>Settings</a>
-  </nav>
   <main>
     {% block content %}{% endblock %}
   </main>
   {% block after %}{% endblock %}
+  {% set path = request.url.path %}
+  <nav class="tabbar" aria-label="Main">
+    <a href="/" {% if path == '/' %}aria-current="page"{% endif %}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/></svg>Today</a>
+    <a href="/history" {% if path == '/history' %}aria-current="page"{% endif %}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>History</a>
+    <a href="/recovery" {% if path == '/recovery' %}aria-current="page"{% endif %}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-6 4 12 2-6h6"/></svg>Recovery</a>
+    <a href="/settings" {% if path == '/settings' %}aria-current="page"{% endif %}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>Settings</a>
+  </nav>
 </body>
 </html>

@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block title %}History · Workout{% endblock %}
 {% block content %}
-<h1>History</h1>
+{% set head_title = "History" %}{% set head_meta = entries|length ~ " workouts" %}
+{% include "_head.html" %}
 {% if not entries %}
   <p class="muted">No finished workouts yet.</p>
 {% endif %}
 {% for e in entries %}
   <section class="card">
     <div class="card-head">
-      <h2>{{ e.w.created_at|local }}</h2>
-      <span class="muted small">{{ goals[e.w.goal].label }}</span>
+      <h2>{{ e.w.created_at|local("%a %b %d") }}</h2>
+      <span class="meta">{{ goal_codes[e.w.goal] }} · {{ e.w.created_at|local("%I:%M %p") }}</span>
     </div>
     <ul class="history">
       {% for it in e.lines if it.sets %}
         <li>
-          <strong>{{ it.exercise.name }}</strong>
-          <span class="muted">{% for st in it.sets %}{{ st.reps }}{% if st.weight %}×{{ st.weight|w }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %} {{ s.units }}</span>
+          <span class="name">{{ it.exercise.name }}</span>
+          <span class="mono">{% for st in it.sets %}{{ st.reps }}{% if st.weight %}×{{ st.weight|w }}{% endif %}{% if not loop.last %}  {% endif %}{% endfor %}</span>
         </li>
       {% endfor %}
     </ul>
