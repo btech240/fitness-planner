@@ -30,7 +30,7 @@
 
   <section class="card">
     <h2>Equipment</h2>
-    <p class="muted small">Bodyweight exercises are always available. Weights: list them (<code>10, 15, 20</code>) or give a range (<code>5-50/2.5</code>).</p>
+    <p class="muted small">Bodyweight exercises are always available. Tick what you have and enter weights in {{ s.units }}.</p>
     {% for kind, kdef in kinds.items() %}
       {% set label, tag, spec = kdef %}
       {% set cfg = inv[kind] %}
@@ -38,8 +38,15 @@
         <label class="check"><input type="checkbox" name="{{ kind }}_enabled" {% if cfg.enabled %}checked{% endif %}> {{ label }}</label>
         {% if spec == 'plates' %}
           <label class="row">Bar weight<input name="{{ kind }}_bar" type="number" inputmode="decimal" step="any" min="0" value="{{ cfg.bar|w }}"></label>
-        {% elif spec == 'list' %}
-          <label class="row">Weights<input name="{{ kind }}_weights" type="text" value="{{ cfg.weights }}" autocapitalize="off" autocomplete="off"></label>
+        {% elif spec == 'list' and list_input[kind] == 'range' %}
+          {% set r = ranges[kind] %}
+          <div class="range-row">
+            <label>From<input name="{{ kind }}_from" type="number" inputmode="decimal" step="any" min="0" value="{{ r.from }}"></label>
+            <label>To<input name="{{ kind }}_to" type="number" inputmode="decimal" step="any" min="0" value="{{ r.to }}"></label>
+            <label>Step<input name="{{ kind }}_step" type="number" inputmode="decimal" step="any" min="0" value="{{ r.step }}"></label>
+          </div>
+          <p class="muted small hint-line">{% if kind == 'dumbbell' %}Weight of one dumbbell. Adjustables: lightest, heaviest and the jump between settings.{% else %}Lightest and heaviest pin setting, and the jump between plates in the stack.{% endif %}</p>
+          {% if r.irregular %}<p class="muted small">Your saved list ({{ cfg.weights }}) had uneven jumps; saving replaces it with this range.</p>{% endif %}
           {% if kind == 'cable' %}
             <p class="muted small" style="margin: 8px 0 0">Pulley positions</p>
             <div class="inline-checks">
@@ -48,6 +55,13 @@
               {% endfor %}
             </div>
           {% endif %}
+        {% elif spec == 'list' and list_input[kind] == 'chips' %}
+          <p class="muted small hint-line">Tap the weights you own.</p>
+          <div class="chips">
+            {% for w in kb_sizes %}
+              <label class="chip"><input type="checkbox" name="{{ kind }}_w" value="{{ w|w }}" {% if w in kb_saved %}checked{% endif %}><span>{{ w|w }}</span></label>
+            {% endfor %}
+          </div>
         {% endif %}
         {% if errors[kind] %}<p class="error">{{ errors[kind] }}</p>{% endif %}
         {% if cfg.enabled and preview[kind] %}
@@ -56,9 +70,14 @@
       </fieldset>
     {% endfor %}
     <fieldset class="equip">
-      <label class="row">Plates (total owned, shared by barbell & EZ bar)
-        <input name="plates" type="text" value="{{ inv.plates }}" autocapitalize="off" autocomplete="off" placeholder="45x2, 25x2, 10x4">
-      </label>
+      <legend>Plates</legend>
+      <p class="muted small hint-line">Pairs you own of each size (one for each side of the bar). Shared by barbell and EZ bar.</p>
+      <div class="plates">
+        {% for w, n in plate_rows %}
+          <label class="plate-row"><span class="plate-size">{{ w|w }} {{ s.units }}</span>
+            <input name="plate_{{ w|w }}" type="number" inputmode="numeric" min="0" step="1" value="{{ n if n else '' }}" placeholder="0" aria-label="Pairs of {{ w|w }} {{ s.units }} plates"></label>
+        {% endfor %}
+      </div>
       {% if errors.plates %}<p class="error">{{ errors.plates }}</p>{% endif %}
     </fieldset>
     <fieldset class="equip">

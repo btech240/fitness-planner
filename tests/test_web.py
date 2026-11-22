@@ -85,6 +85,42 @@ def test_cable_pulleys_saved(client):
     assert 'name="cable_pulley_mid" checked' not in html
 
 
+PHONE_FORM = {
+    "goal": "hypertrophy", "n_exercises": "4", "units": "lb",
+    "barbell_enabled": "on", "barbell_bar": "45", "ez_bar_bar": "25",
+    "plate_45": "2", "plate_25": "1", "plate_10": "", "plate_2.5": "1",
+    "dumbbell_enabled": "on", "dumbbell_from": "5", "dumbbell_to": "52.5", "dumbbell_step": "2.5",
+    "kettlebell_enabled": "on", "kettlebell_w": ["35", "53"],
+    "cable_from": "", "cable_to": "", "cable_step": "",
+    "station_bench": "on",
+}
+
+
+def test_numbers_only_equipment_inputs_save(client):
+    r = client.post("/settings", data=PHONE_FORM, follow_redirects=False)
+    assert r.status_code == 303
+    from app import db, service
+    s = service.settings(db.connect())
+    inv_ = s["inventory"]
+    assert inv_["dumbbell"]["weights"] == "5-52.5/2.5"
+    assert inv_["kettlebell"]["weights"] == "35, 53"
+    assert inv_["plates"] == "45x4, 25x2, 2.5x2"
+    assert inv_["cable"]["weights"] == ""
+    html = client.get("/settings").text
+    assert 'name="dumbbell_to" type="number" inputmode="decimal" step="any" min="0" value="52.5"' in html
+    assert 'name="plate_45" type="number" inputmode="numeric" min="0" step="1" value="2"' in html
+    assert 'value="53" checked' in html
+
+
+def test_range_errors_keep_what_was_typed(client):
+    r = client.post("/settings", data=dict(PHONE_FORM, dumbbell_from="50", dumbbell_to="5"))
+    assert "nothing was saved" in r.text
+    assert "To must be at least From" in r.text
+    assert 'name="dumbbell_from" type="number" inputmode="decimal" step="any" min="0" value="50"' in r.text
+    r = client.post("/settings", data=dict(PHONE_FORM, dumbbell_step=""))
+    assert "Enter a step" in r.text
+
+
 def test_bad_weights_are_rejected(client):
     form = dict(GYM_FORM, dumbbell_weights="lots")
     r = client.post("/settings", data=form)

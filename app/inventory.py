@@ -30,6 +30,14 @@ EQUIPMENT_KINDS = {
 
 PULLEYS = {"high": "High", "low": "Low", "mid": "Mid (chest height)"}
 
+# How Settings asks for each list-type kind's weights, phone-friendly (numbers only, no separators).
+LIST_INPUT = {"dumbbell": "range", "cable": "range", "kettlebell": "chips"}
+PLATE_SIZES = {"lb": [45, 35, 25, 15, 10, 5, 2.5], "kg": [25, 20, 15, 10, 5, 2.5, 1.25]}
+KETTLEBELL_SIZES = {
+    "lb": [10, 15, 18, 20, 25, 26, 30, 35, 40, 44, 45, 50, 53, 55, 60, 62, 70, 80, 88, 97, 106],
+    "kg": [4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 32, 36, 40, 44, 48],
+}
+
 STATIONS = {
     "bench": "Adjustable bench",
     "rack": "Squat rack / stands",
@@ -91,6 +99,51 @@ def parse_plates(text: str) -> dict[float, int]:
         count = int(_num(c)) if c.strip() else 2
         plates[_num(w.strip())] = plates.get(_num(w.strip()), 0) + count
     return plates
+
+
+def _g(x: float) -> str:
+    return f"{x:g}"
+
+
+def as_range(text: str) -> tuple[float, float, float] | None:
+    """(from, to, step) when the weights are evenly spaced (or a single weight), else None."""
+    try:
+        ws = parse_weight_list(text)
+    except WeightSyntaxError:
+        return None
+    if not ws:
+        return None
+    if len(ws) == 1:
+        return ws[0], ws[0], 0
+    steps = {round(b - a, 2) for a, b in zip(ws, ws[1:])}
+    return (ws[0], ws[-1], steps.pop()) if len(steps) == 1 else None
+
+
+def range_text(frm: float | None, to: float | None, step: float | None) -> str:
+    """Storage text for a From/To/Step entry. Raises WeightSyntaxError on bad input."""
+    if frm is None:
+        return ""
+    if to is None or to == frm:
+        return _g(frm)
+    if to < frm:
+        raise WeightSyntaxError("To must be at least From")
+    if not step or step <= 0:
+        raise WeightSyntaxError("Enter a step, e.g. 5")
+    text = f"{_g(frm)}-{_g(to)}/{_g(step)}"
+    parse_weight_list(text)
+    return text
+
+
+def plates_text(pairs: dict[float, int]) -> str:
+    """Storage text from {plate weight: pairs owned}."""
+    return ", ".join(f"{_g(w)}x{n * 2}" for w, n in sorted(pairs.items(), reverse=True) if n > 0)
+
+
+def plate_pairs(text: str) -> dict[float, int]:
+    try:
+        return {w: c // 2 for w, c in parse_plates(text).items()}
+    except (WeightSyntaxError, ValueError):
+        return {}
 
 
 def plate_loaded_weights(bar: float, plates: dict[float, int]) -> list[float]:

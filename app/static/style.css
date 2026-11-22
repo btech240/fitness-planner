@@ -169,6 +169,22 @@ table.sets { width: 100%; border-collapse: collapse; font: 14px var(--font-mono)
 .check { display: flex; align-items: center; gap: 10px; font-weight: 600; padding: 8px 0; }
 .check input { width: 22px; height: 22px; min-height: 0; accent-color: var(--primary); }
 .inline-checks { display: flex; flex-wrap: wrap; gap: 0 18px; }
+.range-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 6px; }
+.range-row label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); }
+.hint-line { margin: 6px 0 0; }
+.chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(60px, 1fr)); gap: 8px; margin: 8px 0 4px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chip span {
+  display: flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 10px;
+  border: 1px solid var(--line-strong); background: var(--bg); font: 600 15px var(--font-mono); color: var(--muted);
+}
+.chip input:checked + span { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
+.chip input:focus-visible + span { outline: 2px solid var(--secondary); outline-offset: 2px; }
+.plates { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 12px; margin: 8px 0 4px; }
+.plate-row { display: flex; align-items: center; gap: 10px; }
+.plate-size { flex: 1; font: 600 15px var(--font-mono); }
+.plate-row input { width: 72px; text-align: center; font-family: var(--font-mono); }
 .inline-checks .check { font-weight: 500; }
 .title-row { flex-wrap: wrap; }
 .excluded { list-style: none; padding: 0; margin: 0; }

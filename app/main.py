@@ -194,7 +194,44 @@ def recovery_page(request: Request):
 
 # ---- settings -------------------------------------------------------------------
 
-def _settings_ctx(conn, s, errors=None, saved=False):
+def _equipment_inputs(s: dict, raw: dict | None = None) -> dict:
+    """Values for the numbers-only equipment inputs (ranges, kettlebell chips, plate pairs)."""
+    invent, units = s["inventory"], s["units"]
+    ranges = {}
+    for kind, mode in inv.LIST_INPUT.items():
+        if mode != "range":
+            continue
+        if raw and kind in raw:
+            ranges[kind] = {**raw[kind], "irregular": False}
+            continue
+        text = invent[kind].get("weights", "")
+        r = inv.as_range(text)
+        if r:
+            ranges[kind] = {"from": fmt_weight(r[0]), "to": fmt_weight(r[1]) if r[2] else "",
+                            "step": fmt_weight(r[2]) if r[2] else "", "irregular": False}
+        else:
+            try:
+                ws = inv.parse_weight_list(text)
+            except inv.WeightSyntaxError:
+                ws = []
+            ranges[kind] = {"from": fmt_weight(ws[0]) if ws else "", "to": fmt_weight(ws[-1]) if ws else "",
+                            "step": "", "irregular": bool(ws)}
+    try:
+        kb_saved = set(inv.parse_weight_list(invent["kettlebell"].get("weights", "")))
+    except inv.WeightSyntaxError:
+        kb_saved = set()
+    pairs = inv.plate_pairs(invent.get("plates", ""))
+    plate_sizes = sorted(set(inv.PLATE_SIZES[units]) | set(pairs), reverse=True)
+    return {
+        "list_input": inv.LIST_INPUT,
+        "ranges": ranges,
+        "kb_saved": kb_saved,
+        "kb_sizes": sorted(set(inv.KETTLEBELL_SIZES[units]) | kb_saved),
+        "plate_rows": [(w, pairs.get(w, 0)) for w in plate_sizes],
+    }
+
+
+def _settings_ctx(conn, s, errors=None, saved=False, raw=None):
     preview = {}
     for kind in inv.EQUIPMENT_KINDS:
         try:
@@ -207,7 +244,8 @@ def _settings_ctx(conn, s, errors=None, saved=False):
     pins = sorted((catalog.get(i) for i in service.pinned_ids(conn)), key=lambda e: e["name"])
     return {"s": s, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "pulleys": inv.PULLEYS,
             "preview": preview, "excluded": excl, "pinned": pins, "errors": errors or {}, "saved": saved,
-            "pool_size": len(service._pool(conn, s)) if not errors else None}
+            "pool_size": len(service._pool(conn, s)) if not errors else None,
+            **_equipment_inputs(s, raw)}
 
 
 @app.get("/settings", response_class=HTMLResponse)
@@ -228,12 +266,40 @@ async def save_settings(request: Request):
         n = 5
     units = "kg" if form.get("units") == "kg" else "lb"
 
-    inventory = {"plates": str(form.get("plates", "")).strip(), "stations": [
-        k for k in inv.STATIONS if form.get(f"station_{k}")]}
-    try:
-        inv.parse_plates(inventory["plates"])
-    except (inv.WeightSyntaxError, ValueError):
-        errors["plates"] = "Use a format like 45x2, 25x2, 10x4"
+    def num(key: str) -> float | None:
+        v = str(form.get(key, "")).strip()
+        if not v:
+            return None
+        try:
+            return float(v)
+        except ValueError:
+            raise inv.WeightSyntaxError("Numbers only") from None
+
+    inventory = {"stations": [k for k in inv.STATIONS if form.get(f"station_{k}")]}
+    raw: dict[str, dict] = {}
+
+    # plates: one "pairs owned" box per size (legacy free-text "plates" field still accepted)
+    plate_keys = [k for k in form.keys() if k.startswith("plate_")]
+    if plate_keys:
+        pairs = {}
+        for k in plate_keys:
+            try:
+                w, n = float(k[len("plate_"):]), num(k)
+            except (ValueError, inv.WeightSyntaxError):
+                errors["plates"] = "Pairs must be whole numbers"
+                continue
+            if n:
+                if n < 0 or n != int(n):
+                    errors["plates"] = "Pairs must be whole numbers"
+                pairs[w] = int(n)
+        inventory["plates"] = inv.plates_text(pairs)
+    else:
+        inventory["plates"] = str(form.get("plates", "")).strip()
+        try:
+            inv.parse_plates(inventory["plates"])
+        except (inv.WeightSyntaxError, ValueError):
+            errors["plates"] = "Use a format like 45x2, 25x2, 10x4"
+
     for kind, (_, _, spec) in inv.EQUIPMENT_KINDS.items():
         cfg = {"enabled": bool(form.get(f"{kind}_enabled"))}
         if spec == "plates":
@@ -242,19 +308,28 @@ async def save_settings(request: Request):
             except ValueError:
                 errors[kind] = "Bar weight must be a number"
         elif spec == "list":
-            cfg["weights"] = str(form.get(f"{kind}_weights", "")).strip()
+            mode = inv.LIST_INPUT.get(kind)
+            try:
+                if mode == "range" and f"{kind}_from" in form:
+                    raw[kind] = {p: str(form.get(f"{kind}_{p}", "")).strip() for p in ("from", "to", "step")}
+                    cfg["weights"] = inv.range_text(num(f"{kind}_from"), num(f"{kind}_to"), num(f"{kind}_step"))
+                elif mode == "chips" and f"{kind}_weights" not in form:
+                    picked = sorted({float(v) for v in form.getlist(f"{kind}_w")})
+                    cfg["weights"] = ", ".join(fmt_weight(w) for w in picked)
+                else:
+                    cfg["weights"] = str(form.get(f"{kind}_weights", "")).strip()
+                    inv.parse_weight_list(cfg["weights"])
+            except inv.WeightSyntaxError as err:
+                cfg["weights"] = ""
+                errors[kind] = str(err) if mode == "range" else "Use a list like 10, 15, 20 or a range like 5-50/5"
             if kind == "cable":
                 cfg["pulleys"] = [p for p in inv.PULLEYS if form.get(f"cable_pulley_{p}")]
-            try:
-                inv.parse_weight_list(cfg["weights"])
-            except inv.WeightSyntaxError:
-                errors[kind] = "Use a list like 10, 15, 20 or a range like 5-50/5"
         inventory[kind] = cfg
 
     with tx() as conn:
         if errors:
             s = {"goal": goal, "n_exercises": n, "units": units, "inventory": inv.merged(inventory)}
-            return render(request, "settings.html", **_settings_ctx(conn, s, errors))
+            return render(request, "settings.html", **_settings_ctx(conn, s, errors, raw=raw))
         db.set_setting(conn, "goal", goal)
         db.set_setting(conn, "n_exercises", n)
         db.set_setting(conn, "units", units)
