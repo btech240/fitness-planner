@@ -1,26 +1,28 @@
 # Fitness Planner
 
-A self-hosted, Fitbod-style workout generator. You enter the equipment in your home gym, and each day it builds a workout around the most-recovered muscle groups. You log sets, reps and weight, and it suggests the next weights from what you logged. It's a single container with a SQLite file, and you use it from your phone's browser.
+A self-hosted, Fitbod-style workout generator. You enter the equipment in your home gym, and each day it builds a workout around the most-recovered muscle groups. You log sets, reps and weight, and it suggests the next weights from what you logged. It's a small Python web app with a SQLite file, and you use it from your phone's browser on your home network.
 
-Design decisions: [docs/DECISIONS.md](docs/DECISIONS.md). Proxmox LXC deployment: [docs/DEPLOY.md](docs/DEPLOY.md).
+Design decisions: [docs/DECISIONS.md](docs/DECISIONS.md).
 
 ## Run it on the homelab
 
+It runs in a Debian 12 Proxmox LXC as a systemd service. Full steps, including creating the container and a read-only deploy key: **[docs/DEPLOY.md](docs/DEPLOY.md)**. In short, inside the container:
+
 ```sh
-git clone <this repo> fitness-planner && cd fitness-planner   # or copy the folder over
-mkdir -p data && sudo chown 1000:1000 data                       # container runs as uid 1000
-docker compose up -d --build
+git clone git@github.com:<owner>/fitness-planner.git /opt/fitness-planner
+bash /opt/fitness-planner/deploy/install.sh     # first time
+bash /opt/fitness-planner/deploy/update.sh      # every update after that
 ```
 
-Open `http://<homelab-host>:8000` from your phone over Tailscale/VPN. On iPhone, Share → **Add to Home Screen** gives it an app icon and full-screen view.
+Open `http://<lxc-ip>:8000` on your phone. On iPhone, Share → **Add to Home Screen** gives it an app icon and full-screen view, and Auto-Lock of 5 minutes or more keeps the rest-timer beep working between sets.
 
-Edit `TZ` in `compose.yaml` so History shows your local times.
+**First run:** go to **Settings**, tick the equipment you own, enter the exact weights (`5-50/5` for a range, `35, 53` for a list, plates as `45x2, 25x2, 10x4`), tick your cable pulley positions and stations (bench, rack, pull-up bar, dip station), and pick your goal.
 
-**First run:** go to **Settings**, tick the equipment you own, enter the exact weights (`5-50/5` for a range, `35, 53` for a list, plates as `45x2, 25x2, 10x4`), tick your stations (bench, rack, pull-up bar, dip station), and pick your goal.
+**Data and backups:** everything is in `/var/lib/fitness-planner/fitness.db`; include the container in your Proxmox backup job.
 
-**Backups:** everything is in `data/fitness.db`. Copy that file (with the container stopped, or use `sqlite3 data/fitness.db ".backup backup.db"`).
+There is no login, so don't expose port 8000 to the internet.
 
-There is no login, so don't expose port 8000 to the internet. Keep it behind your VPN.
+Prefer Docker? A `Dockerfile` and `compose.yaml` are included: `mkdir -p data && sudo chown 1000:1000 data && docker compose up -d --build`, with the database in `data/fitness.db` and `TZ` set in `compose.yaml`.
 
 ## How it decides
 
