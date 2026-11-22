@@ -1,0 +1,65 @@
+# Deploy to a Proxmox LXC (Debian 12)
+
+Home-network only, no Docker. About 10 minutes.
+
+## 1. Create the container (Proxmox host shell)
+
+```sh
+pveam update
+pveam available --section system | grep debian-12          # note the exact template name
+pveam download local debian-12-standard_12.12-1_amd64.tar.zst   # use the name shown above
+
+pct create 120 local:vztmpl/debian-12-standard_12.12-1_amd64.tar.zst \
+  --hostname fitness --unprivileged 1 --features nesting=1 \
+  --cores 1 --memory 512 --swap 512 --rootfs local-lvm:4 \
+  --net0 name=eth0,bridge=vmbr0,ip=dhcp --onboot 1 --password
+pct start 120
+pct enter 120
+```
+
+Pick a free CT ID instead of `120`, and your storage names if not `local` / `local-lvm`.
+The web UI's **Create CT** wizard works too: Debian 12 template, 1 core, 512 MB RAM, 4 GB disk, DHCP, unprivileged, start at boot.
+
+Give the container a fixed address: a DHCP reservation on your router (or `ip=192.168.x.y/24,gw=...` above).
+
+## 2. Inside the container
+
+```sh
+apt update && apt install -y git openssh-client
+timedatectl set-timezone America/New_York        # your timezone; used for dates in History
+```
+
+## 3. Read-only deploy key for the private repo
+
+```sh
+ssh-keygen -t ed25519 -f ~/.ssh/fitness_deploy -N "" -C "fitness-lxc"
+cat >> ~/.ssh/config <<'EOF'
+Host github.com
+  IdentityFile ~/.ssh/fitness_deploy
+  IdentitiesOnly yes
+EOF
+cat ~/.ssh/fitness_deploy.pub
+```
+
+On GitHub: repo **Settings → Deploy keys → Add deploy key**, paste the public key, leave **Allow write access** unticked.
+
+## 4. Clone and install
+
+```sh
+git clone git@github.com:<owner>/fitness-planner.git /opt/fitness-planner   # answer "yes" to the host key prompt
+bash /opt/fitness-planner/deploy/install.sh
+```
+
+It prints the address to open, e.g. `http://192.168.x.y:8000`. On iPhone: Share → **Add to Home Screen**.
+
+## Day to day
+
+| Task | Command (inside the container) |
+|------|------|
+| Update to latest | `bash /opt/fitness-planner/deploy/update.sh` |
+| Status / logs | `systemctl status fitness-planner` · `journalctl -u fitness-planner -f` |
+| Restart | `systemctl restart fitness-planner` |
+
+**Data:** `/var/lib/fitness-planner/fitness.db`. Include the container in your Proxmox backup job.
+
+**Bring test data from elsewhere** (optional): `systemctl stop fitness-planner`, copy the file to `/var/lib/fitness-planner/fitness.db`, `chown fitness:fitness` it, `systemctl start fitness-planner`.

@@ -2,7 +2,7 @@
 
 A self-hosted, Fitbod-style workout generator. You enter the equipment in your home gym, and each day it builds a workout around the most-recovered muscle groups. You log sets, reps and weight, and it suggests the next weights from what you logged. It's a single container with a SQLite file, and you use it from your phone's browser.
 
-Design decisions: [docs/DECISIONS.md](docs/DECISIONS.md).
+Design decisions: [docs/DECISIONS.md](docs/DECISIONS.md). Proxmox LXC deployment: [docs/DEPLOY.md](docs/DEPLOY.md).
 
 ## Run it on the homelab
 
