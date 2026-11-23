@@ -3,13 +3,14 @@
 from __future__ import annotations
 
 import hashlib
+import os
 from contextlib import contextmanager
-from urllib.parse import urlencode
+from urllib.parse import urlencode, urlsplit
 from datetime import datetime
 from pathlib import Path
 
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -17,7 +18,7 @@ from . import catalog, db, generator, inventory as inv, photos, service
 from .recovery import TARGET_MUSCLES
 
 HERE = Path(__file__).parent
-app = FastAPI(title="Fitness Planner", docs_url=None, redoc_url=None)
+app = FastAPI(title="Fitness Planner", docs_url=None, redoc_url=None, openapi_url=None)
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 templates = Jinja2Templates(directory=HERE / "templates")
 
@@ -55,6 +56,42 @@ def asset(name: str) -> str:
 
 
 templates.env.globals["asset"] = asset
+
+
+UNSAFE_METHODS = {"POST", "PUT", "PATCH", "DELETE"}
+
+
+def _allowed_hosts() -> set[str] | None:
+    """FP_ALLOWED_HOSTS (comma-separated names/IPs, set by deploy/install.sh). Unset = any host."""
+    raw = os.environ.get("FP_ALLOWED_HOSTS", "").strip()
+    return {h.strip().lower() for h in raw.split(",") if h.strip()} or None
+
+
+def _hostname(host_header: str) -> str:
+    host = host_header.strip().lower()
+    if host.startswith("["):                      # [ipv6]:port
+        return host[1:host.find("]")] if "]" in host else host
+    return host.rsplit(":", 1)[0] if host.count(":") == 1 else host
+
+
+@app.middleware("http")
+async def guard_requests(request: Request, call_next):
+    """No login by design, so block the two ways a *web page* could act on the app for you:
+    - DNS rebinding: only answer to the host names/IPs the app is actually reached by.
+    - Cross-site form posts: a change must come from the app's own pages (same Origin)."""
+    host = request.headers.get("host", "")
+    allowed = _allowed_hosts()
+    if allowed is not None and _hostname(host) not in allowed:
+        return PlainTextResponse("Unknown host name for this app.", status_code=400)
+    if request.method in UNSAFE_METHODS:
+        source = request.headers.get("origin") or request.headers.get("referer")
+        if source and source != "null":
+            if urlsplit(source).netloc.lower() != host.lower():
+                return PlainTextResponse("Blocked: this change didn't come from the app's own pages.",
+                                         status_code=403)
+        elif source == "null":
+            return PlainTextResponse("Blocked: this change didn't come from the app's own pages.", status_code=403)
+    return await call_next(request)
 
 
 @app.middleware("http")

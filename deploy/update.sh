@@ -1,33 +1,14 @@
 #!/usr/bin/env bash
-# Pull the latest code and restart. Run as root:   bash deploy/update.sh
+# Pull the latest code, then run the (freshly pulled) installer, which updates packages,
+# photos, the service definition and restarts. Run as root:   bash deploy/update.sh
 # Your data in /var/lib/fitness-planner is not touched.
 set -euo pipefail
 
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DATA_DIR=/var/lib/fitness-planner
-APP_USER=fitness
-SERVICE=fitness-planner
 
 [ "$(id -u)" -eq 0 ] || { echo "Run as root." >&2; exit 1; }
 
 echo "==> Pulling latest code"
 git -C "$APP_DIR" pull --ff-only
 
-echo "==> Updating Python packages"
-"$APP_DIR/.venv/bin/pip" install -q -r "$APP_DIR/requirements.txt"
-
-echo "==> Fetching any new exercise photos"
-mkdir -p "$DATA_DIR/photos"
-(cd "$APP_DIR" && "$APP_DIR/.venv/bin/python" -m app.fetch_photos "$DATA_DIR/photos")
-chown -R "$APP_USER:$APP_USER" "$DATA_DIR/photos"
-
-echo "==> Restarting"
-systemctl restart "$SERVICE"
-sleep 2
-if systemctl is-active --quiet "$SERVICE"; then
-  echo "==> Updated to $(git -C "$APP_DIR" log -1 --format='%h %s')"
-else
-  echo "Service failed to start. Logs:" >&2
-  journalctl -u "$SERVICE" -n 30 --no-pager >&2
-  exit 1
-fi
+exec bash "$APP_DIR/deploy/install.sh"

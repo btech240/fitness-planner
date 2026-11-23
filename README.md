@@ -1,12 +1,30 @@
 # Fitness Planner
 
-A self-hosted, Fitbod-style workout generator. You enter the equipment in your home gym, and each day it builds a workout around the most-recovered muscle groups. You log sets, reps and weight, and it suggests the next weights from what you logged. It's a small Python web app with a SQLite file, and you use it from your phone's browser on your home network. Everyone in the house can have a profile (no passwords): each person keeps their own workouts and training settings, and the gym's equipment is shared.
+A self-hosted, Fitbod-style workout planner for a home gym. Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
 
-Design decisions: [docs/DECISIONS.md](docs/DECISIONS.md).
+## What it does
 
-## Run it on the homelab
+- **Daily workouts** — Push, Pull, Legs, Upper, Lower or Full body, chosen by which muscles are most recovered; one tap to regenerate.
+- **Real equipment** — only exercises your gym supports (barbell + plates, EZ bar, dumbbells, kettlebells, cable stack with high/low/mid pulleys, bands, bench, rack, pull-up bar, dip station, bodyweight), and only weights you can actually load.
+- **Progression** — weight suggestions from your last session (up one loadable step when you hit every rep); rep targets that climb for bodyweight moves.
+- **Core lifts + variety** — a couple of main lifts per muscle keep coming back; the rest rotate. Pin favorites, exclude ones you never want.
+- **Fast logging** — a set table with last session's numbers beside each set, one tap to log, and a rest timer that beeps when rest is over.
+- **Form help** — step-by-step instructions with start/end position photos.
+- **History and recovery** — every finished workout, and how recovered each muscle group is.
+- **Household profiles** — "Who's working out?" on open, no passwords. Each person has their own workouts, goal, pins and exclusions; the gym's equipment is shared.
 
-It runs in a Debian 12 Proxmox LXC as a systemd service. Full steps, including creating the container and a read-only deploy key: **[docs/DEPLOY.md](docs/DEPLOY.md)**. In short, inside the container:
+## Documentation
+
+| Doc | For |
+|-----|-----|
+| **[User guide](docs/USER_GUIDE.md)** | Everyone in the house: setup on your phone, the daily workout, settings, how workouts are picked, troubleshooting. |
+| **[Deploy](docs/DEPLOY.md)** | Whoever runs the server: creating the Proxmox container, installing, updating, backups. |
+| **[Security](docs/SECURITY.md)** | What's protected, what isn't, and how to lock down container access. |
+| [Design decisions](docs/DECISIONS.md) | Why things work the way they do. |
+
+## Run it
+
+It runs in a Debian 12 Proxmox LXC as a hardened systemd service (no Docker needed). Full steps: **[docs/DEPLOY.md](docs/DEPLOY.md)**. In short, inside the container:
 
 ```sh
 git clone git@github.com:<owner>/fitness-planner.git /opt/fitness-planner
@@ -14,15 +32,11 @@ bash /opt/fitness-planner/deploy/install.sh     # first time
 bash /opt/fitness-planner/deploy/update.sh      # every update after that
 ```
 
-Open `http://<lxc-ip>:8000` on your phone. On iPhone, Share → **Add to Home Screen** gives it an app icon and full-screen view, and Auto-Lock of 5 minutes or more keeps the rest-timer beep working between sets.
+Then open `http://<container-ip>:8000` on a phone on the home Wi-Fi, add yourself as a person, and fill in **Settings → Equipment**.
 
-**First run:** go to **Settings**, tick the equipment you own, enter the exact weights (`5-50/5` for a range, `35, 53` for a list, plates as `45x2, 25x2, 10x4`), tick your cable pulley positions and stations (bench, rack, pull-up bar, dip station), and pick your goal.
+There is no login by design: keep it on the home network and never port-forward it. See [Security](docs/SECURITY.md).
 
-**Data and backups:** everything is in `/var/lib/fitness-planner/fitness.db`; include the container in your Proxmox backup job. Exercise form photos are downloaded into `/var/lib/fitness-planner/photos` by the install and update scripts (locally: `python -m app.fetch_photos`).
-
-There is no login, so don't expose port 8000 to the internet.
-
-Prefer Docker? A `Dockerfile` and `compose.yaml` are included: `mkdir -p data && sudo chown 1000:1000 data && docker compose up -d --build`, with the database in `data/fitness.db` and `TZ` set in `compose.yaml`.
+Prefer Docker? A `Dockerfile` and `compose.yaml` are included: `mkdir -p data && sudo chown 1000:1000 data && docker compose up -d --build`, with the database in `data/fitness.db` and `TZ` set in `compose.yaml`. (The LXC install has the stronger sandbox.)
 
 ## How it decides
 
@@ -35,7 +49,7 @@ Prefer Docker? A `Dockerfile` and `compose.yaml` are included: `mkdir -p data &&
 - **Bodyweight moves:** the rep target is last session's average + 1, up to the goal's reps + 5. Once you hit that on every set, it suggests adding weight.
 - **Cable stack:** each cable exercise is tagged high, low or mid pulley; tick the positions you have.
 
-Tuning knobs are constants at the top of `app/generator.py` and `app/recovery.py`.
+All of this is per profile. Tuning knobs are constants at the top of `app/generator.py` and `app/recovery.py`.
 
 ## Develop
 
@@ -43,7 +57,8 @@ Tuning knobs are constants at the top of `app/generator.py` and `app/recovery.py
 python -m venv .venv
 .venv/Scripts/pip install -r requirements-dev.txt     # .venv/bin/pip on Linux/macOS
 .venv/Scripts/python -m pytest
+.venv/Scripts/python -m app.fetch_photos               # optional: form photos into data/photos
 .venv/Scripts/python -m uvicorn app.main:app --port 8000
 ```
 
-Exercise data comes from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain). To refresh it, see `scripts/build_exercises.py`.
+Exercise data and photos come from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain). To refresh the data, see `scripts/build_exercises.py`.

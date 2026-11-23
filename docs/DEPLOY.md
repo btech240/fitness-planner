@@ -50,15 +50,21 @@ git clone git@github.com:<owner>/fitness-planner.git /opt/fitness-planner   # an
 bash /opt/fitness-planner/deploy/install.sh
 ```
 
-It prints the address to open, e.g. `http://192.168.x.y:8000`. On iPhone: Share → **Add to Home Screen**.
+It prints the address to open, e.g. `http://192.168.x.y:8000`, and whether the full service sandbox is active. On a phone: open the address, Share → **Add to Home Screen**, then **Add person** and fill in **Settings → Equipment**. Hand the [user guide](USER_GUIDE.md) to everyone else.
+
+## 5. Lock down container access
+
+The app runs sandboxed as its own user, but the container's own SSH login is up to you. See **[SECURITY.md → Lock down container access](SECURITY.md#lock-down-container-access-recommended-do-this-once)**: either turn SSH off (`systemctl disable --now ssh`, use `pct enter` from the host) or make it key-only.
 
 ## Day to day
 
 | Task | Command (inside the container) |
 |------|------|
-| Update to latest | `bash /opt/fitness-planner/deploy/update.sh` |
+| Update to latest | `bash /opt/fitness-planner/deploy/update.sh` (pulls, then re-runs the installer: packages, photos, service, restart) |
 | Status / logs | `systemctl status fitness-planner` · `journalctl -u fitness-planner -f` |
 | Restart | `systemctl restart fitness-planner` |
+| Reach it by a name, not just the IP | `EXTRA_HOSTS="fitness.lan" bash /opt/fitness-planner/deploy/install.sh` (remembered for later updates) |
+| Different port | `PORT=8080 bash /opt/fitness-planner/deploy/install.sh` |
 
 **Data:** `/var/lib/fitness-planner/fitness.db`. Include the container in your Proxmox backup job. The one-time upgrade to household profiles saved the single-user database beside it as `fitness.pre-profiles-<date>.db` before starting everyone fresh.
 
