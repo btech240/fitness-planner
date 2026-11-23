@@ -137,6 +137,19 @@ def test_range_errors_keep_what_was_typed(client):
     assert "Enter a step" in r.text
 
 
+def test_static_files_are_versioned_so_phones_refetch(client):
+    # regression: iPhone Safari kept a stale style.css after an update, so new layouts rendered unstyled
+    import hashlib
+    from pathlib import Path
+    css = Path(__file__).parents[1] / "app" / "static" / "style.css"
+    version = hashlib.sha1(css.read_bytes()).hexdigest()[:10]
+    r = client.get("/")
+    assert f'href="/static/style.css?v={version}"' in r.text
+    assert r.headers["cache-control"] == "no-cache"
+    s = client.get(f"/static/style.css?v={version}")
+    assert s.status_code == 200 and "immutable" in s.headers["cache-control"]
+
+
 def test_bad_weights_are_rejected(client):
     form = dict(GYM_FORM, dumbbell_weights="lots")
     r = client.post("/settings", data=form)

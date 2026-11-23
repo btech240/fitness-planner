@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
@@ -38,6 +39,32 @@ def fmt_set(s) -> str:
     return f"{reps}·{fmt_weight(weight) if weight else 'BW'}"
 
 
+def _asset_versions() -> dict[str, str]:
+    """Content hash per static file. Changes on every deploy that edits a file, so phones
+    fetch the new CSS/JS instead of a stale cached copy."""
+    return {p.name: hashlib.sha1(p.read_bytes()).hexdigest()[:10]
+            for p in (HERE / "static").iterdir() if p.is_file()}
+
+
+ASSET_VERSIONS = _asset_versions()
+
+
+def asset(name: str) -> str:
+    return f"/static/{name}?v={ASSET_VERSIONS.get(name, '0')}"
+
+
+templates.env.globals["asset"] = asset
+
+
+@app.middleware("http")
+async def no_stale_pages(request: Request, call_next):
+    """Pages are always revalidated; versioned static files can be cached for a long time."""
+    response = await call_next(request)
+    if response.headers.get("content-type", "").startswith("text/html"):
+        response.headers["Cache-Control"] = "no-cache"
+    elif request.url.path.startswith("/static/") and request.query_params.get("v"):
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    return response
 templates.env.filters["w"] = fmt_weight
 templates.env.filters["setfmt"] = fmt_set
 templates.env.globals["goal_codes"] = {"strength": "STR", "hypertrophy": "HYP", "endurance": "END"}
