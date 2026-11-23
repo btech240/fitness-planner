@@ -1,10 +1,10 @@
 # Fitness Planner — Design Decisions
 
-A self-hosted, Fitbod-inspired workout planner. You tell it what equipment you have, and each day it generates a workout that trains rested muscle groups and lets tired ones recover. It runs in a container on the homelab and is used from a phone browser.
+A self-hosted workout planner, builder and tracker. You tell it what equipment you have, and each day it generates a workout that trains rested muscle groups and lets tired ones recover. It runs in a container on the homelab and is used from a phone browser.
 
 ## Feasibility
 
-It's doable. Fitbod's real advantage is exercise data tagged with muscles and equipment, and open data sets for that exist. The generator itself is scoring logic over that data plus your logged history.
+It's doable. The key ingredient is exercise data tagged with muscles and equipment, and open data sets for that exist. The generator itself is scoring logic over that data plus your logged history.
 
 ## Settled (user decisions)
 
@@ -16,8 +16,8 @@ It's doable. Fitbod's real advantage is exercise data tagged with muscles and eq
 | 3 | Remote access | **Existing VPN / Tailscale** | Nothing exposed publicly, so no auth layer is needed |
 | 4 | Logging depth | **Per-set: reps and weight** | Drives recovery per muscle (from how much work each did) and weight suggestions |
 | 5 | Equipment | **One equipment checklist** (one home gym) | Always trains in the same place |
-| 6 | Muscle selection | **Automatic, based on recovery** | Fitbod-style; no split to manage |
-| 7 | History import | **Start fresh**, no Fitbod import | The app learns working weights from what you log |
+| 6 | Muscle selection | **Automatic, based on recovery** | No split to manage |
+| 7 | History import | **Start fresh**, no import from other apps | The app learns working weights from what you log |
 | 8 | Training goal | **Selectable in settings**: strength / muscle building / endurance | Each goal has its own reps, sets and rest time |
 | 9 | Workout length | **One fixed setting** (number of exercises or target minutes) | Same length every day |
 | 10 | Exercise control | **'Never suggest' exclude list only**, no in-workout swap | Home gym, so equipment is never busy; some exercises just don't suit you |
@@ -49,4 +49,4 @@ It's doable. Fitbod's real advantage is exercise data tagged with muscles and eq
 
 ## Out of scope for v1
 
-Multiple users, public exposure and authentication, multiple gyms, Fitbod import, warm-up/cardio/core, charts/body map, offline/PWA sync, in-workout swaps.
+Multiple users, public exposure and authentication, multiple gyms, importing from other apps, warm-up/cardio/core, charts/body map, offline/PWA sync, in-workout swaps.

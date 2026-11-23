@@ -1,6 +1,6 @@
 # Fitness Planner
 
-A self-hosted, Fitbod-style workout planner for a home gym. Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
+A self-hosted workout planner, builder and tracker for a home gym. Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
 
 ## What it does
 
