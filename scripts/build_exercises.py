@@ -86,6 +86,8 @@ def main(src: str, dst: str) -> None:
             "secondary": x.get("secondaryMuscles") or [],
             "instructions": x.get("instructions") or [],
             "requires": infer_requires(x["name"], x["equipment"]),
+            # start/end position photos in the source repo at exercises/<id>/<n>.jpg
+            "photos": len(x.get("images") or []),
         })
     out.sort(key=lambda e: e["name"])
     with open(dst, "w", encoding="utf-8") as f:

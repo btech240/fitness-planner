@@ -62,4 +62,6 @@ It prints the address to open, e.g. `http://192.168.x.y:8000`. On iPhone: Share 
 
 **Data:** `/var/lib/fitness-planner/fitness.db`. Include the container in your Proxmox backup job.
 
+**Exercise photos:** `install.sh` and `update.sh` download the start/end form photos (about 950 JPEGs, ~60 MB) into `/var/lib/fitness-planner/photos`; later runs only fetch what's missing. If GitHub is unreachable the app still works and How to shows text only.
+
 **Bring test data from elsewhere** (optional): `systemctl stop fitness-planner`, copy the file to `/var/lib/fitness-planner/fitness.db`, `chown fitness:fitness` it, `systemctl start fitness-planner`.

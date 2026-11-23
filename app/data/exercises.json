@@ -16,7 +16,8 @@
 "At the top of the contraction your torso should be perpendicular to the ground. Reverse the motion, going only ¾ of the way down.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Advanced_Kettlebell_Windmill",
@@ -38,7 +39,8 @@
 "Lower yourself as far as possible.",
 "Pause for a second and reverse the motion back to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Air_Bike",
@@ -58,7 +60,8 @@
 "Crunch to the opposite side as you cycle your legs and bring closer your left elbow to your right knee and exhale.",
 "Continue alternating in this manner until all of the recommended repetitions for each side have been completed."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternate_Hammer_Curl",
@@ -80,7 +83,8 @@
 "Repeat the movement with the left hand. This equals one repetition.",
 "Continue alternating in this manner for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternate_Heel_Touchers",
@@ -99,7 +103,8 @@
 "Now crunch over your torso forward and up around 3-4 inches to the left side and touch your left heel as you hold the contraction for a second. Exhale while performing this movement and then go back to the starting position as you inhale. Now that both heels have been touched, that is considered 1 repetition.",
 "Continue alternating sides in this manner until all prescribed repetitions are done."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternate_Incline_Dumbbell_Curl",
@@ -122,7 +127,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Alternating_Cable_Shoulder_Press",
@@ -144,7 +150,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Alternating_Deltoid_Raise",
@@ -163,7 +170,8 @@
 "On the next repetition, raise the weights laterally, raising them out to your side to about shoulder height.",
 "Return the weights to the starting position and continue alternating to the front and side."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternating_Floor_Press",
@@ -185,7 +193,8 @@
 "Extend both arms, so that the kettlebells are being held above your chest. Lower one kettlebell, bringing it to your chest and turn the wrist in the direction of the locked out kettlebell.",
 "Raise the kettlebell and repeat on the opposite side."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternating_Hang_Clean",
@@ -209,7 +218,8 @@
 "Clean one kettlebell to your shoulder and hold on to the other kettlebell in a hanging position. Clean the kettlebell to your shoulder by extending through the legs and hips as you pull the kettlebell towards your shoulders. Rotate your wrist as you do so.",
 "Lower the cleaned kettlebell to a hanging position and clean the alternate kettlebell. Repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternating_Kettlebell_Press",
@@ -228,7 +238,8 @@
 "Press one directly overhead by extending through the elbow, turning it so the palm faces forward while holding the other kettlebell stationary .",
 "Lower the pressed kettlebell to the starting position and immediately press with your other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternating_Kettlebell_Row",
@@ -248,7 +259,8 @@
 "Pull one kettlebell off of the floor while holding on to the other kettlebell. Retract the shoulder blade of the working side, as you flex the elbow, drawing the kettlebell towards your stomach or rib cage.",
 "Lower the kettlebell in the working arm and repeat with your other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Alternating_Renegade_Row",
@@ -271,7 +283,8 @@
 "Push one kettlebell into the floor and row the other kettlebell, retracting the shoulder blade of the working side as you flex the elbow, pulling it to your side.",
 "Then lower the kettlebell to the floor and begin the kettlebell in the opposite hand. Repeat for several reps."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Anti-Gravity_Press",
@@ -293,7 +306,8 @@
 "To begin, press the barbell out in front of your head by extending your elbows. Keep your arms parallel to the ground throughout the movement.",
 "Return to the starting position and repeat to complete the set."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Arnold_Dumbbell_Press",
@@ -314,7 +328,8 @@
 "After a second pause at the top, begin to lower the dumbbells to the original position by rotating the palms of your hands towards you. Tip: The left arm will be rotated in a counter clockwise manner while the right one will be rotated clockwise. Breathe in as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Around_The_Worlds",
@@ -333,7 +348,8 @@
 "Now move the dumbbells by creating a semi-circle as you displace them from the initial position to over the head. All of the movement should happen with the arms parallel to the floor at all times. Breathe in as you perform this portion of the movement.",
 "Reverse the movement to return the weight to the starting position as you exhale."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Back_Flyes_-_With_Bands",
@@ -356,7 +372,8 @@
 "After a pause, go back to the original position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Band_Good_Morning",
@@ -376,7 +393,8 @@
 "Keeping your legs straight, extend through the hips to come to a near vertical position.",
 "Ensure that you do not round your back as you go down back to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Band_Good_Morning_Pull_Through",
@@ -396,7 +414,8 @@
 "Begin by bending at the hips, getting your butt back as far as possible. Keep your back flat and bend forward to about 90 degrees. Your knees should be only slightly bent.",
 "Return to the starting position be driving through with the hips to come back to a standing position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Band_Hip_Adductions",
@@ -416,7 +435,8 @@
 "Return to the starting position and repeat for the desired rep count.",
 "Switch sides."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Band_Pull_Apart",
@@ -437,7 +457,8 @@
 "Keep your elbows extended as you perform the movement, bringing the band to your chest. Ensure that you keep your shoulders back during the exercise.",
 "Pause as you complete the movement, returning to the starting position under control."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Band_Skull_Crusher",
@@ -454,7 +475,8 @@
 "Take hold of the band, raising your elbows so that the upper arm is perpendicular to the floor. With the elbow flexed, the band should be above your head. This will be your starting position.",
 "Extend through the elbow to straighten your arm, keeping your upper arm in place. Pause at the top of the motion, and return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Ab_Rollout",
@@ -475,7 +497,8 @@
 "After a second contraction at the top, start to roll the barbell back forward to the starting position slowly as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Ab_Rollout_-_On_Knees",
@@ -496,7 +519,8 @@
 "Slowly roll the barbell straight forward, stretching your body into a straight position. Tip: Go down as far as you can without touching the floor with your body. Breathe in during this portion of the movement.",
 "After a second pause at the stretched position, start pulling yourself back to the starting position as you breathe out. Tip: Go slowly and keep your abs tight at all times."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Bench_Press_-_Medium_Grip",
@@ -521,7 +545,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Curl",
@@ -542,7 +567,8 @@
 "Slowly begin to bring the bar back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Curls_Lying_Against_An_Incline",
@@ -562,7 +588,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Deadlift",
@@ -590,7 +617,8 @@
 "Go back to the starting position by bending at the knees while simultaneously leaning the torso forward at the waist while keeping the back straight. When the weights on the bar touch the floor you are back at the starting position and ready to perform another repetition.",
 "Perform the amount of repetitions prescribed in the program."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Full_Squat",
@@ -617,7 +645,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Glute_Bridge",
@@ -637,7 +666,8 @@
 "Begin the movement by driving through with your heels, extending your hips vertically through the bar. Your weight should be supported by your upper back and the heels of your feet.",
 "Extend as far as possible, then reverse the motion to return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Guillotine_Bench_Press",
@@ -662,7 +692,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Hack_Squat",
@@ -686,7 +717,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Hip_Thrust",
@@ -706,7 +738,8 @@
 "Roll the bar so that it is directly above your hips, and lean back against the bench so that your shoulder blades are near the top of it.",
 "Begin the movement by driving through your feet, extending your hips vertically through the bar. Your weight should be supported by your shoulder blades and your feet. Extend as far as possible, then reverse the motion to return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Incline_Bench_Press_-_Medium_Grip",
@@ -731,7 +764,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Incline_Shoulder_Raise",
@@ -753,7 +787,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Lunge",
@@ -776,7 +811,8 @@
 "Using mainly the heel of your foot, push up and go back to the starting position as you exhale.",
 "Repeat the movement for the recommended amount of repetitions and then perform with the left leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Rear_Delt_Row",
@@ -799,7 +835,8 @@
 "Slowly go back to the initial position as you breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Rollout_from_Bench",
@@ -823,7 +860,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Seated_Calf_Raise",
@@ -843,7 +881,8 @@
 "After a second contraction, slowly go back to the starting position. Tip: To get maximum benefit stretch your calves as far as you can.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Shoulder_Press",
@@ -865,7 +904,8 @@
 "Lift the bar back up to the starting position as you exhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Shrug",
@@ -883,7 +923,8 @@
 "Slowly return to the starting position as you breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Shrug_Behind_The_Back",
@@ -904,7 +945,8 @@
 "Slowly return to the starting position as you breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Side_Bend",
@@ -924,7 +966,8 @@
 "Now repeat the movement but bending to the left instead. Hold for a second and come back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Side_Split_Squat",
@@ -948,7 +991,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Squat",
@@ -975,7 +1019,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Squat_To_A_Bench",
@@ -1005,7 +1050,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Barbell_Step_Ups",
@@ -1028,7 +1074,8 @@
 "Step down with the left leg by flexing the hip and knee of the right leg as you inhale. Return to the original standing position by placing the right foot of to next to the left foot on the initial position.",
 "Repeat with the right leg for the recommended amount of repetitions and then perform with the left leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Barbell_Walking_Lunge",
@@ -1050,7 +1097,8 @@
 "Drive through the heel of your lead foot and extend both knees to raise yourself back up.",
 "Step forward with your rear foot, repeating the lunge on the opposite leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bench_Dips",
@@ -1073,7 +1121,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Bench_Press_-_Powerlifting",
@@ -1099,7 +1148,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Bench_Press_-_With_Bands",
@@ -1125,7 +1175,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Bent_Over_Barbell_Row",
@@ -1147,7 +1198,8 @@
 "Then inhale and slowly lower the barbell back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench",
@@ -1168,7 +1220,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Bent_Over_Low-Pulley_Side_Lateral",
@@ -1193,7 +1246,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Bent_Over_One-Arm_Long_Bar_Row",
@@ -1218,7 +1272,8 @@
 "Slowly lower the bar to the starting position getting a nice stretch on the lats. Tip: Do not let the plates touch the floor. To ensure the best range of motion, I recommend using small plates (25-lb ones) as opposed to larger plates (like 35-45lb ones).",
 "Repeat for the recommended amount of repetitions and switch arms."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent_Over_Two-Arm_Long_Bar_Row",
@@ -1241,7 +1296,8 @@
 "Slowly lower the bar to the starting position getting a nice stretch on the lats. Tip: Do not let the plates touch the floor. To ensure the best range of motion, I recommend using small plates (25-lb ones) as opposed to larger plates (like 35-45lb ones).",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent_Over_Two-Dumbbell_Row",
@@ -1263,7 +1319,8 @@
 "Slowly lower the weight again to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent_Over_Two-Dumbbell_Row_With_Palms_In",
@@ -1284,7 +1341,8 @@
 "Slowly lower the weight again to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent_Press",
@@ -1308,7 +1366,8 @@
 "Begin my leaning to the side opposite the kettlebell, continuing until you are able to touch the ground with your free hand, keeping your eyes on the kettlebell. As you do so, press the weight vertically be extending through the elbow, keeping your arm perpendicular to the ground.",
 "Return to an upright position, with the kettlebell above your head. Return the kettlebell to the shoulder and repeat for the desired number of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent-Arm_Barbell_Pullover",
@@ -1332,7 +1391,8 @@
 "At that point, bring the barbell back to the starting position using the arc through which the weight was lowered and exhale as you perform this movement.",
 "Hold the weight on the initial position for a second and repeat the motion for the prescribed number of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent-Arm_Dumbbell_Pullover",
@@ -1356,7 +1416,8 @@
 "At that point, bring the dumbbell back to the starting position using the arc through which the weight was lowered and exhale as you perform this movement.",
 "Hold the weight on the initial position for a second and repeat the motion for the prescribed number of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bent-Knee_Hip_Raise",
@@ -1375,7 +1436,8 @@
 "Squeeze your abs at the top of the movement for a second and then return to the starting position slowly as you breathe in. Tip: Maintain a controlled motion at all times.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Board_Press",
@@ -1398,7 +1460,8 @@
 "You can take a standard bench grip, or shoulder width to focus on the triceps. Pull the bar out of the rack without protracting your shoulders. The bar, wrist, and elbow should stay in line at all times. Focus on squeezing the bar and trying to pull it apart.",
 "Lower the bar to the boards, and then drive the bar up with as much force as possible. The elbows should be tucked in until lockout."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Body_Tricep_Press",
@@ -1417,7 +1480,8 @@
 "Pause, and then reverse the motion by extending the elbows.",
 "Progress from bodyweight by adding chains over your shoulders."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Body-Up",
@@ -1438,7 +1502,8 @@
 "Slowly lower your forearms back to the ground by allowing the elbows to flex.",
 "Repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bodyweight_Flyes",
@@ -1461,7 +1526,8 @@
 "Using a slow and controlled motion, move your hands away from the midline of your body, rolling the bars apart. Inhale during this portion of the motion.",
 "After moving the bars as far apart as you can, return to the starting position by pulling them back together. Exhale as you perform this movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bodyweight_Squat",
@@ -1481,7 +1547,8 @@
 "Begin the movement by flexing your knees and hips, sitting back with your hips.",
 "Continue down to full depth if you are able,and quickly reverse the motion until you return to the starting position. As you squat, keep your head and chest up and push your knees out."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bosu_Ball_Cable_Crunch_With_Side_Bends",
@@ -1507,7 +1574,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Bottoms_Up",
@@ -1524,7 +1592,8 @@
 "To perform the movement, tuck the knees toward your chest by flexing the hips and knees. Following this, extend your legs directly above you so that they are perpendicular to the ground. Rotate and elevate your pelvis to raise your glutes from the floor.",
 "After a brief pause, return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Bottoms-Up_Clean_From_The_Hang_Position",
@@ -1543,7 +1612,8 @@
 "Initiate the exercise by standing upright with a kettlebell in one hand.",
 "Swing the kettlebell back forcefully and then reverse the motion forcefully. Crush the kettlebell handle as hard as possible and raise the kettlebell to your shoulder."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Box_Squat",
@@ -1569,7 +1639,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Bradford_Rocky_Presses",
@@ -1591,7 +1662,8 @@
 "Lower the bar down to the starting position slowly as you inhale. This is one repetition.",
 "Alternate in this manner until you complete the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Butt_Lift_Bridge",
@@ -1610,7 +1682,8 @@
 "Pushing mainly with your heels, lift your hips off the floor while keeping your back straight. Breathe out as you perform this part of the motion and hold at the top for a second.",
 "Slowly go back to the starting position as you breathe in."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Butt-Ups",
@@ -1629,7 +1702,8 @@
 "Lower back down slowly to your starting position as you breathe in. Tip: Don't let your back sag downwards.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Cable_Chest_Press",
@@ -1652,7 +1726,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Crossover",
@@ -1675,7 +1750,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Crunch",
@@ -1697,7 +1773,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Deadlifts",
@@ -1722,7 +1799,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Hammer_Curls_-_Rope_Attachment",
@@ -1744,7 +1822,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Hip_Adduction",
@@ -1767,7 +1846,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Incline_Pushdown",
@@ -1789,7 +1869,8 @@
 "requires": [
 "bench",
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Incline_Triceps_Extension",
@@ -1811,7 +1892,8 @@
 "requires": [
 "bench",
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Internal_Rotation",
@@ -1832,7 +1914,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Iron_Cross",
@@ -1853,7 +1936,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Judo_Flip",
@@ -1874,7 +1958,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Lying_Triceps_Extension",
@@ -1895,7 +1980,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_One_Arm_Tricep_Extension",
@@ -1917,7 +2003,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Preacher_Curl",
@@ -1942,7 +2029,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Rear_Delt_Fly",
@@ -1962,7 +2050,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Reverse_Crunch",
@@ -1984,7 +2073,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Rope_Overhead_Triceps_Extension",
@@ -2005,7 +2095,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Rope_Rear-Delt_Rows",
@@ -2030,7 +2121,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Russian_Twists",
@@ -2053,7 +2145,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Seated_Crunch",
@@ -2074,7 +2167,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Seated_Lateral_Raise",
@@ -2100,7 +2194,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Shoulder_Press",
@@ -2122,7 +2217,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Shrugs",
@@ -2143,7 +2239,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Cable_Wrist_Curl",
@@ -2165,7 +2262,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Calf_Raise_On_A_Dumbbell",
@@ -2184,7 +2282,8 @@
 "Now inhale as you roll the dumbbell slightly forward as you come down to get a better stretch.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Calf_Raises_-_With_Bands",
@@ -2203,7 +2302,8 @@
 "After a one second contraction, slowly go back down to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Car_Drivers",
@@ -2223,7 +2323,8 @@
 "Reverse the motion, turning it all the way to the opposite side.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Chin-Up",
@@ -2248,7 +2349,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "Clean_and_Press",
@@ -2280,7 +2382,8 @@
 "Stand to full height, holding the bar in the clean position.",
 "Without moving your feet, press the bar overhead as you exhale. Lower the bar under control ."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Clock_Push-Up",
@@ -2303,7 +2406,8 @@
 "As you accelerate up, move your outside foot away from your direction of travel. Leaving the ground, shift your body about 30 degrees for the next repetition.",
 "Return to the starting position and repeat the exercise, working all the way around until you are back where you started."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Close-Grip_Barbell_Bench_Press",
@@ -2328,7 +2432,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Close-Grip_Dumbbell_Press",
@@ -2350,7 +2455,8 @@
 "Initiate the movement by lowering the dumbbell to your chest.",
 "Return to the starting position by extending the elbows."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Close-Grip_EZ_Bar_Curl",
@@ -2371,7 +2477,8 @@
 "Slowly begin to bring the bar back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Close-Grip_EZ-Bar_Press",
@@ -2393,7 +2500,8 @@
 "Using the triceps to push the bar back up, press it back to the starting position by extending the elbows as you exhale.",
 "Repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Close-Grip_Front_Lat_Pulldown",
@@ -2419,7 +2527,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Close-Grip_Push-Up_off_of_a_Dumbbell",
@@ -2441,7 +2550,8 @@
 "Press yourself back up to the starting position by extending the elbows. Breathe out as you perform this step.",
 "After a pause at the contracted position, repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Close-Grip_Standing_Barbell_Curl",
@@ -2462,7 +2572,8 @@
 "Slowly go back down to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Cocoons",
@@ -2479,7 +2590,8 @@
 "To perform the movement, tuck the knees toward your chest, rotating your pelvis to lift your glutes from the floor. As you do so, flex the spine, bringing your arms back over your head to perform a simultaneous crunch motion.",
 "After a brief pause, return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Concentration_Curls",
@@ -2500,7 +2612,8 @@
 "Slowly begin to bring the dumbbells back to starting position as your breathe in. Caution: Avoid swinging motions at any time.",
 "Repeat for the recommended amount of repetitions. Then repeat the movement with the left arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Cross_Body_Hammer_Curl",
@@ -2520,7 +2633,8 @@
 "Slowly lower the dumbbell along the same path as you inhale and then repeat the same movement for the left arm.",
 "Continue alternating in this fashion until the recommended amount of repetitions is performed for each arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Cross_Over_-_With_Bands",
@@ -2543,7 +2657,8 @@
 "Slowly return to the starting position as you inhale.",
 "Perform for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Cross-Body_Crunch",
@@ -2562,7 +2677,8 @@
 "Now go back down to the starting position as you inhale and repeat with the left elbow and the right knee.",
 "Continue alternating in this manner until all prescribed repetitions are done."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Crunch_-_Hands_Overhead",
@@ -2581,7 +2697,8 @@
 "Slowly lower down to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Crunch_-_Legs_On_Exercise_Ball",
@@ -2602,7 +2719,8 @@
 "Slowly go back down to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Crunches",
@@ -2622,7 +2740,8 @@
 "After the one second contraction, begin to come down slowly again to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Cuban_Press",
@@ -2643,7 +2762,8 @@
 "Return to the starting position as you breathe in by reversing the steps.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dead_Bug",
@@ -2664,7 +2784,8 @@
 "Stay tight and return the working leg to the starting position.",
 "Repeat on the opposite side, alternating until the set is complete."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Decline_Barbell_Bench_Press",
@@ -2690,7 +2811,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Close-Grip_Bench_To_Skull_Crusher",
@@ -2716,7 +2838,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Crunch",
@@ -2738,7 +2861,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Dumbbell_Bench_Press",
@@ -2763,7 +2887,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Dumbbell_Flyes",
@@ -2784,7 +2909,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Dumbbell_Triceps_Extension",
@@ -2805,7 +2931,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_EZ_Bar_Triceps_Extension",
@@ -2826,7 +2953,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Oblique_Crunch",
@@ -2848,7 +2976,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Decline_Reverse_Crunch",
@@ -2869,7 +2998,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Deficit_Deadlift",
@@ -2893,7 +3023,8 @@
 "With your feet, and your grip set, take a big breath and then lower your hips and bend the knees until your shins contact the bar. Look forward with your head, keep your chest up and your back arched, and begin driving through the heels to move the weight upward. After the bar passes the knees, aggressively pull the bar back, pulling your shoulder blades together as you drive your hips forward into the bar.",
 "Lower the bar by bending at the hips and guiding it to the floor."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dips_-_Triceps_Version",
@@ -2916,7 +3047,8 @@
 ],
 "requires": [
 "dip_station"
-]
+],
+"photos": 2
 },
 {
 "id": "Double_Kettlebell_Alternating_Hang_Clean",
@@ -2941,7 +3073,8 @@
 "Clean one kettlebell to your shoulder and hold on to the other kettlebell.",
 "With a fluid motion, lower the top kettlebell while driving the bottom kettlebell up."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Double_Kettlebell_Jerk",
@@ -2966,7 +3099,8 @@
 "Return your feet to the ground in a split fashion, with one foot forward and one foot back.",
 "Keeping the weights overhead, return to a standing position, bringing your feet together. Lower the weights to perform the next repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Double_Kettlebell_Push_Press",
@@ -2987,7 +3121,8 @@
 "Squat down a few inches and reverse the motion rapidly. Use the momentum from the legs to drive the kettlebells overhead.",
 "Once the kettlebells are locked out, lower the kettlebells to your shoulders and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Double_Kettlebell_Snatch",
@@ -3008,7 +3143,8 @@
 "Swing the kettlebells between your legs forcefully and reverse the direction.",
 "Drive through with your hips and lock the ketttlebells overhead in one uninterrupted motion."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Double_Kettlebell_Windmill",
@@ -3031,7 +3167,8 @@
 "Bending at the hip to one side, sticking your butt out, slowly lean until you can retrieve the kettlebell from the floor. Keep your eyes on the kettlebell that you hold over your head at all times.",
 "Pause for a second after retrieving the kettlebell from the ground and reverse the motion back to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Drag_Curl",
@@ -3051,7 +3188,8 @@
 "Slowly go back to the starting position as you keep the bar in contact with the torso at all times.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Alternate_Bicep_Curl",
@@ -3072,7 +3210,8 @@
 "Repeat the movement with the left hand. This equals one repetition.",
 "Continue alternating in this manner for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Bench_Press",
@@ -3096,7 +3235,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Dumbbell_Bench_Press_with_Neutral_Grip",
@@ -3119,7 +3259,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Dumbbell_Bicep_Curl",
@@ -3139,7 +3280,8 @@
 "Then, inhale and slowly begin to lower the dumbbells back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Clean",
@@ -3166,7 +3308,8 @@
 "After full extension, rebend the hips and knees to receive the weight in a squat position. Allow the arms to bend, guiding the dumbbells to your shoulders.",
 "Upon receiving the weight in the squat position, extend the hips and knees to finish in a standing position with the weights on your shoulders."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Floor_Press",
@@ -3186,7 +3329,8 @@
 "Lower the weights until your upper arm comes in contact with the floor. You can tuck your elbows to emphasize triceps size and strength, or to focus on your chest angle your arms to the side.",
 "Pause at the bottom, and then bring the weight together at the top by extending through the elbows."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Flyes",
@@ -3205,7 +3349,8 @@
 "Return your arms back to the starting position as you squeeze your chest muscles and breathe out. Tip: Make sure to use the same arc of motion used to lower the weights.",
 "Hold for a second at the contracted position and repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Incline_Row",
@@ -3230,7 +3375,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Dumbbell_Incline_Shoulder_Raise",
@@ -3253,7 +3399,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Dumbbell_Lunges",
@@ -3275,7 +3422,8 @@
 "Using mainly the heel of your foot, push up and go back to the starting position as you exhale.",
 "Repeat the movement for the recommended amount of repetitions and then perform with the left leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Lying_One-Arm_Rear_Lateral_Raise",
@@ -3296,7 +3444,8 @@
 "Slowly lower the dumbbell to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Lying_Pronation",
@@ -3316,7 +3465,8 @@
 "As you breathe in, slowly go back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Lying_Rear_Lateral_Raise",
@@ -3335,7 +3485,8 @@
 "Slowly lower the dumbbells to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions and then switch to the other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Lying_Supination",
@@ -3355,7 +3506,8 @@
 "As you breathe in, slowly go back to the starting position.",
 "Repeat for the recommended amount of repetitions and then switch to the other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_One-Arm_Shoulder_Press",
@@ -3377,7 +3529,8 @@
 "After a second pause, slowly come down back to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions and then switch arms."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_One-Arm_Triceps_Extension",
@@ -3397,7 +3550,8 @@
 "Return to the starting position by flexing your triceps as you breathe out. Tip: It is imperative that only the forearm moves. The upper arm should remain at all times stationary next to your head.",
 "Repeat for the recommended amount of repetitions and switch arms."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_One-Arm_Upright_Row",
@@ -3419,7 +3573,8 @@
 "Lower the dumbbell back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions and switch arms."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Prone_Incline_Curl",
@@ -3441,7 +3596,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Dumbbell_Raise",
@@ -3461,7 +3617,8 @@
 "Lower the dumbbells back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Rear_Lunge",
@@ -3483,7 +3640,8 @@
 "Push up and go back to the starting position as you exhale. Tip: Use the ball of your feet to push in order to accentuate the quadriceps. To focus on the glutes, press with your heels.",
 "Now repeat with the opposite leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Scaption",
@@ -3502,7 +3660,8 @@
 "Begin the movement raising your arms out in front of you, about 30 degrees off center. Your arms should be fully extended as you perform the movement.",
 "Continue until your arms are parallel to the ground, and then return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Seated_One-Leg_Calf_Raise",
@@ -3522,7 +3681,8 @@
 "Slowly return to the starting position, stretching as far down as possible.",
 "Repeat for your prescribed number of repetitions and then repeat with the right leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Shoulder_Press",
@@ -3544,7 +3704,8 @@
 "Then, after a brief pause at the top contracted position, slowly lower the weights back down to the starting position while inhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Shrug",
@@ -3562,7 +3723,8 @@
 "Lower the dumbbells back to the original position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Side_Bend",
@@ -3580,7 +3742,8 @@
 "Now repeat the movement but bending to the left instead. Hold for a second and come back to the starting position.",
 "Repeat for the recommended amount of repetitions and then change hands."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Squat",
@@ -3604,7 +3767,8 @@
 "Begin to raise your torso as you exhale by pushing the floor with the heel of your foot mainly as you straighten the legs again and go back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Squat_To_A_Bench",
@@ -3630,7 +3794,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Dumbbell_Step_Ups",
@@ -3652,7 +3817,8 @@
 "Step down with the left leg by flexing the hip and knee of the right leg as you inhale. Return to the original standing position by placing the right foot of to next to the left foot on the initial position.",
 "Repeat with the right leg for the recommended amount of repetitions and then perform with the left leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Dumbbell_Tricep_Extension_-Pronated_Grip",
@@ -3670,7 +3836,8 @@
 "Now, inhale and slowly lower the dumbbells until they are near your ears. Be sure to keep your upper arms stationary and your elbows tucked in.",
 "Then, exhale and use your triceps to return the weight to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "EZ-Bar_Curl",
@@ -3689,7 +3856,8 @@
 "Then inhale and slowly lower the bar back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "EZ-Bar_Skullcrusher",
@@ -3709,7 +3877,8 @@
 "Lift the bar back to the starting position by extending the elbow and exhaling.",
 "Repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Elbow_to_Knee",
@@ -3726,7 +3895,8 @@
 "Perform the motion by flexing the spine and rotating your torso to bring the left elbow to the right knee.",
 "Return to the starting position and repeat the movement for the desired number of repetitions before switching sides."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Elevated_Back_Lunge",
@@ -3747,7 +3917,8 @@
 "Begin by stepping backwards with one leg. Descend by flexing your hips and knees until your knee touches the floor.",
 "Pause, and extend through the hips and knees to rise up, returning all the way to the starting position before alternating."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Elevated_Cable_Rows",
@@ -3773,7 +3944,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Extended_Range_One-Arm_Kettlebell_Floor_Press",
@@ -3792,7 +3964,8 @@
 "Lie on the floor and position a kettlebell for one arm to press. The kettlebell should be held by the handle. The leg on the same side that you are pressing should be bent, with the knee crossing over the midline of the body.",
 "Press the kettlebell by extending the elbow and adducting the arm, pressing it above your body. Return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "External_Rotation",
@@ -3812,7 +3985,8 @@
 "As you breathe in, slowly go back to the starting position.",
 "Repeat for the recommended amount of repetitions and then switch to the other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "External_Rotation_with_Band",
@@ -3831,7 +4005,8 @@
 "Execute the movement by rotating your arm in a backhand motion, keeping your elbow in place.",
 "Continue as far as you are able, pause, and then return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "External_Rotation_with_Cable",
@@ -3851,7 +4026,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Face_Pull",
@@ -3870,7 +4046,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Finger_Curls",
@@ -3888,7 +4065,8 @@
 "Lower the bar as far as possible by extending the fingers. Allowing the bar to roll down the hands, catch the bar with the final joint in the fingers.",
 "Now curl bar up as high as possible by closing your hands while exhaling. Hold the contraction at the top."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Flat_Bench_Cable_Flyes",
@@ -3912,7 +4090,8 @@
 "requires": [
 "bench",
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Flat_Bench_Leg_Pull-In",
@@ -3933,7 +4112,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Flat_Bench_Lying_Leg_Raise",
@@ -3953,7 +4133,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Flexor_Incline_Dumbbell_Curls",
@@ -3975,7 +4156,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Floor_Press",
@@ -3995,7 +4177,8 @@
 "Lower the bar towards the bottom of your chest or upper stomach, squeezing the bar and attempting to pull it apart as you do so. Ensure that you tuck your elbows throughout the movement. Lower the bar until your upper arm contacts the ground and pause, preventing any slamming or bouncing of the weight.",
 "Press the bar back up as fast as you can, keeping the bar, your wrists, and elbows in line as you do so."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Flutter_Kicks",
@@ -4016,7 +4199,8 @@
 "Then lower the left leg as you lift the right leg.",
 "Continue alternating in this manner (as though you are doing a flutter kick in water) until you have done the recommended amount of repetitions for each leg. Make sure that you keep a controlled movement at all times. Tip: You will breathe normally as you perform this movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Freehand_Jump_Squat",
@@ -4040,7 +4224,8 @@
 "When you touch the floor again, immediately squat down and jump again.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Frog_Sit-Ups",
@@ -4061,7 +4246,8 @@
 "As you inhale, slowly lower back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Front_Barbell_Squat",
@@ -4087,7 +4273,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Front_Barbell_Squat_To_A_Bench",
@@ -4114,7 +4301,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Front_Cable_Raise",
@@ -4135,7 +4323,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Front_Dumbbell_Raise",
@@ -4153,7 +4342,8 @@
 "Now lower the dumbbell back down slowly to the starting position as you simultaneously lift the right dumbbell.",
 "Continue alternating in this fashion until all of the recommended amount of repetitions have been performed for each arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Front_Incline_Dumbbell_Raise",
@@ -4174,7 +4364,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Front_Raise_And_Pullover",
@@ -4197,7 +4388,8 @@
 "Now return the barbell to the starting position by reversing the motion as you exhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Front_Squat_Clean_Grip",
@@ -4221,7 +4413,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Front_Squats_With_Two_Kettlebells",
@@ -4241,7 +4434,8 @@
 "Looking straight ahead at all times, squat as low as you can and pause at the bottom. As you squat down, push your knees out. You should squat between your legs, keeping an upright torso, with your head and chest up.",
 "Rise back up by driving through your heels and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Front_Two-Dumbbell_Raise",
@@ -4259,7 +4453,8 @@
 "As you inhale, lower the dumbbells back down slowly to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Full_Range-Of-Motion_Lat_Pulldown",
@@ -4281,7 +4476,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Glute_Kickback",
@@ -4301,7 +4497,8 @@
 "Go back to the initial position as you inhale and now repeat with the left leg.",
 "Continue to alternate legs until all of the recommended repetitions have been performed."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Goblet_Squat",
@@ -4323,7 +4520,8 @@
 "Squat down between your legs until your hamstrings are on your calves. Keep your chest and head up and your back straight.",
 "At the bottom position, pause and use your elbows to push your knees out. Return to the starting position, and repeat for 10-20 repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Good_Morning",
@@ -4344,7 +4542,8 @@
 "Begin by bending at the hips, moving them back as you bend over to near parallel. Keep your back arched and your cervical spine in proper alignment.",
 "Reverse the motion by extending through the hips with your glutes and hamstrings. Continue until you have returned to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Good_Morning_off_Pins",
@@ -4364,7 +4563,8 @@
 "Begin with a bar on a rack at about the same height as your stomach. Bend over underneath the bar and rack the bar across the rear of your shoulders as you would a power squat, not on top of your shoulders. At the proper height, you should be near parallel to the floor when bent over. Keep your back tight, shoulder blades pinched together, and your knees slightly bent. Keep your back arched and your cervical spine in proper alignment.",
 "Begin the motion by extending through the hips with your glutes and hamstrings, and you are standing with the weight. Slowly lower the weight back to the pins returning to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Gorilla_Chin_Crunch",
@@ -4386,7 +4586,8 @@
 "Slowly start to inhale as you return to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Hammer_Curls",
@@ -4405,7 +4606,8 @@
 "After the brief pause, inhale and slowly begin the lower the dumbbells back down to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Hammer_Grip_Incline_DB_Bench_Press",
@@ -4431,7 +4633,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Handstand_Push-Ups",
@@ -4452,7 +4655,8 @@
 "Push yourself back up slowly as you exhale until your elbows are nearly locked.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Hanging_Bar_Good_Morning",
@@ -4476,7 +4680,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "Hanging_Leg_Raise",
@@ -4496,7 +4701,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "Hanging_Pike",
@@ -4517,7 +4723,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "High_Cable_Curls",
@@ -4537,7 +4744,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Hip_Extension_with_Bands",
@@ -4557,7 +4765,8 @@
 "Keeping your head and your chest up, move the resisted leg back as far as you can while keeping the knee straight.",
 "Return the leg to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Hip_Flexion_with_Band",
@@ -4575,7 +4784,8 @@
 "Keeping your head and your chest up, raise your knee up to 90 degrees and pause.",
 "Return the leg to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Hip_Lift_with_Band",
@@ -4596,7 +4806,8 @@
 "Keeping your shoulders on the ground, drive through your heels to raise your hips, pushing into the band as high as you can.",
 "Pause at the top of the motion, and return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Hyperextensions_With_No_Hyperextension_Bench",
@@ -4620,7 +4831,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Barbell_Triceps_Extension",
@@ -4644,7 +4856,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Bench_Pull",
@@ -4670,7 +4883,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Cable_Chest_Press",
@@ -4693,7 +4907,8 @@
 "requires": [
 "bench",
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Cable_Flye",
@@ -4718,7 +4933,8 @@
 "requires": [
 "bench",
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Dumbbell_Bench_With_Palms_Facing_In",
@@ -4744,7 +4960,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Dumbbell_Curl",
@@ -4764,7 +4981,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Dumbbell_Flyes",
@@ -4788,7 +5006,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Dumbbell_Flyes_-_With_A_Twist",
@@ -4812,7 +5031,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Dumbbell_Press",
@@ -4838,7 +5058,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Hammer_Curls",
@@ -4857,7 +5078,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Inner_Biceps_Curl",
@@ -4878,7 +5100,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Push-Up",
@@ -4900,7 +5123,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Push-Up_Close-Grip",
@@ -4924,7 +5148,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Push-Up_Medium",
@@ -4949,7 +5174,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Push-Up_Reverse_Grip",
@@ -4974,7 +5200,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Incline_Push-Up_Wide",
@@ -4999,7 +5226,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Internal_Rotation_with_Band",
@@ -5018,7 +5246,8 @@
 "Execute the movement by rotating your arm in a forehand motion, keeping your elbow in place.",
 "Continue as far as you are able, pause, and then return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Iron_Cross",
@@ -5038,7 +5267,8 @@
 "traps"
 ],
 "instructions": [],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Isometric_Neck_Exercise_-_Front_And_Back",
@@ -5057,7 +5287,8 @@
 "Now release the tension slowly.",
 "Rest for the recommended amount of time and repeat with your hands placed on the back side of your head."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Isometric_Neck_Exercise_-_Sides",
@@ -5076,7 +5307,8 @@
 "Now release the tension slowly.",
 "Rest for the recommended amount of time and repeat with your right hand placed on the right side of your head."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Isometric_Wipers",
@@ -5098,7 +5330,8 @@
 "Reverse the motion by extending the flexed arm, pushing yourself up and then dropping to the other side.",
 "Repeat for the desired number of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "JM_Press",
@@ -5120,7 +5353,8 @@
 "Now go back to the starting position and start over.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Jackknife_Sit-Up",
@@ -5138,7 +5372,8 @@
 "While inhaling, lower your arms and legs back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Janda_Sit-Up",
@@ -5156,7 +5391,8 @@
 "As you inhale, slowly go back in a controlled manner to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Jefferson_Squats",
@@ -5185,7 +5421,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Kettlebell_Arnold_Press",
@@ -5204,7 +5441,8 @@
 "Looking straight ahead, press the kettlebell out and overhead, rotating your wrist so that your palm faces forward at the top of the motion.",
 "Return the kettlebell to the starting position, with the palm facing in."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Dead_Clean",
@@ -5227,7 +5465,8 @@
 "Clean the kettlebell to your shoulder. Clean the kettlebell to your shoulders by extending through the legs and hips as you raise the kettlebell towards your shoulder. The wrist should rotate as you do so.",
 "Lower the kettlebell, keeping the hamstrings loaded by keeping your back straight and your butt out."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Figure_8",
@@ -5246,7 +5485,8 @@
 "Place one kettlebell between your legs and take a wider than shoulder width stance. Bend over by pushing your butt out and keeping your back flat.",
 "Pick up a kettlebell and pass it to your other hand between your legs. The receiving hand should reach from behind the legs. Go back and forth for several repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Halo",
@@ -5270,7 +5510,8 @@
 "Complete the prescribed number of circles in one direction, then repeat the same number in the opposite direction.",
 "Move slowly and keep your head, hips and lower back still. If your lower back arches or the bell drifts far from your head, use a lighter weight."
 ],
-"requires": []
+"requires": [],
+"photos": 0
 },
 {
 "id": "Kettlebell_Halo_With_Overhead_Extension",
@@ -5295,7 +5536,8 @@
 "Continue the circle past the opposite ear and back down to the starting position in front of your chest to complete one repetition.",
 "Alternate the direction of the circle on each repetition. Keep your head, hips and lower back still throughout; if your lower back arches or you cannot reach the overhead position without leaning back, use a lighter weight or perform the halo and the extension as separate exercises."
 ],
-"requires": []
+"requires": [],
+"photos": 0
 },
 {
 "id": "Kettlebell_Hang_Clean",
@@ -5318,7 +5560,8 @@
 "Clean kettlebell to your shoulder. Clean the kettlebell to your shoulders by extending through the legs and hips as you raise the kettlebell towards your shoulder. The wrist should rotate as you do so.",
 "Lower kettlebell to a hanging position between your legs while keeping the hamstrings loaded. Keep your head up at all times."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_One-Legged_Deadlift",
@@ -5338,7 +5581,8 @@
 "Keeping that knee slightly bent, perform a stiff legged deadlift by bending at the hip, extending your free leg behind you for balance.",
 "Continue lowering the kettlebell until you are parallel to the ground, and then return to the upright position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Overhead_Triceps_Extension",
@@ -5360,7 +5604,8 @@
 "Extend your elbows to press the kettlebell back to the starting position, keeping your upper arms still throughout.",
 "Keep your ribcage down and avoid arching your lower back as you extend."
 ],
-"requires": []
+"requires": [],
+"photos": 0
 },
 {
 "id": "Kettlebell_Pass_Between_The_Legs",
@@ -5380,7 +5625,8 @@
 "Place one kettlebell between your legs and take a comfortable stance. Bend over by pushing your butt out and keeping your back flat.",
 "Pick up a kettlebell and pass it to your other hand between your legs, in the fashion of a \"W\". Go back and forth for several repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Pirate_Ships",
@@ -5400,7 +5646,8 @@
 "Allow the bell to drop as you rotate to the opposite side, again raising the kettlebell to head height.",
 "Repeat for the desired amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Pistol_Squat",
@@ -5423,7 +5670,8 @@
 "Hold the bottom position for a second and then reverse the motion, driving through the heel and keeping your head and chest up.",
 "Lower yourself again and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Seated_Press",
@@ -5442,7 +5690,8 @@
 "Clean one kettlebell to your shoulder.",
 "Press the kettlebell up and out until it is locked out overhead. Return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Seesaw_Press",
@@ -5461,7 +5710,8 @@
 "Press one kettlebell.",
 "Lower the kettlebell and immediately press the other kettlebell. Make sure to do the same amount of reps on both sides."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Sumo_High_Pull",
@@ -5483,7 +5733,8 @@
 "Place a kettlebell on the ground between your feet. Position your feet in a wide stance, and grasp the kettlebell with two hands. Set your hips back as far as possible, with your knees bent. Keep your chest and head up. This will be your starting position.",
 "Begin by extending the hips and knees, simultaneously pulling the kettlebell to your shoulders, raising your elbows as you do so. Reverse the motion to return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Thruster",
@@ -5504,7 +5755,8 @@
 "At the bottom, reverse direction and squat by extending your knees and hips, driving through your heels. As you do so, press both kettlebells overhead by extending your arms straight up, using the momentum from the squat to help drive the weights upward.",
 "As you begin the next repetition, return the weights to the shoulders."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Turkish_Get-Up_Lunge_style",
@@ -5526,7 +5778,8 @@
 "Keeping the kettlebell locked out at all times, pivot to the opposite side and use your non- working arm to assist you in driving forward to the lunge position. Using your free hand, push yourself to a seated position, then progressing to one knee.",
 "While looking up at the kettlebell, slowly stand up. Reverse the motion back to the starting position and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Turkish_Get-Up_Squat_style",
@@ -5549,7 +5802,8 @@
 "Keeping the kettlebell locked out at all times, pivot to the opposite side and use your non- working arm to assist you in driving forward to the lunge position.",
 "Using your free hand, push yourself to a seated position, then progressing to your feet. While looking up at the kettlebell, slowly stand up. Reverse the motion back to the starting position and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kettlebell_Windmill",
@@ -5571,7 +5825,8 @@
 "Keeping the kettlebell locked out at all times, push your butt out in the direction of the locked out kettlebell. Turn your feet out at a forty-five degree angle from the arm with the locked out kettlebell. Bending at the hip to one side, sticking your butt out, slowly lean until you can touch the floor with your free hand. Keep your eyes on the kettlebell that you hold over your head at all times.",
 "Pause for a second after reaching the ground and reverse the motion back to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Kneeling_Cable_Crunch_With_Alternating_Oblique_Twists",
@@ -5596,7 +5851,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Kneeling_Cable_Triceps_Extension",
@@ -5619,7 +5875,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Kneeling_High_Pulley_Row",
@@ -5641,7 +5898,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Kneeling_Single-Arm_High_Pulley_Row",
@@ -5664,7 +5922,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Kneeling_Squat",
@@ -5687,7 +5946,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Landmine_180s",
@@ -5710,7 +5970,8 @@
 "Reverse the motion to swing the weight all the way to the opposite side.",
 "Continue alternating the movement until the set is complete."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Landmine_Linear_Jammer",
@@ -5736,7 +5997,8 @@
 "Reverse the motion by powerfully extending through the hips, knees, and ankles, while also extending the elbows to straighten the arms. This movement should be done explosively, coming out of the squat to full extension as powerfully as possible.",
 "Return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lateral_Raise_-_With_Bands",
@@ -5754,7 +6016,8 @@
 "Lower the handles back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Leg_Lift",
@@ -5775,7 +6038,8 @@
 "Repeat for the recommended amount of repetitions.",
 "Repeat the movement with the opposite leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Leg_Pull-In",
@@ -5793,7 +6057,8 @@
 "Return to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Leg-Over_Floor_Press",
@@ -5813,7 +6078,8 @@
 "Press the kettlebll into a locked out position.",
 "Lower the weight until the elbow touches the ground, keeping the kettlebell above the elbow. Repeat for the desired number of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Low_Cable_Crossover",
@@ -5835,7 +6101,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Low_Cable_Triceps_Extension",
@@ -5857,7 +6124,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Low_Pulley_Row_To_Neck",
@@ -5882,7 +6150,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Lunge_Pass_Through",
@@ -5905,7 +6174,8 @@
 "Pressing through the heel of your foot, return to the starting position.",
 "Repeat the movement for the recommended amount of repetitions, alternating legs."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Cable_Curl",
@@ -5927,7 +6197,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Lying_Cambered_Barbell_Row",
@@ -5949,7 +6220,8 @@
 "As you exhale row the bar up as you keep the elbows close to your body to either your chest, in order to target the upper mid back, or to your stomach if targeting the lats is your goal.",
 "After a second hold at the top, lower back down to the starting position slowly as you inhale."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Close-Grip_Bar_Curl_On_High_Pulley",
@@ -5972,7 +6244,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Lying_Close-Grip_Barbell_Triceps_Extension_Behind_The_Head",
@@ -5991,7 +6264,8 @@
 "As you exhale bring the bar back up to the starting position by pushing the bar up in a semi-circular motion until the lower arms are also parallel to the floor. Contract the triceps hard at the top of the movement for a second. Tip: Again, only the forearms should move. The upper arms should remain stationary at all times.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Close-Grip_Barbell_Triceps_Press_To_Chin",
@@ -6010,7 +6284,8 @@
 "As you exhale bring the bar back up to the starting position by pushing the bar up in a semi-circular motion. Contract the triceps hard at the top of the movement for a second. Tip: Again, only the forearms should move. The upper arms should remain stationary at all times.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Dumbbell_Tricep_Extension",
@@ -6031,7 +6306,8 @@
 "At that point, while keeping the elbows in and the upper arms stationary, use the triceps to bring the weight back up to the starting position as you breathe out.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_High_Bench_Barbell_Curl",
@@ -6051,7 +6327,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Lying_One-Arm_Lateral_Raise",
@@ -6070,7 +6347,8 @@
 "Slowly lower the dumbbell to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Rear_Delt_Raise",
@@ -6089,7 +6367,8 @@
 "Slowly lower the dumbbells to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions and then switch to the other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Supine_Dumbbell_Curl",
@@ -6108,7 +6387,8 @@
 "As you breathe out, slowly begin to curl the weights up as you simultaneously rotate your wrists so that the palms of the hands face up. Continue curling the weight until your biceps are fully contracted and squeeze hard at the top position for a second. Tip: Only the forearms should move. Upper arms should remain stationary and elbows should stay in throughout the movement.",
 "Return back to the starting position very slowly."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Lying_Triceps_Press",
@@ -6127,7 +6407,8 @@
 "At that point, use the triceps to bring the weight back up to the starting position as you breathe out.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Middle_Back_Shrug",
@@ -6145,7 +6426,8 @@
 "As you inhale go back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Monster_Walk",
@@ -6162,7 +6444,8 @@
 "To begin, take short steps forward alternating your left and right foot.",
 "After several steps, do just the opposite and walk backward to where you started."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Narrow_Stance_Squats",
@@ -6189,7 +6472,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Natural_Glute_Ham_Raise",
@@ -6211,7 +6495,8 @@
 "Remaining in control, raise yourself back up to the starting position.",
 "If you are unable to complete a rep, use a band, a partner, or push off of a box to aid in completing a repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Neck_Press",
@@ -6233,7 +6518,8 @@
 "Repeat the movement for the prescribed amount of repetitions.",
 "When you are done, place the bar back in the rack."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Oblique_Crunches",
@@ -6254,7 +6540,8 @@
 "Remember to breathe in during the eccentric (lowering) part of the exercise and to breathe out during the concentric (upward) part of the exercise.",
 "Continue alternating in this manner until all of the recommended repetitions for each side have been completed."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Oblique_Crunches_-_On_The_Floor",
@@ -6273,7 +6560,8 @@
 "Crunch as high as you can, hold the contraction for a second and then slowly drop back down into the starting position.",
 "Remember to breathe in during the eccentric (lowering) part of the exercise and to breathe out during the concentric (elevation) part of the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One_Arm_Dumbbell_Bench_Press",
@@ -6299,7 +6587,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "One_Arm_Dumbbell_Preacher_Curl",
@@ -6318,7 +6607,8 @@
 "Squeeze the biceps hard for a second at the contracted position and repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One_Arm_Floor_Press",
@@ -6342,7 +6632,8 @@
 "Repeat until you have performed your recommended repetitions.",
 "Switch arms and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One_Arm_Lat_Pulldown",
@@ -6365,7 +6656,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "One_Arm_Pronated_Dumbbell_Triceps_Extension",
@@ -6385,7 +6677,8 @@
 "Repeat until you have performed your set repetitions.",
 "Switch arms and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One_Arm_Supinated_Dumbbell_Triceps_Extension",
@@ -6406,7 +6699,8 @@
 "Switch arms and repeat the movement.",
 "Switch arms again and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One_Leg_Barbell_Squat",
@@ -6433,7 +6727,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "One-Arm_Dumbbell_Row",
@@ -6458,7 +6753,8 @@
 "Repeat the movement for the specified amount of repetitions.",
 "Switch sides and repeat again with the other arm."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Flat_Bench_Dumbbell_Flye",
@@ -6480,7 +6776,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "One-Arm_High-Pulley_Cable_Side_Bends",
@@ -6504,7 +6801,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "One-Arm_Incline_Lateral_Raise",
@@ -6526,7 +6824,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Clean",
@@ -6548,7 +6847,8 @@
 "Clean the kettlebell to your shoulders by extending through the legs and hips as you raise the kettlebell towards your shoulder. The wrist should rotate as you do so.",
 "Return the weight to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Clean_and_Jerk",
@@ -6568,7 +6868,8 @@
 "Receive the weight overhead by returning to a squat position underneath the weight.",
 "Keeping the weight overhead, return to a standing position. Lower the weight to the floor to perform the next repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Floor_Press",
@@ -6587,7 +6888,8 @@
 "Press the kettlebell straight up toward the ceiling, rotating your wrist.",
 "Lower the kettlebell back to the starting position and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Jerk",
@@ -6609,7 +6911,8 @@
 "Immediately reverse direction, driving through the heels, in essence jumping to create momentum. As you do so, press the kettlebell overhead to lockout by extending the arms, using your body's momentum to move the weight. Receive the weight overhead by returning to a squat position underneath the weight. Keeping the weight overhead, return to a standing position.",
 "Lower the weight to perform the next repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Military_Press_To_The_Side",
@@ -6628,7 +6931,8 @@
 "Look at the kettlebell and press it up and out until it is locked out overhead.",
 "Lower the kettlebell back to your shoulder under control and repeat. Make sure to contract your lat, butt, and stomach forcefully for added stability and strength."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Para_Press",
@@ -6647,7 +6951,8 @@
 "Hold the kettlebell with the elbow out to the side, and press it up and out until it is locked out overhead.",
 "Lower the kettlebell back to your shoulder under control and repeat. Make sure to contract your lat, butt, and stomach forcefully for added stability and strength."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Push_Press",
@@ -6668,7 +6973,8 @@
 "Dip your body by bending the knees, keeping your torso upright.",
 "Immediately reverse direction, driving through the heels, in essence jumping to create momentum. As you do so, press the kettlebell overhead to lockout by extending the arms, using your body's momentum to move the weight. Lower the weight to perform the next repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Row",
@@ -6686,7 +6992,8 @@
 "instructions": [
 "Place a kettlebell in front of your feet. Bend your knees slightly and then push your butt out as much as possible as you bend over to get in the starting position. Grab the kettlebell and pull it to your stomach, retracting your shoulder blade and flexing the elbow. Keep your back straight. Lower and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Snatch",
@@ -6710,7 +7017,8 @@
 "Look straight ahead and swing the kettlebell back between your legs.",
 "Immediately reverse the direction and drive through with your hips and knees, accelerating the kettlebell upward. As the kettlebell rises to your shoulder rotate your hand and punch straight up, using momentum to receive the weight locked out overhead."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Split_Jerk",
@@ -6734,7 +7042,8 @@
 "Receive the weight overhead by returning to a squat position underneath the weight, positioning one leg in front of you and one leg behind you.",
 "Keeping the weight overhead, return to a standing position and bring your feet together. Lower the weight to perform the next repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Split_Snatch",
@@ -6755,7 +7064,8 @@
 "After fully extending the body, descend into a lunge position to receive the weights overhead, one leg forward and one leg back. Ensure you drive through with your hips and lock the ketttlebells overhead in one uninterrupted motion.",
 "Return to a standing position, holding the weight overhead, and bring the feet together. Lower the weight to return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Kettlebell_Swings",
@@ -6773,7 +7083,8 @@
 "shoulders"
 ],
 "instructions": [],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Long_Bar_Row",
@@ -6795,7 +7106,8 @@
 "Pull the weight to your side by retracting the shoulder and flexing the elbow. Do not jerk the weight or cheat during the movement.",
 "After a brief pause, return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Open_Palm_Kettlebell_Clean",
@@ -6819,7 +7131,8 @@
 "Throw the kettlebell out in front of you and catch the handle with one hand.",
 "Take the kettlebell to the floor and repeat. Make sure to work both arms."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Overhead_Kettlebell_Squats",
@@ -6841,7 +7154,8 @@
 "Looking straight ahead and keeping a kettlebell locked out above you, flex the knees and hips and lower your torso between your legs, keeping your head and chest up.",
 "Pause at the bottom position for a second before rising back to the top, driving through the heels of your feet."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Side_Deadlift",
@@ -6868,7 +7182,8 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Arm_Side_Laterals",
@@ -6888,7 +7203,8 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "One-Legged_Cable_Kickback",
@@ -6912,7 +7228,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Open_Palm_Kettlebell_Clean",
@@ -6934,7 +7251,8 @@
 "Release the kettlebell as it comes up, and let it flip so that the ball of the kettlebell lands in the palms of your hands.",
 "Release the kettlebell out in front of you and catch the handle with both hands. Lower the kettlebell to the starting position and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Overhead_Cable_Curl",
@@ -6956,7 +7274,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Pallof_Press",
@@ -6982,7 +7301,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Pallof_Press_With_Rotation",
@@ -7011,7 +7331,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Palms-Down_Dumbbell_Wrist_Curl_Over_A_Bench",
@@ -7034,7 +7355,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Palms-Down_Wrist_Curl_Over_A_Bench",
@@ -7057,7 +7379,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Palms-Up_Barbell_Wrist_Curl_Over_A_Bench",
@@ -7080,7 +7403,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Palms-Up_Dumbbell_Wrist_Curl_Over_A_Bench",
@@ -7103,7 +7427,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Pin_Presses",
@@ -7129,7 +7454,8 @@
 "Drive the bar up with as much force as possible. The elbows should be tucked in until lockout.",
 "Return the bar to the pins, pausing before beginning the next repetition."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Plank",
@@ -7145,7 +7471,8 @@
 "Get into a prone position on the floor, supporting your weight on your toes and your forearms. Your arms are bent and directly below the shoulder.",
 "Keep your body straight at all times, and hold this position as long as possible. To increase difficulty, an arm or leg can be raised."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Plie_Dumbbell_Squat",
@@ -7169,7 +7496,8 @@
 "Press mainly with the heel of the foot to bring the body back to the starting position while exhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Plyo_Kettlebell_Pushups",
@@ -7189,7 +7517,8 @@
 "Begin by lowering yourself as low as you can, keeping your back straight.",
 "Quickly and forcefully reverse direction, pushing yourself up to the other side of the kettlebell, switching hands as you do so. Continue the movement by descending and repeating the movement back and forth."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Power_Clean",
@@ -7237,7 +7566,8 @@
 "Squat down with the elbows fully extended until the bar touches the floor.",
 "Start over at Phase 1 and repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Power_Partials",
@@ -7256,7 +7586,8 @@
 "Feel the contraction for a second and begin to lower the weights back down to the starting position while inhaling. Tip: Keep the palms facing down with the little finger slightly higher while lifting and lowering the weights as it will concentrate the stress on your shoulders mainly.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Preacher_Curl",
@@ -7275,7 +7606,8 @@
 "As you exhale, use the biceps to curl the weight up until your biceps is fully contracted and the bar is at shoulder height. Squeeze the biceps hard and hold this position for a second.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Preacher_Hammer_Dumbbell_Curl",
@@ -7295,7 +7627,8 @@
 "As you exhale, use the biceps to curl the weight up until your biceps is fully contracted and the dumbbells are at shoulder height.",
 "Squeeze the biceps hard for a second at the contracted position and repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Press_Sit-Up",
@@ -7317,7 +7650,8 @@
 "Lower your upper body back down to the starting position while bringing the barbell back down to your torso. Remember to breathe in while lowering the body.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Pull_Through",
@@ -7338,7 +7672,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Pullups",
@@ -7362,7 +7697,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "Push_Up_to_Side_Plank",
@@ -7385,7 +7721,8 @@
 "Lower the arm back to the floor for another pushup and then twist to the other side.",
 "Repeat the series, alternating each side, for 10 or more reps."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Push-Up_Wide",
@@ -7407,7 +7744,8 @@
 "Using your pectoral muscles, press your upper body back up to the starting position by extending the elbows. Exhale as you perform this step.",
 "After pausing at the contracted position, repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Push-Ups_-_Close_Triceps_Position",
@@ -7428,7 +7766,8 @@
 "Using your triceps and some of your pectoral muscles, press your upper body back up to the starting position and squeeze your chest. Breathe out as you perform this step.",
 "After a second pause at the contracted position, repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Push-Ups_With_Feet_Elevated",
@@ -7450,7 +7789,8 @@
 "Using your pectoral muscles, press your upper body back up to the starting position and squeeze your chest. Breathe out as you perform this step.",
 "After a second pause at the contracted position, repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Pushups",
@@ -7471,7 +7811,8 @@
 "Now breathe out and press your upper body back up to the starting position while squeezing your chest.",
 "After a brief pause at the top contracted position, you can begin to lower yourself downward again for as many repetitions as needed."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Pushups_Close_and_Wide_Hand_Positions",
@@ -7492,7 +7833,8 @@
 "Using your pectoral muscles, press your upper body back up to the starting position and squeeze your chest. Breathe out as you perform this step.",
 "After a second pause at the contracted position, repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Rack_Pulls",
@@ -7516,7 +7858,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Reverse_Barbell_Curl",
@@ -7536,7 +7879,8 @@
 "Slowly begin to bring the bar back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Reverse_Barbell_Preacher_Curls",
@@ -7557,7 +7901,8 @@
 "As you breathe in, slowly lower the barbell until your upper arms are extended and the biceps is fully stretched.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Reverse_Cable_Curl",
@@ -7579,7 +7924,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Reverse_Crunch",
@@ -7598,7 +7944,8 @@
 "Hold the contraction for a second and move your legs back to the starting position while exhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Reverse_Flyes",
@@ -7618,7 +7965,8 @@
 "Feel the contraction and slowly lower the weights back down to the starting position while inhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Reverse_Flyes_With_External_Rotation",
@@ -7639,7 +7987,8 @@
 "Feel the contraction and slowly lower the weights back down to the starting position while inhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Reverse_Grip_Bent-Over_Rows",
@@ -7662,7 +8011,8 @@
 "Slowly lower the weight again to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Reverse_Grip_Triceps_Pushdown",
@@ -7683,7 +8033,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Reverse_Triceps_Bench_Press",
@@ -7708,7 +8059,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Rocking_Standing_Calf_Raise",
@@ -7730,7 +8082,8 @@
 "Hold for a second and bring them back down as you breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Romanian_Deadlift",
@@ -7753,7 +8106,8 @@
 "Once you are standing completely straight up, lower the bar by pushing the hips back, only slightly bending the knees, unlike when squatting. Tip: Take a deep breath at the start of the movement and keep your chest up. Hold your breath as you lower and exhale as you complete the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Rope_Crunch",
@@ -7774,7 +8128,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Rope_Straight-Arm_Pulldown",
@@ -7794,7 +8149,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Russian_Twist",
@@ -7815,7 +8171,8 @@
 "Hold the contraction for a second and move back to the starting position while breathing out. Now move to the opposite side performing the same techniques you applied to the right side.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Barbell_Military_Press",
@@ -7836,7 +8193,8 @@
 "Lift the bar back up to the starting position as you exhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Barbell_Twist",
@@ -7856,7 +8214,8 @@
 "Remember to breathe out while twisting your body to the side and in when moving back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Bent-Over_One-Arm_Dumbbell_Triceps_Extension",
@@ -7877,7 +8236,8 @@
 "Repeat the movement for the prescribed amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Bent-Over_Rear_Delt_Raise",
@@ -7897,7 +8257,8 @@
 "After a one second contraction at the top, slowly lower the dumbbells back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension",
@@ -7917,7 +8278,8 @@
 "After a second contraction at the top, slowly lower the dumbbells back to the starting position as you inhale.",
 "Repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Cable_Rows",
@@ -7942,7 +8304,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Seated_Cable_Shoulder_Press",
@@ -7964,7 +8327,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Seated_Close-Grip_Concentration_Barbell_Curl",
@@ -7983,7 +8347,8 @@
 "Slowly begin to bring the barbell back to starting position as your breathe in. Tip: Avoid swinging motions at any time.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Dumbbell_Curl",
@@ -8002,7 +8367,8 @@
 "Slowly begin to bring the dumbbells back to the starting position as your breathe in and as you rotate the wrists back to a neutral grip.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Dumbbell_Inner_Biceps_Curl",
@@ -8022,7 +8388,8 @@
 "Slowly begin to bring the dumbbells back to the starting position as your breathe in. Remember to rotate your arms as you lower the dumbbells so that you can switch back to a neutral grip.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Dumbbell_Palms-Down_Wrist_Curl",
@@ -8043,7 +8410,8 @@
 "Repeat for the recommended amount of repetitions.",
 "When finished, simply lower the dumbbells to the floor."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Dumbbell_Palms-Up_Wrist_Curl",
@@ -8064,7 +8432,8 @@
 "Repeat for the recommended amount of repetitions.",
 "When finished, simply lower the dumbbells to the floor."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Dumbbell_Press",
@@ -8086,7 +8455,8 @@
 "After a second pause, slowly come down back to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Flat_Bench_Leg_Pull-In",
@@ -8106,7 +8476,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Seated_Good_Mornings",
@@ -8126,7 +8497,8 @@
 "Keeping the bar tight, bend forward at the hips as much as possible. If you set the pins to what would be parallel, you not only have a safety if you fail, but know when to stop.",
 "Pause just above the pins and reverse the motion until your torso it upright."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Leg_Tucks",
@@ -8144,7 +8516,8 @@
 "After a second pause, go back to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_One-Arm_Dumbbell_Palms-Down_Wrist_Curl",
@@ -8164,7 +8537,8 @@
 "Now curl the dumbbell as high as possible as you contract the forearms and as you exhale. Keep the contraction for a second before you lower again. Tip: The only movement should happen at the wrist.",
 "Perform for the recommended amount of repetitions, switch arms and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_One-Arm_Dumbbell_Palms-Up_Wrist_Curl",
@@ -8184,7 +8558,8 @@
 "Now curl the dumbbell as high as possible as you contract the forearms and as you exhale. Keep the contraction for a second before you lower again. Tip: The only movement should happen at the wrist.",
 "Perform for the recommended amount of repetitions, switch arms and repeat the movement."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_One-arm_Cable_Pulley_Rows",
@@ -8210,7 +8585,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Seated_Palm-Up_Barbell_Wrist_Curl",
@@ -8229,7 +8605,8 @@
 "Lower the bar as far as possible while inhaling and keeping a tight grip.",
 "Now curl bar up as high as possible while flexing the forearms and exhaling. Hold the contraction at the top for a second and Tip: Only the wrist should move."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Palms-Down_Barbell_Wrist_Curl",
@@ -8248,7 +8625,8 @@
 "Lower the bar as far as possible while inhaling and keeping a tight grip.",
 "Now curl bar up as high as possible while flexing the forearms and exhaling. Hold the contraction at the top for a second and Tip: Only the wrist should move."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Side_Lateral_Raise",
@@ -8266,7 +8644,8 @@
 "Lower the dumbbells back down slowly to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Triceps_Press",
@@ -8284,7 +8663,8 @@
 "Go back to the starting position by using the triceps to raise the dumbbell. Breathe out as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Seated_Two-Arm_Palms-Up_Low-Pulley_Wrist_Curl",
@@ -8309,7 +8689,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "See-Saw_Press_Alternating_Side_Press",
@@ -8331,7 +8712,8 @@
 "Once you reach the top position breathe in. Then, with the weight fully extended overhead and you bent over to your right hand side, begin the movement to the left side.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Shotgun_Row",
@@ -8354,7 +8736,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Shoulder_Press_-_With_Bands",
@@ -8373,7 +8756,8 @@
 "Rotate the wrists so that the palms of your hands are facing forward. Your elbows should be bent, with the upper arms and forearms in line to the torso. This is your starting position.",
 "As you exhale, lift the handles up until your arms are fully extended overhead."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Side_Bridge",
@@ -8388,7 +8772,8 @@
 "shoulders"
 ],
 "instructions": [],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Side_Jackknife",
@@ -8401,7 +8786,8 @@
 ],
 "secondary": [],
 "instructions": [],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Side_Lateral_Raise",
@@ -8419,7 +8805,8 @@
 "Lower the dumbbells back down slowly to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Side_Laterals_to_Front_Raise",
@@ -8441,7 +8828,8 @@
 "On the next repetition, raise the weights in front of you to shoulder height before moving the weights laterally to your sides.",
 "Lower the weights to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Single_Dumbbell_Raise",
@@ -8461,7 +8849,8 @@
 "Raise the weight until it is above shoulder level, keeping your arms extended. Your torso and hips should remain stationary throughout the movement.",
 "Return to the starting position and repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Single_Leg_Glute_Bridge",
@@ -8481,7 +8870,8 @@
 "Execute the movement by driving through the heel, extending your hip upward and raising your glutes off of the ground.",
 "Extend as far as possible, pause and then return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Single-Arm_Cable_Crossover",
@@ -8502,7 +8892,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Single-Arm_Linear_Jammer",
@@ -8523,7 +8914,8 @@
 "Perform the movement by extending the elbow, pressing the weight up. Move explosively, extending the hips and knees fully to produce maximal force.",
 "Return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Single-Arm_Push-Up",
@@ -8544,7 +8936,8 @@
 "Lower yourself by allowing the elbow to flex until you touch the ground.",
 "Descend slowly, and reverse direction be extending the arm to return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Sit-Up",
@@ -8563,7 +8956,8 @@
 "Once you feel the contraction for a second, lower your upper body back down to the starting position while inhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Smith_Incline_Shoulder_Raise",
@@ -8587,7 +8981,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Snatch_Pull",
@@ -8611,7 +9006,8 @@
 "Next comes the second pull, the main source of acceleration for the pull. As the bar approaches the mid-thigh position, begin extending through the hips. In a jumping motion, accelerate by extending the hips, knees, and ankles, using speed to move the bar upward.",
 "There should be no need to actively pull through the arms to accelerate the weight; at the end of the second pull, the body should be fully extended, leaning slightly back. Full extension should be violent and abrupt, and ensure that you do not prolong the extension for longer than necessary."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Speed_Band_Overhead_Triceps",
@@ -8629,7 +9025,8 @@
 "To perform the movement, extend through the elbow to to straighten your arms, ensuring that you keep your upper arm in place.",
 "Pause, and then return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Speed_Box_Squat",
@@ -8654,7 +9051,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Speed_Squats",
@@ -8681,7 +9079,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Spell_Caster",
@@ -8702,7 +9101,8 @@
 "Keeping your arms straight and the dumbbells parallel to the ground, rotate your torso to swing the weights to your opposite side.",
 "Continue alternating, rotating from one side to the other until the set is complete."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Spider_Crawl",
@@ -8723,7 +9123,8 @@
 "Initiate the movement by raising one foot off of the ground. Externally rotate the leg and bring the knee toward your elbow, as far forward as possible.",
 "Return this leg to the starting position and repeat on the opposite side."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Spider_Curl",
@@ -8744,7 +9145,8 @@
 "Slowly begin to bring the barbell back to the starting position as your breathe in. .",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Split_Squat_with_Dumbbells",
@@ -8765,7 +9167,8 @@
 "Begin by descending, flexing your knee and hip to lower your body down. Maintain good posture througout the movement. Keep the front knee in line with the foot as you perform the exercise.",
 "At the bottom of the movement, drive through the heel to extend the knee and hip to return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Squat_Jerk",
@@ -8790,7 +9193,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Squats_-_With_Bands",
@@ -8814,7 +9218,8 @@
 "Use the heel of your feet to push your body up to the starting position as you exhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Alternating_Dumbbell_Press",
@@ -8834,7 +9239,8 @@
 "After a brief pause, return the weight to the starting position.",
 "Repeat for the opposite side, continuing to alternate between arms."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Barbell_Calf_Raise",
@@ -8854,7 +9260,8 @@
 "Go back slowly to the starting position as you breathe in by lowering your heels as you bend the ankles until calves are stretched.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Barbell_Press_Behind_Neck",
@@ -8876,7 +9283,8 @@
 "Hold the contraction for a second and lower the barbell back down to the starting position by inhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Bent-Over_One-Arm_Dumbbell_Triceps_Extension",
@@ -8898,7 +9306,8 @@
 "Repeat the movement for the prescribed amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Bent-Over_Two-Arm_Dumbbell_Triceps_Extension",
@@ -8916,7 +9325,8 @@
 "After a second contraction at the top, slowly lower the dumbbells back to their starting position as you inhale.",
 "Repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Biceps_Cable_Curl",
@@ -8936,7 +9346,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Bradford_Press",
@@ -8958,7 +9369,8 @@
 "Lower the bar down to the starting position.",
 "Alternate in this manner until you complete the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Cable_Chest_Press",
@@ -8981,7 +9393,8 @@
 ],
 "requires": [
 "pulley_mid"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Cable_Lift",
@@ -9007,7 +9420,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Cable_Wood_Chop",
@@ -9033,7 +9447,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Concentration_Curl",
@@ -9053,7 +9468,8 @@
 "Lower the dumbbell back to the starting position.",
 "Repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Dumbbell_Calf_Raise",
@@ -9071,7 +9487,8 @@
 "As you inhale, go back to the starting position by slowly lowering the heels.",
 "Repeat for the recommended amount of times."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Dumbbell_Press",
@@ -9090,7 +9507,8 @@
 "Maintaining strict technique with no leg drive or leaning back, extend through the elbow to raise the weights together directly above your head.",
 "Pause, and slowly return the weight to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Dumbbell_Reverse_Curl",
@@ -9110,7 +9528,8 @@
 "Slowly begin to bring the dumbbells back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Dumbbell_Straight-Arm_Front_Delt_Raise_Above_Head",
@@ -9129,7 +9548,8 @@
 "Slowly return to the starting position using the same path as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Dumbbell_Triceps_Extension",
@@ -9148,7 +9568,8 @@
 "Go back to the starting position by using the triceps to raise the dumbbell. Breathe out as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Dumbbell_Upright_Row",
@@ -9169,7 +9590,8 @@
 "Lower the dumbbells back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Front_Barbell_Raise_Over_Head",
@@ -9188,7 +9610,8 @@
 "Once you feel the contraction, begin to lower the barbell back down to the starting position as you inhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Inner-Biceps_Curl",
@@ -9209,7 +9632,8 @@
 "Slowly begin to bring the dumbbells back to the starting position as your breathe in. Remember to rotate the wrists as you lower the weight in order to switch back to a neutral grip.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Low-Pulley_Deltoid_Raise",
@@ -9233,7 +9657,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Low-Pulley_One-Arm_Triceps_Extension",
@@ -9257,7 +9682,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Military_Press",
@@ -9279,7 +9705,8 @@
 "Lift the bar back up to the starting position as you exhale.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_One-Arm_Cable_Curl",
@@ -9301,7 +9728,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_One-Arm_Dumbbell_Curl_Over_Incline_Bench",
@@ -9323,7 +9751,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_One-Arm_Dumbbell_Triceps_Extension",
@@ -9346,7 +9775,8 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Overhead_Barbell_Triceps_Extension",
@@ -9367,7 +9797,8 @@
 "Go back to the starting position by using the triceps to raise the barbell. Breathe out as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Palm-In_One-Arm_Dumbbell_Press",
@@ -9390,7 +9821,8 @@
 "Repeat for the recommended amount of repetitions.",
 "Switch arms and repeat the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Palms-In_Dumbbell_Press",
@@ -9410,7 +9842,8 @@
 "While inhaling lower the weights down until your arm is at a 90 degree angle again.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Palms-Up_Barbell_Behind_The_Back_Wrist_Curl",
@@ -9430,7 +9863,8 @@
 "Repeat for the recommended amount of repetitions.",
 "When finished, lower the barbell down to the squat rack or the floor by bending the knees. Tip: It is easiest to either pick it up from a squat rack or have a partner hand it to you."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Standing_Rope_Crunch",
@@ -9450,7 +9884,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Standing_Towel_Triceps_Extension",
@@ -9468,7 +9903,8 @@
 "Go back to the starting position by using the triceps to raise the towel. Breathe out as you perform this step.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Step-up_with_Knee_Raise",
@@ -9488,7 +9924,8 @@
 "Begin the movement by stepping up, putting your left foot on the top of the bench. Extend through the hip and knee of your front leg to stand up on the box. As you stand on the box with your left leg, flex your right knee and hip, bringing your knee as high as you can.",
 "Reverse this motion to step down off the box, and then repeat the sequence on the opposite leg."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Stiff_Leg_Barbell_Good_Morning",
@@ -9511,7 +9948,8 @@
 "Begin to raise the bar as you exhale by elevating your torso back to the starting position.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Stiff-Legged_Barbell_Deadlift",
@@ -9533,7 +9971,8 @@
 "Start bringing your torso up straight again by extending your hips until you are back at the starting position. Exhale as you perform this movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Stiff-Legged_Dumbbell_Deadlift",
@@ -9555,7 +9994,8 @@
 "Start bringing your torso up straight again by extending your hips and waist until you are back at the starting position. Inhale as you perform this movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Straight_Bar_Bench_Mid_Rows",
@@ -9577,7 +10017,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Straight_Raises_on_Incline_Bench",
@@ -9599,7 +10040,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Straight-Arm_Dumbbell_Pullover",
@@ -9623,7 +10065,8 @@
 "At that point, bring the dumbbell back to the starting position using the arc through which the weight was lowered and exhale as you perform this movement.",
 "Hold the weight on the initial position for a second and repeat the motion for the prescribed number of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Straight-Arm_Pulldown",
@@ -9644,7 +10087,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Sumo_Deadlift",
@@ -9670,7 +10114,8 @@
 "As the bar passes through the knees, lean back and drive the hips into the bar, pulling your shoulder blades together.",
 "Return the weight to the ground by bending at the hips and controlling the weight on the way down."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "T-Bar_Row_with_Handle",
@@ -9692,7 +10137,8 @@
 "Pull the weight to your upper abdomen by retracting the shoulder blades and flexing the elbows. Do not jerk the weight or cheat during the movement.",
 "After a brief pause, return to the starting position."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Tate_Press",
@@ -9714,7 +10160,8 @@
 "As you breathe out, move the dumbbells up using your triceps and the same semi-circular motion but in reverse. Attempt to keep the dumbbells together as they move up. Lock your arms in the contracted position, hold for a second and then start coming down again slowly again. Tip: It should take at least twice as long to go down than to come up.",
 "Repeat the movement for the prescribed amount of repetitions of your training program."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Tricep_Dumbbell_Kickback",
@@ -9732,7 +10179,8 @@
 "After a brief pause at the top contraction, inhale and slowly lower the dumbbells back down to the starting position.",
 "Repeat the movement for the prescribed amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Triceps_Overhead_Extension_with_Rope",
@@ -9752,7 +10200,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Triceps_Pushdown",
@@ -9773,7 +10222,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Triceps_Pushdown_-_Rope_Attachment",
@@ -9794,7 +10244,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Triceps_Pushdown_-_V-Bar_Attachment",
@@ -9815,7 +10266,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Tuck_Crunch",
@@ -9835,7 +10287,8 @@
 "Slowly begin to lower your torso back down to the starting position while inhaling.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Two-Arm_Dumbbell_Preacher_Curl",
@@ -9853,7 +10306,8 @@
 "As you exhale, use the biceps to curl the weights up until your biceps is fully contracted and the dumbbells are at shoulder height.",
 "Squeeze the biceps hard for a second at the contracted position and repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Two-Arm_Kettlebell_Clean",
@@ -9876,7 +10330,8 @@
 "Clean the kettlebells to your shoulders by extending through the legs and hips as you raise the kettlebells towards your shoulders. Rotate your wrists as you do so.",
 "Lower the kettlebells back to the starting position and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Two-Arm_Kettlebell_Jerk",
@@ -9895,7 +10350,8 @@
 "instructions": [
 "Clean two kettlebells to your shoulders. Clean the kettlebells to your shoulders by extending through the legs and hips as you swing the kettlebells towards your shoulders. Rotate your wrists as you do so, so that the palms face forward. Squat down a few inches and reverse the motion rapidly driving both kettlebells overhead. Immediately after the initial push, squat down again and get under the kettlebells. Once the kettlebells are locked out, stand upright to complete the exercise."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Two-Arm_Kettlebell_Military_Press",
@@ -9913,7 +10369,8 @@
 "Clean two kettlebells to your shoulders. Clean the kettlebells to your shoulders by extending through the legs and hips as you swing the kettlebells towards your shoulders. Rotate your wrists as you do so, so that the palms face forward.",
 "Press the kettlebells up and out. As the kettlebells pass your head, lean into the weights so that the kettlebells are racked behind your head. Make sure to contract your lats, butt, and stomach for added stability."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Two-Arm_Kettlebell_Row",
@@ -9932,7 +10389,8 @@
 "Place two kettlebells in front of your feet. Bend your knees slightly and then push your butt out as much as possible as you bend over to get in the starting position.",
 "Grab both kettlebells and pull them to your stomach, retracting your shoulder blades and flexing the elbows. Keep your back straight. Lower and repeat."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Underhand_Cable_Pulldowns",
@@ -9958,7 +10416,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Upright_Barbell_Row",
@@ -9978,7 +10437,8 @@
 "Lower the bar back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Upright_Cable_Row",
@@ -10000,7 +10460,8 @@
 ],
 "requires": [
 "pulley_low"
-]
+],
+"photos": 2
 },
 {
 "id": "Upright_Row_-_With_Bands",
@@ -10020,7 +10481,8 @@
 "Lower the handles back down slowly to the starting position. Inhale as you perform this portion of the movement.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "V-Bar_Pulldown",
@@ -10046,7 +10508,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "V-Bar_Pullup",
@@ -10071,7 +10534,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "Weighted_Jump_Squat",
@@ -10096,7 +10560,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Weighted_Sissy_Squat",
@@ -10120,7 +10585,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide_Stance_Barbell_Squat",
@@ -10147,7 +10613,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Barbell_Bench_Press",
@@ -10171,7 +10638,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Decline_Barbell_Bench_Press",
@@ -10195,7 +10663,8 @@
 "requires": [
 "bench",
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Decline_Barbell_Pullover",
@@ -10220,7 +10689,8 @@
 ],
 "requires": [
 "bench"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Lat_Pulldown",
@@ -10246,7 +10716,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Pulldown_Behind_The_Neck",
@@ -10272,7 +10743,8 @@
 ],
 "requires": [
 "pulley_high"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Rear_Pull-Up",
@@ -10297,7 +10769,8 @@
 ],
 "requires": [
 "pullup_bar"
-]
+],
+"photos": 2
 },
 {
 "id": "Wide-Grip_Standing_Barbell_Curl",
@@ -10316,7 +10789,8 @@
 "Slowly begin to bring the bar back to starting position as your breathe in.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Wind_Sprints",
@@ -10334,7 +10808,8 @@
 "Immediately reverse the motion, returning that leg to the starting position. Simultaneously raise the opposite knee as high as possible.",
 "Continue alternating between legs until the set is complete."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Wrist_Rotations_with_Straight_Bar",
@@ -10351,7 +10826,8 @@
 "Alternating between each of your hands, perform the movement by extending the wrist as though you were rolling up a newspaper. Continue alternating back and forth until failure.",
 "Reverse the motion by flexing the wrist, rolling the opposite direction. Continue the alternating motion until failure."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Zercher_Squats",
@@ -10377,7 +10853,8 @@
 ],
 "requires": [
 "rack"
-]
+],
+"photos": 2
 },
 {
 "id": "Zottman_Curl",
@@ -10401,7 +10878,8 @@
 "As the dumbbells close your thighs, start rotating the wrist so that you go back to a neutral (palms facing your body) grip.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 },
 {
 "id": "Zottman_Preacher_Curl",
@@ -10423,6 +10901,7 @@
 "Squeeze the biceps hard for a second at the contracted position and rotate your wrists so that the palms are facing down again.",
 "Repeat for the recommended amount of repetitions."
 ],
-"requires": []
+"requires": [],
+"photos": 2
 }
 ]

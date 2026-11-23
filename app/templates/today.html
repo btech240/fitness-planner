@@ -92,6 +92,19 @@
         <details class="howto">
           <summary>How to</summary>
           <ol>{% for step in ex.instructions %}<li>{{ step }}</li>{% endfor %}</ol>
+          {% if it.photos %}
+          <div class="form-photos">
+            {% for p in it.photos %}
+              <figure>
+                <button type="button" class="form-photo" data-src="{{ p.url }}" data-alt="{{ ex.name }}, {{ p.label|lower }} position" aria-label="Enlarge {{ p.label|lower }} photo of {{ ex.name }}">
+                  <img src="{{ p.url }}" alt="{{ ex.name }}, {{ p.label|lower }} position" loading="lazy" width="850" height="567">
+                </button>
+                <figcaption>{{ p.label }}</figcaption>
+              </figure>
+            {% endfor %}
+          </div>
+          <p class="photo-hint">Tap a photo to enlarge.</p>
+          {% endif %}
         </details>
         <div class="ex-links">
           <form method="post" action="/we/{{ we.id }}/pin">
@@ -128,6 +141,10 @@
       <svg viewBox="0 0 24 24" aria-hidden="true" class="icon-off"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 9l5 6M22 9l-5 6"/></svg>
     </button>
     <button type="button" class="rest-skip">Skip</button>
+  </div>
+  <div class="lightbox" id="lightbox" hidden>
+    <img id="lightbox-img" alt="">
+    <button type="button" class="lightbox-close" id="lightbox-close">Close</button>
   </div>
   <script src="/static/app.js"></script>
 {% endif %}

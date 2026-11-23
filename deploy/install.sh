@@ -27,6 +27,11 @@ python3 -m venv "$APP_DIR/.venv"
 "$APP_DIR/.venv/bin/pip" install -q --upgrade pip
 "$APP_DIR/.venv/bin/pip" install -q -r "$APP_DIR/requirements.txt"
 
+echo "==> Downloading exercise photos (about 60 MB the first time)"
+mkdir -p "$DATA_DIR/photos"
+(cd "$APP_DIR" && "$APP_DIR/.venv/bin/python" -m app.fetch_photos "$DATA_DIR/photos")
+chown -R "$APP_USER:$APP_USER" "$DATA_DIR/photos"
+
 echo "==> Writing /etc/systemd/system/$SERVICE.service"
 cat >"/etc/systemd/system/$SERVICE.service" <<EOF
 [Unit]

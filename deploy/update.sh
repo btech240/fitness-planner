@@ -4,6 +4,8 @@
 set -euo pipefail
 
 APP_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+DATA_DIR=/var/lib/fitness-planner
+APP_USER=fitness
 SERVICE=fitness-planner
 
 [ "$(id -u)" -eq 0 ] || { echo "Run as root." >&2; exit 1; }
@@ -13,6 +15,11 @@ git -C "$APP_DIR" pull --ff-only
 
 echo "==> Updating Python packages"
 "$APP_DIR/.venv/bin/pip" install -q -r "$APP_DIR/requirements.txt"
+
+echo "==> Fetching any new exercise photos"
+mkdir -p "$DATA_DIR/photos"
+(cd "$APP_DIR" && "$APP_DIR/.venv/bin/python" -m app.fetch_photos "$DATA_DIR/photos")
+chown -R "$APP_USER:$APP_USER" "$DATA_DIR/photos"
 
 echo "==> Restarting"
 systemctl restart "$SERVICE"

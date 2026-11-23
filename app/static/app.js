@@ -131,6 +131,25 @@
     document.addEventListener("visibilitychange", tick);
   }
 
+  // ---- form photos: tap to enlarge -----------------------------------------------------------
+  var lightbox = document.getElementById("lightbox");
+  if (lightbox) {
+    var lbImg = document.getElementById("lightbox-img");
+    var closeLightbox = function () { lightbox.hidden = true; lbImg.removeAttribute("src"); };
+    document.addEventListener("click", function (ev) {
+      var btn = ev.target.closest(".form-photo");
+      if (btn) {
+        lbImg.src = btn.dataset.src;
+        lbImg.alt = btn.dataset.alt || "";
+        lightbox.hidden = false;
+        document.getElementById("lightbox-close").focus();
+        return;
+      }
+      if (!lightbox.hidden && (ev.target === lightbox || ev.target.closest(".lightbox-close"))) closeLightbox();
+    });
+    document.addEventListener("keydown", function (ev) { if (ev.key === "Escape" && !lightbox.hidden) closeLightbox(); });
+  }
+
   // ---- in-place form posts ---------------------------------------------------------------
   var IN_PLACE = /\/(we\/\d+\/(set|pin)|set\/\d+\/delete)$/;
 

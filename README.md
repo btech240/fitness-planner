@@ -18,7 +18,7 @@ Open `http://<lxc-ip>:8000` on your phone. On iPhone, Share → **Add to Home Sc
 
 **First run:** go to **Settings**, tick the equipment you own, enter the exact weights (`5-50/5` for a range, `35, 53` for a list, plates as `45x2, 25x2, 10x4`), tick your cable pulley positions and stations (bench, rack, pull-up bar, dip station), and pick your goal.
 
-**Data and backups:** everything is in `/var/lib/fitness-planner/fitness.db`; include the container in your Proxmox backup job.
+**Data and backups:** everything is in `/var/lib/fitness-planner/fitness.db`; include the container in your Proxmox backup job. Exercise form photos are downloaded into `/var/lib/fitness-planner/photos` by the install and update scripts (locally: `python -m app.fetch_photos`).
 
 There is no login, so don't expose port 8000 to the internet.
 

@@ -6,7 +6,7 @@ import random
 import sqlite3
 from datetime import datetime, timedelta, timezone
 
-from . import catalog, db, generator, inventory as inv
+from . import catalog, db, generator, inventory as inv, photos
 from .recovery import DECAY_HOURS, LoggedSet, recovery
 
 DEFAULT_SETTINGS = {"goal": "hypertrophy", "n_exercises": 5, "units": "lb"}
@@ -218,6 +218,7 @@ def workout_detail(conn: sqlite3.Connection, workout_id: int) -> list[dict]:
             "sets": sets,
             "prev": prev,
             "pinned": we["exercise_id"] in pins,
+            "photos": photos.for_exercise(ex),
             # bodyweight move maxed out at the rep cap last time: time to add load
             "add_weight": bool(is_unloaded(ex) and cap and unweighted_prev and we["target_reps"] >= cap
                                and min(unweighted_prev) >= cap),

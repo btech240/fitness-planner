@@ -6,12 +6,12 @@ from contextlib import contextmanager
 from datetime import datetime
 from pathlib import Path
 
-from fastapi import FastAPI, Form, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import catalog, db, generator, inventory as inv, service
+from . import catalog, db, generator, inventory as inv, photos, service
 from .recovery import TARGET_MUSCLES
 
 HERE = Path(__file__).parent
@@ -342,6 +342,16 @@ def unexclude(exercise_id: str):
     with tx() as conn:
         conn.execute("DELETE FROM excluded WHERE exercise_id = ?", (exercise_id,))
     return redirect("/settings#excluded")
+
+
+@app.get("/photos/{name}")
+def photo(name: str):
+    if not photos.FILENAME_RX.match(name):
+        raise HTTPException(status_code=404)
+    path = photos.photos_dir() / name
+    if not path.is_file():
+        raise HTTPException(status_code=404)
+    return FileResponse(path, media_type="image/jpeg", headers={"Cache-Control": "public, max-age=604800"})
 
 
 @app.get("/healthz")
