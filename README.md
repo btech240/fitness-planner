@@ -2,6 +2,8 @@
 
 A self-hosted workout planner, builder and tracker for a home gym. Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
 
+> **No login, by design.** It's a household app: anyone who can reach it can pick any profile and use every feature. Run it on your **home network**, and to use it away from home, reach it through **Tailscale, WireGuard or a similar private VPN**. Never port-forward it or put it on the public internet. See [Security](docs/SECURITY.md).
+
 ## What it does
 
 - **Daily workouts** — Push, Pull, Legs, Upper, Lower or Full body, chosen by which muscles are most recovered; one tap to regenerate.
@@ -34,7 +36,7 @@ bash /opt/fitness-planner/deploy/update.sh      # every update after that
 
 Then open `http://<container-ip>:8000` on a phone on the home Wi-Fi, add yourself as a person, and fill in **Settings → Equipment**.
 
-There is no login by design: keep it on the home network and never port-forward it. See [Security](docs/SECURITY.md).
+There is no login by design: keep it on the home network and never port-forward it. For use away from home, see [Away from home](docs/SECURITY.md#away-from-home-tailscale-or-a-vpn).
 
 Prefer Docker? A `Dockerfile` and `compose.yaml` are included: `mkdir -p data && sudo chown 1000:1000 data && docker compose up -d --build`, with the database in `data/fitness.db` and `TZ` set in `compose.yaml`. (The LXC install has the stronger sandbox.)
 
@@ -61,4 +63,6 @@ python -m venv .venv
 .venv/Scripts/python -m uvicorn app.main:app --port 8000
 ```
 
-Exercise data and photos come from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain). To refresh the data, see `scripts/build_exercises.py`.
+## License
+
+[MIT](LICENSE). Exercise data and photos come from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain). To refresh the data, see `scripts/build_exercises.py`.

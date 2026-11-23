@@ -138,4 +138,4 @@ You don't need to know this to use the app, but it explains what you'll see:
 - **No beep?** Make sure you tapped something after opening the page (logging a set counts), the speaker on the rest bar isn't muted, and the phone isn't on an old iOS version in silent mode.
 - **Wrong person's workout?** Settings → **Switch profile**.
 - **An exercise needs equipment you don't have?** Check the Equipment settings (e.g. cable pulley positions, stations), or tap **Never suggest this**.
-- **Only works at home.** The app is only reachable on the home network.
+- **Only works at home?** The app is only reachable on the home network, unless whoever runs the server has set up Tailscale or a VPN for use away from home.

@@ -6,7 +6,7 @@ Fitness Planner has **no login** on purpose: it's a household app on the home ne
 
 | Layer | Protection |
 |-------|------------|
-| **Network exposure** | Only port **8000** (the app) is meant to be reachable. Never port-forward it from your router; it's for the home network only. |
+| **Network exposure** | Only port **8000** (the app) is meant to be reachable. Never port-forward it from your router. Use it on the home network, or from outside through a private VPN such as Tailscale (see below). |
 | **Unprivileged LXC** | Root inside the container maps to an unprivileged user on the Proxmox host. |
 | **Dedicated service user** | The app runs as `fitness` (no shell, no login), never root. |
 | **Read-only code** | `/opt/fitness-planner` is owned by root and not writable by the service, so even a compromised app process can't change its own code. |
@@ -27,7 +27,17 @@ Fitness Planner has **no login** on purpose: it's a household app on the home ne
 ## What it deliberately does not do
 
 - **No passwords or per-person privacy.** Anyone on the home network can open any profile. Don't store anything sensitive in it.
-- **No HTTPS.** Traffic on the home Wi-Fi is unencrypted (workout data only). Don't expose it beyond your LAN.
+- **No HTTPS.** Traffic on the home Wi-Fi is unencrypted (workout data only). Don't expose it beyond your LAN except through a VPN.
+
+## Away from home (Tailscale or a VPN)
+
+To use it outside the house, reach it through a private network only your own devices can join, such as Tailscale or WireGuard. Everyone on that private network can use the app just like someone on your home Wi-Fi, so only add people you'd let into your house network.
+
+- **Tailscale inside the container:** install Tailscale in the container *before* running `install.sh` (or re-run it after), so its Tailscale IP is picked up automatically. An unprivileged LXC needs `/dev/net/tun` passed through; see Tailscale's LXC guide.
+- **Tailscale subnet router or a VPN to your home network:** nothing to change; you open the same `http://<lxc-ip>:8000` address.
+- **Using a name** (e.g. a MagicDNS name like `fitness.tailnet-name.ts.net`): add it to the allowed hosts, or the app answers "Unknown host name": `EXTRA_HOSTS="fitness,fitness.tailnet-name.ts.net" bash /opt/fitness-planner/deploy/install.sh`.
+
+Don't use Tailscale **Funnel** or any other public tunnel: that puts the app on the internet with no login.
 
 ## Lock down container access (recommended, do this once)
 
