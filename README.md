@@ -1,6 +1,6 @@
 # Fitness Planner
 
-A self-hosted, Fitbod-style workout generator. You enter the equipment in your home gym, and each day it builds a workout around the most-recovered muscle groups. You log sets, reps and weight, and it suggests the next weights from what you logged. It's a small Python web app with a SQLite file, and you use it from your phone's browser on your home network.
+A self-hosted, Fitbod-style workout generator. You enter the equipment in your home gym, and each day it builds a workout around the most-recovered muscle groups. You log sets, reps and weight, and it suggests the next weights from what you logged. It's a small Python web app with a SQLite file, and you use it from your phone's browser on your home network. Everyone in the house can have a profile (no passwords): each person keeps their own workouts and training settings, and the gym's equipment is shared.
 
 Design decisions: [docs/DECISIONS.md](docs/DECISIONS.md).
 

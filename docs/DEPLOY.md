@@ -60,7 +60,7 @@ It prints the address to open, e.g. `http://192.168.x.y:8000`. On iPhone: Share 
 | Status / logs | `systemctl status fitness-planner` · `journalctl -u fitness-planner -f` |
 | Restart | `systemctl restart fitness-planner` |
 
-**Data:** `/var/lib/fitness-planner/fitness.db`. Include the container in your Proxmox backup job.
+**Data:** `/var/lib/fitness-planner/fitness.db`. Include the container in your Proxmox backup job. The one-time upgrade to household profiles saved the single-user database beside it as `fitness.pre-profiles-<date>.db` before starting everyone fresh.
 
 **Exercise photos:** `install.sh` and `update.sh` download the start/end form photos (about 950 JPEGs, ~60 MB) into `/var/lib/fitness-planner/photos`; later runs only fetch what's missing. If GitHub is unreachable the app still works and How to shows text only.
 

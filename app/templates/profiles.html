@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Who's working out? · Workout{% endblock %}
+{% block content %}
+<header class="page-head picker-head">
+  <h1>Who's working out?</h1>
+  <div class="stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+</header>
+
+<div class="profile-grid">
+  {% for p in profiles %}
+    <form method="post" action="/profiles/{{ p.id }}/use">
+      <button class="profile-tile">
+        <span class="avatar" style="--avatar: {{ p.color }}" aria-hidden="true">{{ p.name[0]|upper }}</span>
+        <span class="profile-name">{{ p.name }}</span>
+      </button>
+    </form>
+  {% endfor %}
+  <a class="profile-tile add" href="/profiles/new">
+    <span class="avatar add" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+    <span class="profile-name">Add person</span>
+  </a>
+</div>
+
+{% if profiles %}
+<p class="picker-note">This phone will remember who you pick. To change, use <strong>Settings → Switch profile</strong>.</p>
+{% else %}
+<p class="picker-note">Add the first person to get started. Everyone shares the gym's equipment; workouts and settings are kept per person.</p>
+{% endif %}
+{% endblock %}

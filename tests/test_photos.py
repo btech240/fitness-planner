@@ -62,6 +62,7 @@ def test_today_shows_photos_in_how_to(photo_dir):
             (photo_dir / photos.filename(e["id"], n)).write_bytes(JPEG)
     from app.main import app
     client = TestClient(app)
+    client.post("/profiles", data={"name": "Tester"})
     client.post("/settings", data={"goal": "hypertrophy", "n_exercises": "4", "units": "lb",
                                    "barbell_enabled": "on", "barbell_bar": "45", "plate_45": "2",
                                    "station_rack": "on", "station_bench": "on"})

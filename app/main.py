@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import hashlib
 from contextlib import contextmanager
+from urllib.parse import urlencode
 from datetime import datetime
 from pathlib import Path
 
@@ -65,6 +66,8 @@ async def no_stale_pages(request: Request, call_next):
     elif request.url.path.startswith("/static/") and request.query_params.get("v"):
         response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
     return response
+
+
 templates.env.filters["w"] = fmt_weight
 templates.env.filters["setfmt"] = fmt_set
 templates.env.globals["goal_codes"] = {"strength": "STR", "hypertrophy": "HYP", "endurance": "END"}
@@ -89,17 +92,105 @@ def render(request: Request, name: str, **ctx) -> HTMLResponse:
     return templates.TemplateResponse(request, name, {"goals": generator.GOALS, **ctx})
 
 
+# ---- current profile (remembered per device in a cookie) -------------------------
+
+PROFILE_COOKIE = "fp_profile"
+COOKIE_MAX_AGE = 5 * 365 * 24 * 3600
+
+
+def current_profile(request: Request, conn):
+    return service.get_profile(conn, request.cookies.get(PROFILE_COOKIE))
+
+
+def use_profile(response, pid: int):
+    response.set_cookie(PROFILE_COOKIE, str(pid), max_age=COOKIE_MAX_AGE, httponly=True, samesite="lax")
+    return response
+
+
+def pick_profile() -> RedirectResponse:
+    """Sent when this device hasn't chosen a profile (or its profile was deleted)."""
+    return redirect("/profiles")
+
+
+# ---- profiles ----------------------------------------------------------------
+
+@app.get("/profiles", response_class=HTMLResponse)
+def profiles_page(request: Request):
+    with tx() as conn:
+        profiles = service.list_profiles(conn)
+    return render(request, "profiles.html", profiles=profiles, show_nav=False)
+
+
+@app.get("/profiles/new", response_class=HTMLResponse)
+def new_profile_page(request: Request):
+    with tx() as conn:
+        has_profiles = bool(service.list_profiles(conn))
+    return render(request, "profile_new.html", form={"name": "", "goal": "hypertrophy", "n_exercises": 5},
+                  error=None, preview_color=None, has_profiles=has_profiles, show_nav=False)
+
+
+@app.post("/profiles", response_class=HTMLResponse)
+def create_profile(request: Request, name: str = Form(""), goal: str = Form("hypertrophy"),
+                   n_exercises: str = Form("5")):
+    with tx() as conn:
+        try:
+            pid = service.create_profile(conn, name, goal, n_exercises)
+        except service.ProfileError as err:
+            return render(request, "profile_new.html", form={"name": name, "goal": goal, "n_exercises": n_exercises},
+                          error=str(err), has_profiles=bool(service.list_profiles(conn)), show_nav=False)
+    return use_profile(redirect("/"), pid)
+
+
+@app.post("/profiles/{pid}/use")
+def choose_profile(pid: int):
+    with tx() as conn:
+        if not service.get_profile(conn, pid):
+            return pick_profile()
+    return use_profile(redirect("/"), pid)
+
+
+@app.post("/profile/rename")
+def rename_profile(request: Request, name: str = Form("")):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        try:
+            service.rename_profile(conn, p["id"], name)
+        except service.ProfileError as err:
+            return redirect("/settings?" + urlencode({"profile_error": str(err)}))
+    return redirect("/settings?renamed=1")
+
+
+@app.post("/profile/delete")
+def delete_profile(request: Request, confirm: str = Form("")):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        if " ".join(confirm.split()).lower() != p["name"].lower():
+            return redirect("/settings?" + urlencode({"delete_error": "1"}) + "#delete")
+        service.delete_profile(conn, p["id"])
+    response = pick_profile()
+    response.delete_cookie(PROFILE_COOKIE)
+    return response
+
+
 # ---- today -------------------------------------------------------------------
 
 @app.get("/", response_class=HTMLResponse)
 def today(request: Request):
     with tx() as conn:
-        s = service.settings(conn)
-        w = service.current_workout(conn)
-        rec = service.current_recovery(conn)
-        ctx = {"s": s, "workout": w, "recovery": rec}
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        pid = p["id"]
+        s = service.settings(conn, pid)
+        w = service.current_workout(conn, pid)
+        rec = service.current_recovery(conn, pid)
+        ctx = {"s": s, "workout": w, "recovery": rec, "profile": p}
         if w:
-            items = service.workout_detail(conn, w["id"])
+            items = service.workout_detail(conn, pid, w["id"])
             targets = []
             for it in items:
                 for m in it["exercise"]["primary"]:
@@ -115,38 +206,52 @@ def today(request: Request):
                 rest=generator.GOALS[w["goal"]].rest_seconds,
             )
         else:
-            ctx["pool_size"] = len(service._pool(conn, s))
+            ctx["pool_size"] = len(service._pool(conn, pid, s))
             ctx["ready"] = sorted(((m, rec[m]) for m in TARGET_MUSCLES), key=lambda x: -x[1])
     return render(request, "today.html", **ctx)
 
 
 @app.post("/workout/new")
-def new_workout():
+def new_workout(request: Request):
     with tx() as conn:
-        if not service.current_workout(conn):
-            service.create_workout(conn)
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        if not service.current_workout(conn, p["id"]):
+            service.create_workout(conn, p["id"])
     return redirect("/")
 
 
 @app.post("/workout/{wid}/regenerate")
-def regenerate(wid: int):
+def regenerate(request: Request, wid: int):
     with tx() as conn:
-        if not service.workout_has_sets(conn, wid):
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        if service.owned_workout(conn, p["id"], wid) and not service.workout_has_sets(conn, wid):
             conn.execute("DELETE FROM workouts WHERE id = ?", (wid,))
-            service.create_workout(conn)
+            service.create_workout(conn, p["id"])
     return redirect("/")
 
 
 @app.post("/workout/{wid}/discard")
-def discard(wid: int):
+def discard(request: Request, wid: int):
     with tx() as conn:
-        conn.execute("DELETE FROM workouts WHERE id = ? AND finished_at IS NULL", (wid,))
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        conn.execute("DELETE FROM workouts WHERE id = ? AND profile_id = ? AND finished_at IS NULL", (wid, p["id"]))
     return redirect("/")
 
 
 @app.post("/workout/{wid}/finish")
-def finish(wid: int):
+def finish(request: Request, wid: int):
     with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        if not service.owned_workout(conn, p["id"], wid):
+            return redirect("/")
         if service.workout_has_sets(conn, wid):
             conn.execute("UPDATE workouts SET finished_at = ? WHERE id = ?", (service.now().isoformat(), wid))
         else:
@@ -155,47 +260,64 @@ def finish(wid: int):
 
 
 @app.post("/we/{we_id}/set")
-def log_set(we_id: int, reps: int = Form(...), weight: str = Form("")):
+def log_set(request: Request, we_id: int, reps: int = Form(...), weight: str = Form("")):
     try:
         weight_val = float(weight) if weight.strip() else None
     except ValueError:
         weight_val = None
     with tx() as conn:
-        conn.execute(
-            "INSERT INTO sets(workout_exercise_id, reps, weight, logged_at) VALUES (?, ?, ?, ?)",
-            (we_id, max(0, reps), weight_val, service.now().isoformat()),
-        )
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        if service.owned_we(conn, p["id"], we_id):
+            conn.execute(
+                "INSERT INTO sets(workout_exercise_id, reps, weight, logged_at) VALUES (?, ?, ?, ?)",
+                (we_id, max(0, reps), weight_val, service.now().isoformat()),
+            )
     return redirect(f"/#ex-{we_id}")
 
 
 @app.post("/set/{set_id}/delete")
-def delete_set(set_id: int):
+def delete_set(request: Request, set_id: int):
     with tx() as conn:
-        row = conn.execute("SELECT workout_exercise_id FROM sets WHERE id = ?", (set_id,)).fetchone()
-        conn.execute("DELETE FROM sets WHERE id = ?", (set_id,))
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        row = service.owned_set(conn, p["id"], set_id)
+        if row:
+            conn.execute("DELETE FROM sets WHERE id = ?", (set_id,))
     return redirect(f"/#ex-{row['workout_exercise_id']}" if row else "/")
 
 
 @app.post("/we/{we_id}/pin")
-def pin(we_id: int):
+def pin(request: Request, we_id: int):
     with tx() as conn:
-        row = conn.execute("SELECT exercise_id FROM workout_exercises WHERE id = ?", (we_id,)).fetchone()
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        row = service.owned_we(conn, p["id"], we_id)
         if row:
-            service.toggle_pin(conn, row["exercise_id"])
+            service.toggle_pin(conn, p["id"], row["exercise_id"])
     return redirect(f"/#ex-{we_id}")
 
 
 @app.post("/pinned/{exercise_id}/remove")
-def unpin(exercise_id: str):
+def unpin(request: Request, exercise_id: str):
     with tx() as conn:
-        conn.execute("DELETE FROM pinned WHERE exercise_id = ?", (exercise_id,))
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        conn.execute("DELETE FROM pinned WHERE profile_id = ? AND exercise_id = ?", (p["id"], exercise_id))
     return redirect("/settings#pinned")
 
 
 @app.post("/we/{we_id}/exclude")
-def exclude(we_id: int):
+def exclude(request: Request, we_id: int):
     with tx() as conn:
-        service.exclude_and_replace(conn, we_id)
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        service.exclude_and_replace(conn, p["id"], we_id)
     return redirect("/")
 
 
@@ -204,19 +326,26 @@ def exclude(we_id: int):
 @app.get("/history", response_class=HTMLResponse)
 def history(request: Request):
     with tx() as conn:
-        s = service.settings(conn)
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        s = service.settings(conn, p["id"])
         workouts = conn.execute(
-            "SELECT * FROM workouts WHERE finished_at IS NOT NULL ORDER BY id DESC LIMIT 50").fetchall()
-        entries = [{"w": w, "lines": service.workout_detail(conn, w["id"])} for w in workouts]
-    return render(request, "history.html", s=s, entries=entries)
+            "SELECT * FROM workouts WHERE profile_id = ? AND finished_at IS NOT NULL ORDER BY id DESC LIMIT 50",
+            (p["id"],)).fetchall()
+        entries = [{"w": w, "lines": service.workout_detail(conn, p["id"], w["id"])} for w in workouts]
+    return render(request, "history.html", s=s, entries=entries, profile=p)
 
 
 @app.get("/recovery", response_class=HTMLResponse)
 def recovery_page(request: Request):
     with tx() as conn:
-        rec = service.current_recovery(conn)
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        rec = service.current_recovery(conn, p["id"])
     rows = sorted(((m, rec[m]) for m in TARGET_MUSCLES), key=lambda x: (-x[1], x[0]))
-    return render(request, "recovery.html", rows=rows)
+    return render(request, "recovery.html", rows=rows, profile=p)
 
 
 # ---- settings -------------------------------------------------------------------
@@ -258,7 +387,7 @@ def _equipment_inputs(s: dict, raw: dict | None = None) -> dict:
     }
 
 
-def _settings_ctx(conn, s, errors=None, saved=False, raw=None):
+def _settings_ctx(conn, p, s, errors=None, saved=False, raw=None, notice=None):
     preview = {}
     for kind in inv.EQUIPMENT_KINDS:
         try:
@@ -267,18 +396,23 @@ def _settings_ctx(conn, s, errors=None, saved=False, raw=None):
             ws = None
         if ws:
             preview[kind] = ws
-    excl = sorted((catalog.get(i) for i in service.excluded_ids(conn)), key=lambda e: e["name"])
-    pins = sorted((catalog.get(i) for i in service.pinned_ids(conn)), key=lambda e: e["name"])
-    return {"s": s, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "pulleys": inv.PULLEYS,
+    excl = sorted((catalog.get(i) for i in service.excluded_ids(conn, p["id"])), key=lambda e: e["name"])
+    pins = sorted((catalog.get(i) for i in service.pinned_ids(conn, p["id"])), key=lambda e: e["name"])
+    return {"s": s, "profile": p, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "pulleys": inv.PULLEYS,
             "preview": preview, "excluded": excl, "pinned": pins, "errors": errors or {}, "saved": saved,
-            "pool_size": len(service._pool(conn, s)) if not errors else None,
-            **_equipment_inputs(s, raw)}
+            "pool_size": len(service._pool(conn, p["id"], s)) if not errors else None,
+            "notice": notice or {}, **_equipment_inputs(s, raw)}
 
 
 @app.get("/settings", response_class=HTMLResponse)
-def settings_page(request: Request, saved: int = 0):
+def settings_page(request: Request, saved: int = 0, renamed: int = 0, profile_error: str = "",
+                  delete_error: int = 0):
     with tx() as conn:
-        ctx = _settings_ctx(conn, service.settings(conn), saved=bool(saved))
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        notice = {"renamed": bool(renamed), "profile_error": profile_error[:200], "delete_error": bool(delete_error)}
+        ctx = _settings_ctx(conn, p, service.settings(conn, p["id"]), saved=bool(saved), notice=notice)
     return render(request, "settings.html", **ctx)
 
 
@@ -354,20 +488,24 @@ async def save_settings(request: Request):
         inventory[kind] = cfg
 
     with tx() as conn:
+        prof = current_profile(request, conn)
+        if not prof:
+            return pick_profile()
         if errors:
             s = {"goal": goal, "n_exercises": n, "units": units, "inventory": inv.merged(inventory)}
-            return render(request, "settings.html", **_settings_ctx(conn, s, errors, raw=raw))
-        db.set_setting(conn, "goal", goal)
-        db.set_setting(conn, "n_exercises", n)
-        db.set_setting(conn, "units", units)
+            return render(request, "settings.html", **_settings_ctx(conn, prof, s, errors, raw=raw))
+        service.save_personal_settings(conn, prof["id"], goal, n, units)
         db.set_setting(conn, "inventory", inventory)
     return redirect("/settings?saved=1")
 
 
 @app.post("/excluded/{exercise_id}/remove")
-def unexclude(exercise_id: str):
+def unexclude(request: Request, exercise_id: str):
     with tx() as conn:
-        conn.execute("DELETE FROM excluded WHERE exercise_id = ?", (exercise_id,))
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        conn.execute("DELETE FROM excluded WHERE profile_id = ? AND exercise_id = ?", (p["id"], exercise_id))
     return redirect("/settings#excluded")
 
 

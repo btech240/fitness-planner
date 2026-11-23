@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Add person · Workout{% endblock %}
+{% block content %}
+<header class="page-head">
+  {% if has_profiles %}<a class="back-link" href="/profiles"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Back</a>{% endif %}
+  <div class="title-row"><h1>Add person</h1></div>
+  <div class="stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+</header>
+
+<form method="post" action="/profiles" class="new-profile">
+  {% if error %}<p class="notice">{{ error }}</p>{% endif %}
+  <label class="row">Name
+    <input name="name" value="{{ form.name }}" maxlength="30" autocomplete="off" autocapitalize="words" required autofocus>
+  </label>
+
+  <fieldset class="goal-cards">
+    <legend>Training goal</legend>
+    {% for key, g in goals.items() %}
+      <label class="goal-card">
+        <input type="radio" name="goal" value="{{ key }}" {% if form.goal == key %}checked{% endif %}>
+        <span><span class="goal-name">{{ g.label }}</span><span class="goal-spec">{{ g.sets }}×{{ g.reps }} · {{ g.rest_seconds }}s rest</span></span>
+      </label>
+    {% endfor %}
+  </fieldset>
+
+  <div class="stepper-row">
+    <label for="n_exercises">Exercises per workout</label>
+    <div class="stepper">
+      <button type="button" aria-label="Fewer exercises" onclick="this.nextElementSibling.stepDown()">−</button>
+      <input id="n_exercises" name="n_exercises" type="number" inputmode="numeric" min="2" max="10" value="{{ form.n_exercises }}">
+      <button type="button" aria-label="More exercises" onclick="this.previousElementSibling.stepUp()">+</button>
+    </div>
+  </div>
+
+  <button class="btn primary block">Start training</button>
+  <p class="muted small center">Units default to lb; change them anytime in Settings.</p>
+</form>
+{% endblock %}

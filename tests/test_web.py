@@ -8,7 +8,12 @@ from fastapi.testclient import TestClient
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("FP_DB", str(tmp_path / "test.db"))
     from app.main import app
-    return TestClient(app)
+    c = TestClient(app)
+    c.post("/profiles", data={"name": "Tester", "goal": "hypertrophy", "n_exercises": "5"})
+    return c
+
+
+PID = 1  # the fixture's profile
 
 
 GYM_FORM = {
@@ -100,7 +105,7 @@ def test_numbers_only_equipment_inputs_save(client):
     r = client.post("/settings", data=PHONE_FORM, follow_redirects=False)
     assert r.status_code == 303
     from app import db, service
-    s = service.settings(db.connect())
+    s = service.settings(db.connect(), PID)
     inv_ = s["inventory"]
     assert inv_["dumbbell"]["weights"] == "5-52.5/2.5"
     assert inv_["kettlebell"]["weights"] == "35, 53"
@@ -116,7 +121,7 @@ def test_exercise_count_survives_plate_inputs(client):
     # regression: the plates loop reused the variable holding n_exercises, saving the last plate's pairs instead
     client.post("/settings", data=dict(PHONE_FORM, n_exercises="6"))
     from app import db, service
-    assert service.settings(db.connect())["n_exercises"] == 6
+    assert service.settings(db.connect(), PID)["n_exercises"] == 6
     assert len(we_ids(client.post("/workout/new").text)) == 6
 
 
@@ -124,8 +129,8 @@ def test_bad_stored_exercise_count_heals(client):
     from app import db, service
     conn = db.connect()
     with conn:
-        db.set_setting(conn, "n_exercises", 1.0)
-    assert service.settings(conn)["n_exercises"] == 2
+        conn.execute("UPDATE profiles SET n_exercises = 1")
+    assert service.settings(conn, PID)["n_exercises"] == 2
 
 
 def test_range_errors_keep_what_was_typed(client):

@@ -11,7 +11,8 @@ It's doable. Fitbod's real advantage is exercise data tagged with muscles and eq
 | # | Decision | Choice | Why |
 |---|----------|--------|-----|
 | 1 | Build vs reuse | **Build a new app** that uses open exercise data | wger has no daily auto-generation, and that is the core feature |
-| 2 | Users | **Single user**, no accounts | Personal use only |
+| 2 | Users | ~~Single user~~ → replaced by #26 | |
+| 26 | Household profiles | **"Who's working out?" picker, no passwords.** Each phone remembers its person (cookie); **Switch profile** at the top of Settings. Add person = name + goal + exercises per workout; initial + auto color tile. Rename, and delete with type-the-name confirmation. **Shared:** equipment list. **Personal:** workouts/history, recovery, goal, count, units, pins, never-suggest. Upgrading started everyone fresh (old DB backed up beside it as `fitness.pre-profiles-*.db`), keeping only the equipment. | Other people in the house want their own history without logins |
 | 3 | Remote access | **Existing VPN / Tailscale** | Nothing exposed publicly, so no auth layer is needed |
 | 4 | Logging depth | **Per-set: reps and weight** | Drives recovery per muscle (from how much work each did) and weight suggestions |
 | 5 | Equipment | **One equipment checklist** (one home gym) | Always trains in the same place |
