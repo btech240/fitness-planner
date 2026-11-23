@@ -1,8 +1,12 @@
 # Rackmount
 
-**A self-hosted workout planner, builder and tracker for your home gym.** The name is for both racks: the one you squat in and the one your server lives in.
+**A self-hosted workout planner, builder and tracker for your home gym.**
 
 Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
+
+## Why it exists
+
+Apps that plan your workout for you are usually subscriptions that keep your training history on someone else's servers and only roughly know what equipment you own. Rackmount does that planning on your own hardware instead: no account, no subscription, your history stays in one file at home, and every suggestion is built from the exact weights and equipment in your gym. Everyone in the house can use it, each with their own history.
 
 > **No login, by design.** It's a household app: anyone who can reach it can pick any profile and use every feature. Run it on your **home network**, and to use it away from home, reach it through **Tailscale, WireGuard or a similar private VPN**. Never port-forward it or put it on the public internet. See [Security](docs/SECURITY.md).
 
