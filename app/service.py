@@ -26,6 +26,12 @@ def settings(conn: sqlite3.Connection) -> dict:
     out = dict(DEFAULT_SETTINGS)
     for k in DEFAULT_SETTINGS:
         out[k] = db.get_setting(conn, k, out[k])
+    try:  # self-heal bad stored values (an earlier bug saved this as a float like 1.0)
+        out["n_exercises"] = min(10, max(2, int(out["n_exercises"])))
+    except (TypeError, ValueError):
+        out["n_exercises"] = DEFAULT_SETTINGS["n_exercises"]
+    if out["goal"] not in generator.GOALS:
+        out["goal"] = DEFAULT_SETTINGS["goal"]
     out["inventory"] = inv.merged(db.get_setting(conn, "inventory"))
     return out
 

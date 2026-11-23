@@ -112,6 +112,22 @@ def test_numbers_only_equipment_inputs_save(client):
     assert 'value="53" checked' in html
 
 
+def test_exercise_count_survives_plate_inputs(client):
+    # regression: the plates loop reused the variable holding n_exercises, saving the last plate's pairs instead
+    client.post("/settings", data=dict(PHONE_FORM, n_exercises="6"))
+    from app import db, service
+    assert service.settings(db.connect())["n_exercises"] == 6
+    assert len(we_ids(client.post("/workout/new").text)) == 6
+
+
+def test_bad_stored_exercise_count_heals(client):
+    from app import db, service
+    conn = db.connect()
+    with conn:
+        db.set_setting(conn, "n_exercises", 1.0)
+    assert service.settings(conn)["n_exercises"] == 2
+
+
 def test_range_errors_keep_what_was_typed(client):
     r = client.post("/settings", data=dict(PHONE_FORM, dumbbell_from="50", dumbbell_to="5"))
     assert "nothing was saved" in r.text

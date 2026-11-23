@@ -284,14 +284,14 @@ async def save_settings(request: Request):
         pairs = {}
         for k in plate_keys:
             try:
-                w, n = float(k[len("plate_"):]), num(k)
+                plate_w, count = float(k[len("plate_"):]), num(k)
             except (ValueError, inv.WeightSyntaxError):
                 errors["plates"] = "Pairs must be whole numbers"
                 continue
-            if n:
-                if n < 0 or n != int(n):
+            if count:
+                if count < 0 or count != int(count):
                     errors["plates"] = "Pairs must be whole numbers"
-                pairs[w] = int(n)
+                pairs[plate_w] = int(count)
         inventory["plates"] = inv.plates_text(pairs)
     else:
         inventory["plates"] = str(form.get("plates", "")).strip()
