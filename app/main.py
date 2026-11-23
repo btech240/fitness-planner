@@ -18,7 +18,7 @@ from . import catalog, db, generator, inventory as inv, photos, service
 from .recovery import TARGET_MUSCLES
 
 HERE = Path(__file__).parent
-app = FastAPI(title="Fitness Planner", docs_url=None, redoc_url=None, openapi_url=None)
+app = FastAPI(title="Rackmount", docs_url=None, redoc_url=None, openapi_url=None)
 app.mount("/static", StaticFiles(directory=HERE / "static"), name="static")
 templates = Jinja2Templates(directory=HERE / "templates")
 

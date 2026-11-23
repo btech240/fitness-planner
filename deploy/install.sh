@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Install, re-install or update Fitness Planner as a systemd service on Debian 12.
+# Install, re-install or update Rackmount as a systemd service on Debian 12.
 # Run as root from a clone of the repo:   bash deploy/install.sh
 # Safe to re-run: your data in /var/lib/fitness-planner is never touched.
 #
@@ -57,7 +57,7 @@ for ip in $(hostname -I); do ALLOWED="$ALLOWED,$ip"; done
 echo "==> Writing $UNIT"
 cat >"$UNIT" <<EOF
 [Unit]
-Description=Fitness Planner
+Description=Rackmount workout planner
 After=network-online.target
 Wants=network-online.target
 

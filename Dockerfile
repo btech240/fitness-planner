@@ -18,4 +18,6 @@ EXPOSE 8000
 HEALTHCHECK --interval=60s --timeout=5s \
   CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/healthz')" || exit 1
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers"]
+# Fetch any missing form photos into /data/photos (about 60 MB the first time, a few seconds
+# after that; never blocks startup if GitHub is unreachable), then start the app.
+CMD ["sh", "-c", "python -m app.fetch_photos; exec uvicorn app.main:app --host 0.0.0.0 --port 8000 --proxy-headers --no-server-header"]

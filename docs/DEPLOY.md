@@ -1,6 +1,9 @@
-# Deploy to a Proxmox LXC (Debian 12)
+# Deploy Rackmount to a Proxmox LXC (Debian 12)
 
 Home-network only, no Docker. About 10 minutes.
+
+> **Tested setup:** this Proxmox LXC route is the only one the author has run and tested.
+> **Not Proxmox?** On any other Debian 12 or Ubuntu machine (a VM, mini-PC, Raspberry Pi), skip step 1 and run steps 2–5 as root. That should work, but it's **untested**. For Docker, see the [README](../README.md#docker-untested), also **untested**.
 
 ## 1. Create the container (Proxmox host shell)
 
@@ -46,7 +49,7 @@ On GitHub: repo **Settings → Deploy keys → Add deploy key**, paste the publi
 ## 4. Clone and install
 
 ```sh
-git clone git@github.com:<owner>/fitness-planner.git /opt/fitness-planner   # answer "yes" to the host key prompt
+git clone git@github.com:<owner>/rackmount.git /opt/fitness-planner   # answer "yes" to the host key prompt
 bash /opt/fitness-planner/deploy/install.sh
 ```
 

@@ -1,6 +1,6 @@
-# Fitness Planner — User Guide
+# Rackmount — User Guide
 
-Fitness Planner builds you a strength workout each day from the equipment in your home gym. It rotates muscle groups so tired muscles get time to recover, keeps a few main lifts coming back so you can progress them, and suggests the weight (or reps) for every set based on what you did last time.
+Rackmount builds you a strength workout each day from the equipment in your home gym. It rotates muscle groups so tired muscles get time to recover, keeps a few main lifts coming back so you can progress them, and suggests the weight (or reps) for every set based on what you did last time.
 
 Everyone in the house can have their own profile. There are no passwords: you just pick your name.
 

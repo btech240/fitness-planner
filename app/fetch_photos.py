@@ -24,7 +24,7 @@ def _fetch(task: tuple[Path, str]) -> str:
     if dest.is_file() and dest.stat().st_size > 0:
         return "skipped"
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": "fitness-planner-photo-fetch"})
+        req = urllib.request.Request(url, headers={"User-Agent": "rackmount-photo-fetch"})
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             if resp.headers.get_content_type() != "image/jpeg":
                 return "failed"

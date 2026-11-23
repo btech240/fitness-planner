@@ -1,6 +1,8 @@
-# Fitness Planner
+# Rackmount
 
-A self-hosted workout planner, builder and tracker for a home gym. Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
+**A self-hosted workout planner, builder and tracker for your home gym.** The name is for both racks: the one you squat in and the one your server lives in.
+
+Tell it what equipment you have, and each day it builds a strength workout around your most-recovered muscles, keeps your main lifts coming back so you can progress them, and suggests the weight or reps for every set from what you did last time. It runs as a small Python web app on your home server and you use it from your phone's browser.
 
 > **No login, by design.** It's a household app: anyone who can reach it can pick any profile and use every feature. Run it on your **home network**, and to use it away from home, reach it through **Tailscale, WireGuard or a similar private VPN**. Never port-forward it or put it on the public internet. See [Security](docs/SECURITY.md).
 
@@ -26,10 +28,20 @@ A self-hosted workout planner, builder and tracker for a home gym. Tell it what 
 
 ## Run it
 
-It runs in a Debian 12 Proxmox LXC as a hardened systemd service (no Docker needed). Full steps: **[docs/DEPLOY.md](docs/DEPLOY.md)**. In short, inside the container:
+| Where | How | Tested? |
+|-------|-----|---------|
+| **Proxmox LXC (Debian 12)** | `deploy/install.sh`, a hardened systemd service | **Yes**: this is the only setup the author runs and has tested. |
+| Any other Debian / Ubuntu machine (VM, mini-PC, Raspberry Pi) | the same `deploy/install.sh`, skipping the Proxmox step | Not yet. It should work, but it's untested. |
+| Docker (Synology, Unraid, TrueNAS, Docker Desktop, …) | `docker compose` | Not yet. It should work, but it's untested. |
+
+If you try an untested route, please report back whether it worked.
+
+### Proxmox LXC or another Debian/Ubuntu machine
+
+Full steps: **[docs/DEPLOY.md](docs/DEPLOY.md)**. In short, inside the container or machine:
 
 ```sh
-git clone git@github.com:<owner>/fitness-planner.git /opt/fitness-planner
+git clone git@github.com:<owner>/rackmount.git /opt/fitness-planner
 bash /opt/fitness-planner/deploy/install.sh     # first time
 bash /opt/fitness-planner/deploy/update.sh      # every update after that
 ```
@@ -38,7 +50,18 @@ Then open `http://<container-ip>:8000` on a phone on the home Wi-Fi, add yoursel
 
 There is no login by design: keep it on the home network and never port-forward it. For use away from home, see [Away from home](docs/SECURITY.md#away-from-home-tailscale-or-a-vpn).
 
-Prefer Docker? A `Dockerfile` and `compose.yaml` are included: `mkdir -p data && sudo chown 1000:1000 data && docker compose up -d --build`, with the database in `data/fitness.db` and `TZ` set in `compose.yaml`. (The LXC install has the stronger sandbox.)
+### Docker (untested)
+
+1. Get the code: `git clone https://github.com/<owner>/rackmount.git && cd rackmount`.
+2. Edit `compose.yaml`:
+   - `TZ`: your timezone.
+   - `FP_ALLOWED_HOSTS`: replace `192.168.1.50` with your server's IP, and add any hostname or Tailscale name you'll use. Anything not listed gets "Unknown host name for this app."
+3. `mkdir -p data && sudo chown 1000:1000 data` (the app runs as user 1000; on Docker Desktop the `chown` isn't needed).
+4. `docker compose up -d --build`. On first start it downloads the form photos (~60 MB) before the app comes up; after that, starts are quick.
+
+Everything lives in `./data`: the database (`data/fitness.db`) and photos (`data/photos`). Back up that folder. **Update:** `git pull && docker compose up -d --build`.
+
+The container runs as a non-root user with a read-only filesystem, no Linux capabilities and no privilege escalation. The LXC install adds a stricter systemd sandbox on top of that.
 
 ## How it decides
 

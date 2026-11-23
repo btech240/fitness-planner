@@ -1,6 +1,6 @@
 # Security
 
-Fitness Planner has **no login** on purpose: it's a household app on the home network, and anyone who can reach it can use every feature (pick any profile, log sets, change equipment, delete a profile). What it must *not* allow is anyone on the network — or a malicious website someone in the house visits — doing anything to the **container or host** beyond using the app.
+Rackmount has **no login** on purpose: it's a household app on the home network, and anyone who can reach it can use every feature (pick any profile, log sets, change equipment, delete a profile). What it must *not* allow is anyone on the network — or a malicious website someone in the house visits — doing anything to the **container or host** beyond using the app.
 
 ## What protects the container
 
@@ -12,13 +12,14 @@ Fitness Planner has **no login** on purpose: it's a household app on the home ne
 | **Read-only code** | `/opt/fitness-planner` is owned by root and not writable by the service, so even a compromised app process can't change its own code. |
 | **systemd sandbox** | `ProtectSystem=strict` (whole filesystem read-only except `/var/lib/fitness-planner`), `ProtectHome`, `PrivateTmp`, `NoNewPrivileges`, no capabilities, no device access, kernel tunables/modules/logs protected, namespaces/realtime/SUID blocked, only IPv4/IPv6/Unix sockets, and a system-call filter (`@system-service`, no `@privileged`). If a container can't support the extra sandbox, `install.sh` falls back to the basic one and says so. |
 | **Private data folder** | `/var/lib/fitness-planner` is `750`, owned by `fitness`; new files are created without world access (`UMask=0027`). |
+| **Docker instead** (untested) | `compose.yaml` runs the app as user 1000 with a read-only root filesystem, all capabilities dropped and `no-new-privileges`; only `./data` is writable. This is lighter than the LXC sandbox above, which is the tested setup. |
 
 ## What the app itself guards against
 
 | Risk | Guard |
 |------|-------|
 | **Another website making your browser change things** (cross-site request forgery) | Every change must come from the app's own pages: requests whose `Origin`/`Referer` is another site are refused (403). The profile cookie is `SameSite=Lax` and `HttpOnly`. |
-| **DNS rebinding** (a website pretending to *be* the app's address) | The app only answers to the host names/IPs it's reached by (`FP_ALLOWED_HOSTS`, set by `install.sh` to the container's IPs, its hostname and localhost). Others get 400. |
+| **DNS rebinding** (a website pretending to *be* the app's address) | The app only answers to the host names/IPs it's reached by (`FP_ALLOWED_HOSTS`, set by `install.sh` to the container's IPs, its hostname and localhost; with Docker, set it yourself in `compose.yaml`). Others get 400. |
 | **Reading other files** | Photos are served only for names matching `<exercise>_<0\|1>.jpg` from the photos folder; static files from the app's own folder. |
 | **Injection** | All database queries are parameterized; all page text is HTML-escaped (including profile names). |
 | **Information leaks** | No API schema or docs endpoints; the server doesn't announce its software name. |
@@ -35,7 +36,7 @@ To use it outside the house, reach it through a private network only your own de
 
 - **Tailscale inside the container:** install Tailscale in the container *before* running `install.sh` (or re-run it after), so its Tailscale IP is picked up automatically. An unprivileged LXC needs `/dev/net/tun` passed through; see Tailscale's LXC guide.
 - **Tailscale subnet router or a VPN to your home network:** nothing to change; you open the same `http://<lxc-ip>:8000` address.
-- **Using a name** (e.g. a MagicDNS name like `fitness.tailnet-name.ts.net`): add it to the allowed hosts, or the app answers "Unknown host name": `EXTRA_HOSTS="fitness,fitness.tailnet-name.ts.net" bash /opt/fitness-planner/deploy/install.sh`.
+- **Using a name** (e.g. a MagicDNS name like `fitness.tailnet-name.ts.net`): add it to the allowed hosts, or the app answers "Unknown host name": `EXTRA_HOSTS="fitness,fitness.tailnet-name.ts.net" bash /opt/fitness-planner/deploy/install.sh`. With Docker, add it to `FP_ALLOWED_HOSTS` in `compose.yaml` instead.
 
 Don't use Tailscale **Funnel** or any other public tunnel: that puts the app on the internet with no login.
 
@@ -70,4 +71,4 @@ If you open the app by a name other than its IP (e.g. a router DNS name like `fi
 EXTRA_HOSTS="fitness.lan" bash /opt/fitness-planner/deploy/install.sh
 ```
 
-Otherwise that name gets *"Unknown host name for this app."*
+Otherwise that name gets *"Unknown host name for this app."* With Docker, add the name to `FP_ALLOWED_HOSTS` in `compose.yaml` and run `docker compose up -d`.

@@ -1,11 +1,23 @@
 services:
-  fitness-planner:
+  rackmount:
     build: .
-    container_name: fitness-planner
+    container_name: rackmount
     restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
       TZ: Etc/UTC           # set to your timezone (e.g. America/New_York); used for dates in History
+      # Every name or IP you type in the browser to reach the app (blocks DNS-rebinding attacks).
+      # Replace 192.168.1.50 with your server's IP; add a hostname or Tailscale name if you use one.
+      # Anything not listed gets "Unknown host name for this app."
+      FP_ALLOWED_HOSTS: localhost,127.0.0.1,192.168.1.50
     volumes:
-      - ./data:/data        # SQLite database lives here; back up data/fitness.db
+      - ./data:/data        # database (data/fitness.db) and form photos (data/photos)
+    # Sandbox: read-only image, no Linux capabilities, no privilege escalation.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
