@@ -53,7 +53,7 @@ After each set, a pink bar at the bottom counts down your rest (length depends o
 
 - When rest is over it **beeps**, shows **Go** for a few seconds, and disappears. Nothing to tap.
 - **Skip** ends the rest early.
-- The **speaker button** turns the beep off/on for your phone.
+- The **speaker button** turns the beep off/on for your phone. Turning it on plays the beep once, so you can check your volume.
 - The beep plays **over your music** (it doesn't pause it), but it follows the ring/silent switch: on silent, you only get the on-screen timer.
 - iPhone notes: the beep only plays while the app is open on screen (set **Auto-Lock** to 5 minutes or more), and iPhones can't vibrate for websites.
 

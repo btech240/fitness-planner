@@ -40,21 +40,41 @@
     src.start(0);
   }
 
+  // Rest-over cue, built to cut through music playing in another app: two bursts of
+  // "ding-ding-DING" around 1.5–2 kHz (where hearing is most sensitive and music is
+  // thinner), square + sine for a bright edge, pushed through a compressor so it sits
+  // near full volume without clipping.
+  var NOTES = [[0, 1568], [0.2, 1568], [0.4, 2093], [0.85, 1568], [1.05, 1568], [1.25, 2093]];
+
   function beep() {
     if (!ctx || !soundOn()) return;
     if (ctx.state === "suspended") ctx.resume();
-    var t = ctx.currentTime;
-    [0, 0.22, 0.44].forEach(function (offset, i) {
-      var osc = ctx.createOscillator();
-      var gain = ctx.createGain();
-      osc.type = "sine";
-      osc.frequency.value = i === 2 ? 1320 : 880;
-      gain.gain.setValueAtTime(0.0001, t + offset);
-      gain.gain.exponentialRampToValueAtTime(0.5, t + offset + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, t + offset + 0.18);
-      osc.connect(gain).connect(ctx.destination);
-      osc.start(t + offset);
-      osc.stop(t + offset + 0.2);
+    var t = ctx.currentTime + 0.02;
+    var comp = ctx.createDynamicsCompressor();
+    comp.threshold.value = -18;
+    comp.knee.value = 6;
+    comp.ratio.value = 12;
+    comp.attack.value = 0.002;
+    comp.release.value = 0.1;
+    var master = ctx.createGain();
+    master.gain.value = 1.4;            // make-up gain after the compressor
+    comp.connect(master).connect(ctx.destination);
+    NOTES.forEach(function (note) {
+      var start = t + note[0];
+      var env = ctx.createGain();
+      env.gain.setValueAtTime(0.0001, start);
+      env.gain.exponentialRampToValueAtTime(0.9, start + 0.01);
+      env.gain.setValueAtTime(0.9, start + 0.1);
+      env.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
+      env.connect(comp);
+      ["square", "sine"].forEach(function (type) {
+        var osc = ctx.createOscillator();
+        osc.type = type;
+        osc.frequency.value = note[1];
+        osc.connect(env);
+        osc.start(start);
+        osc.stop(start + 0.18);
+      });
     });
   }
 
@@ -124,7 +144,11 @@
   if (restEl) {
     restEl.addEventListener("click", function (ev) {
       if (ev.target.closest(".rest-skip")) { timer.dismissed = true; timer.alerted = true; tick(); }
-      if (ev.target.closest(".rest-sound")) { setSound(!soundOn()); renderSoundButton(); }
+      if (ev.target.closest(".rest-sound")) {
+        setSound(!soundOn());
+        renderSoundButton();
+        if (soundOn()) beep();          // preview the cue when sound is turned on
+      }
     });
     renderSoundButton();
     syncTimer();
