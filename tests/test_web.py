@@ -40,7 +40,7 @@ def test_full_flow(client):
     ids = we_ids(r.text)
     assert len(ids) == 4
 
-    # regenerate allowed before logging
+    # "New exercises" allowed before logging
     r = client.post(f"/workout/1/regenerate")
     ids = we_ids(r.text)
     assert len(ids) == 4
@@ -49,10 +49,10 @@ def test_full_flow(client):
     logged = re.search(r'<tr class="logged">(.*?)</tr>', r.text, re.S).group(1)
     assert re.findall(r"<td>([^<]+)</td>", logged) == ["10", "95"]
     assert 'id="rest"' in r.text
-    assert "Regenerate" not in r.text
+    assert "New exercises" not in r.text
 
     wid = re.search(r'action="/workout/(\d+)/finish"', r.text).group(1)
-    assert wid == "2"  # ids are not reused after a regenerate deletes workout 1
+    assert wid == "1"  # "New exercises" rebuilds the same workout
     r = client.post(f"/workout/{wid}/finish")
     assert "10×95" in r.text  # history page
 

@@ -269,16 +269,27 @@ def choose_exercise(pool: list[dict], muscle: str, chosen: list[dict], recovery:
 
 def generate(pool: list[dict], recovery: dict[str, int], history: dict[str, ExerciseHistory],
              pins: set[str], n_exercises: int, rng: random.Random | None = None,
-             last_pattern: str | None = None) -> Plan:
+             last_pattern: str | None = None, pattern: str | None = None,
+             avoid: set[str] | frozenset[str] = frozenset()) -> Plan:
+    """Build a workout. `pattern` forces the day type; `avoid` lists exercises to leave out
+    when the gear allows (used by "New exercises": same day, different lifts)."""
     rng = rng or random.Random()
     if not pool:
         return Plan(pattern="full")
-    pattern = pick_pattern(recovery, pool, last_pattern, rng)
+    if pattern not in PATTERNS:
+        pattern = pick_pattern(recovery, pool, last_pattern, rng)
     slots = allocate_slots(pattern, recovery, pool, n_exercises, rng)
+    fresh = [e for e in pool if e["id"] not in avoid]
+
+    def pick(muscle: str, chosen: list[dict], core_slot: bool) -> dict | None:
+        # avoided exercises only come back when a muscle has nothing else
+        return (choose_exercise(fresh, muscle, chosen, recovery, history, pins, rng, core_slot)
+                or choose_exercise(pool, muscle, chosen, recovery, history, pins, rng, core_slot))
+
     chosen: list[dict] = []
     seen: set[str] = set()
     for muscle in slots:
-        e = choose_exercise(pool, muscle, chosen, recovery, history, pins, rng, core_slot=muscle not in seen)
+        e = pick(muscle, chosen, core_slot=muscle not in seen)
         seen.add(muscle)
         if e:
             chosen.append(e)
@@ -286,7 +297,7 @@ def generate(pool: list[dict], recovery: dict[str, int], history: dict[str, Exer
     for muscle in PATTERNS[pattern][1]:
         if len(chosen) >= n_exercises:
             break
-        e = choose_exercise(pool, muscle, chosen, recovery, history, pins, rng, core_slot=False)
+        e = pick(muscle, chosen, core_slot=False)
         if e:
             chosen.append(e)
     chosen.sort(key=lambda e: e.get("mechanic") != "compound")  # compounds first, stable otherwise

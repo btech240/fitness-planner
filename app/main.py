@@ -215,6 +215,14 @@ def delete_profile(request: Request, confirm: str = Form("")):
 
 # ---- today -------------------------------------------------------------------
 
+def _open_card(request: Request, items: list[dict]) -> int | None:
+    """The card to show open: one just swapped in (?open=<id>), else the next one to do."""
+    wanted = request.query_params.get("open", "")
+    if wanted.isdigit() and any(it["we"]["id"] == int(wanted) and not it["sets"] for it in items):
+        return int(wanted)
+    return service.active_exercise_id(items)
+
+
 @app.get("/", response_class=HTMLResponse)
 def today(request: Request):
     with tx() as conn:
@@ -235,7 +243,7 @@ def today(request: Request):
                         targets.append(m)
             ctx.update(
                 items=items,
-                active_id=service.active_exercise_id(items),
+                active_id=_open_card(request, items),
                 pattern_label=generator.PATTERNS[w["pattern"]][0] if w["pattern"] in generator.PATTERNS else None,
                 targets=[(m, rec.get(m, 100)) for m in targets[:3]],
                 has_sets=service.workout_has_sets(conn, w["id"]),
@@ -265,9 +273,7 @@ def regenerate(request: Request, wid: int):
         p = current_profile(request, conn)
         if not p:
             return pick_profile()
-        if service.owned_workout(conn, p["id"], wid) and not service.workout_has_sets(conn, wid):
-            conn.execute("DELETE FROM workouts WHERE id = ?", (wid,))
-            service.create_workout(conn, p["id"])
+        service.new_exercises(conn, p["id"], wid)
     return redirect("/")
 
 
@@ -346,6 +352,26 @@ def unpin(request: Request, exercise_id: str):
             return pick_profile()
         conn.execute("DELETE FROM pinned WHERE profile_id = ? AND exercise_id = ?", (p["id"], exercise_id))
     return redirect("/settings#pinned")
+
+
+@app.post("/we/{we_id}/swap")
+def swap(request: Request, we_id: int):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        new_id = service.swap_exercise(conn, p["id"], we_id)
+    return redirect(f"/?open={new_id}#ex-{new_id}" if new_id else f"/#ex-{we_id}")
+
+
+@app.post("/we/{we_id}/remove")
+def remove(request: Request, we_id: int):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        service.remove_exercise(conn, p["id"], we_id)
+    return redirect("/")
 
 
 @app.post("/we/{we_id}/exclude")

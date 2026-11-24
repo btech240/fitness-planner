@@ -151,7 +151,7 @@
   }
 
   // ---- in-place form posts ---------------------------------------------------------------
-  var IN_PLACE = /\/(we\/\d+\/(set|pin)|set\/\d+\/delete)$/;
+  var IN_PLACE = /\/(we\/\d+\/(set|pin|swap|remove)|set\/\d+\/delete)$/;
 
   document.addEventListener("submit", function (ev) {
     var form = ev.target;

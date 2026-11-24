@@ -52,6 +52,19 @@
         <span class="spec open-only">{{ n_done }}/{{ we.target_sets }}</span>
       </summary>
 
+      {% if not it.sets %}
+      <div class="ex-quick">
+        <form method="post" action="/we/{{ we.id }}/swap">
+          <button class="pill swap"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h14l-4-4"/><path d="M20 16H6l4 4"/></svg>Swap<span class="sr"> {{ ex.name }}</span></button>
+        </form>
+        {% if items|length > 1 %}
+        <form method="post" action="/we/{{ we.id }}/remove">
+          <button class="pill remove"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>Remove<span class="sr"> {{ ex.name }} from today</span></button>
+        </form>
+        {% endif %}
+      </div>
+      {% endif %}
+
       <table class="sets">
         <thead><tr><th>Set</th><th>Prev</th><th>Reps</th><th>{{ units }}</th><th><span class="sr">Action</span></th></tr></thead>
         <tbody>
@@ -123,8 +136,11 @@
   <div class="actions">
     <form method="post" action="/workout/{{ workout.id }}/finish"><button class="btn primary block">Finish workout</button></form>
     {% if not has_sets %}
-      <form method="post" action="/workout/{{ workout.id }}/regenerate"><button class="btn">Regenerate</button></form>
-      <form method="post" action="/workout/{{ workout.id }}/discard"><button class="link danger">Discard</button></form>
+      <form method="post" action="/workout/{{ workout.id }}/regenerate" class="new-ex">
+        <button class="btn block"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.6"/><path d="M20 4v5h-5"/></svg>New exercises</button>
+      </form>
+      <p class="actions-note">Same {{ pattern_label or "type of" }} day, all different exercises.</p>
+      <form method="post" action="/workout/{{ workout.id }}/discard" class="discard"><button class="link danger">Discard</button></form>
     {% endif %}
   </div>
 {% endif %}

@@ -20,7 +20,8 @@ It's doable. The key ingredient is exercise data tagged with muscles and equipme
 | 7 | History import | **Start fresh**, no import from other apps | The app learns working weights from what you log |
 | 8 | Training goal | **Selectable in settings**: strength / muscle building / endurance | Each goal has its own reps, sets and rest time |
 | 9 | Workout length | **One fixed setting** (number of exercises or target minutes) | Same length every day |
-| 10 | Exercise control | **'Never suggest' exclude list only**, no in-workout swap | Home gym, so equipment is never busy; some exercises just don't suit you |
+| 10 | Exercise control | ~~'Never suggest' only, no in-workout swap~~ → replaced by #29 | |
+| 29 | Changing today's workout | **Swap** (one tap: next-best exercise for the same muscle) and **Remove** (today only) as buttons on the open card, until a set is logged on it; you can't remove the last exercise. **Regenerate** became **New exercises**: same day type, every exercise different, until the first set. Exercises passed over are remembered per workout (`workout_skips`, schema v3) so they don't come back while alternatives exist. **Never suggest** stays for permanent exclusions. Layout W1 picked from two mockups. | Real use showed the need to drop or replace single exercises, and Regenerate kept producing the same workout |
 | 11 | Weight modeling | **Exact inventory** of owned weights | Suggestions are always weights you can actually load |
 | 12 | Inventory types | **Common types, entered in the app**: barbell + plates, fixed or adjustable dumbbells, cable stack, kettlebells, bodyweight stations (pull-up bar, dip station), bench, bands | The details are entered in the app, not hard-coded |
 | 13 | Workout content | **Strength only** | No generated warm-up, cardio or core |
@@ -44,10 +45,10 @@ It's doable. The key ingredient is exercise data tagged with muscles and equipme
 - **Exercise data:** use an open data set with muscle and equipment tags (candidate: free-exercise-db, public domain, ~800 exercises with images). Vet the source before adding it. Its equipment tags get mapped to the app's inventory types.
 - **First time doing an exercise:** no weight is suggested; you enter one, and the app progresses from what you log.
 - **Recovery model:** each muscle group gets fatigue from the logged volume (sets × reps × weight, with primary muscles weighted more than secondary ones), which wears off over time. A muscle counts as recovered at about 100%.
-- **Generation:** pick the most-recovered muscle groups, choose exercises that hit them, use only available equipment, and skip excluded exercises. Reps and sets follow the goal; the weight follows your last performance and is rounded to a weight your inventory can load. A **Regenerate** button is available until the first set is logged.
+- **Generation:** pick the most-recovered muscle groups, choose exercises that hit them, use only available equipment, and skip excluded exercises. Reps and sets follow the goal; the weight follows your last performance and is rounded to a weight your inventory can load. **New exercises** (same day type, different exercises) is available until the first set is logged; **Swap** and **Remove** per exercise until a set is logged on it.
 - **Muscle priority and staples (added during QA):** ranking muscles on recovery alone produced calves/forearms/lower-back days when everything was fresh. Target ranking now adds a priority for big muscle groups, and about 60 well-known lifts get a scoring boost over obscure variations.
 - **Station requirements** (bench, rack, pull-up bar, dip station) are inferred from exercise names, because the dataset doesn't tag them. Specialty variants (chains, banded barbell) and the dataset's "machine" exercises are left out.
 
 ## Out of scope for v1
 
-Multiple users, public exposure and authentication, multiple gyms, importing from other apps, warm-up/cardio/core, charts/body map, offline/PWA sync, in-workout swaps.
+Multiple users, public exposure and authentication, multiple gyms, importing from other apps, warm-up/cardio/core, charts/body map, offline/PWA sync.

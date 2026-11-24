@@ -12,7 +12,7 @@ Apps that plan your workout for you are usually subscriptions that keep your tra
 
 ## What it does
 
-- **Daily workouts** — Push, Pull, Legs, Upper, Lower or Full body, chosen by which muscles are most recovered; one tap to regenerate.
+- **Daily workouts** — Push, Pull, Legs, Upper, Lower or Full body, chosen by which muscles are most recovered. **Swap** or **Remove** any exercise, or get **New exercises** for the same day.
 - **Real equipment** — only exercises your gym supports (barbell + plates, EZ bar, dumbbells, kettlebells, cable stack with high/low/mid pulleys, bands, bench, rack, pull-up bar, dip station, bodyweight), and only weights you can actually load.
 - **Progression** — weight suggestions from your last session (up one loadable step when you hit every rep); rep targets that climb for bodyweight moves.
 - **Core lifts + variety** — a couple of main lifts per muscle keep coming back; the rest rotate. Pin favorites, exclude ones you never want.

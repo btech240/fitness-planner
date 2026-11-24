@@ -4,6 +4,9 @@ Schema version 2 (household profiles): workouts, pins and exclusions belong to a
 profile; the equipment list (settings key "inventory") is shared by the house.
 Upgrading a version-1 database starts everyone fresh: it is backed up beside the
 database file first, then everything but the equipment list is cleared.
+
+Schema version 3 adds workout_skips (exercises swapped, removed or regenerated away
+in an unfinished workout). Upgrading from version 2 only adds that table.
 """
 
 from __future__ import annotations
@@ -14,7 +17,7 @@ import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS settings (
@@ -64,6 +67,11 @@ CREATE TABLE IF NOT EXISTS pinned (
     exercise_id TEXT NOT NULL,
     PRIMARY KEY (profile_id, exercise_id)
 );
+CREATE TABLE IF NOT EXISTS workout_skips (
+    workout_id  INTEGER NOT NULL REFERENCES workouts(id) ON DELETE CASCADE,
+    exercise_id TEXT NOT NULL,
+    PRIMARY KEY (workout_id, exercise_id)
+);
 CREATE INDEX IF NOT EXISTS idx_workouts_profile ON workouts(profile_id);
 CREATE INDEX IF NOT EXISTS idx_sets_logged ON sets(logged_at);
 CREATE INDEX IF NOT EXISTS idx_we_exercise ON workout_exercises(exercise_id);
@@ -92,8 +100,18 @@ def connect(path: str | None = None) -> sqlite3.Connection:
 
 
 def _upgrade(conn: sqlite3.Connection, path: str) -> None:
-    """Bring any older database to SCHEMA_VERSION. A version-1 database is backed up, then
-    everything except the shared equipment list is cleared (owner's choice: start everyone fresh)."""
+    """Bring any older database to SCHEMA_VERSION, one step at a time.
+    From version 2 on, upgrades only add tables (CREATE ... IF NOT EXISTS); data is kept."""
+    if conn.execute("PRAGMA user_version").fetchone()[0] < 2:
+        _upgrade_from_v1(conn, path)
+    conn.executescript(SCHEMA)
+    conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
+    conn.commit()
+
+
+def _upgrade_from_v1(conn: sqlite3.Connection, path: str) -> None:
+    """Version 1 (single user) -> 2. The database is backed up, then everything except the
+    shared equipment list is cleared (owner's choice: start everyone fresh)."""
     had_data = conn.execute(
         "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'workouts'").fetchone() is not None
     if had_data and path != ":memory:":
@@ -109,9 +127,6 @@ def _upgrade(conn: sqlite3.Connection, path: str) -> None:
     if conn.execute("SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'settings'").fetchone():
         conn.execute(f"DELETE FROM settings WHERE key IN ({','.join('?' * len(_V1_PERSONAL_KEYS))})",
                      _V1_PERSONAL_KEYS)
-    conn.executescript(SCHEMA)
-    conn.execute(f"PRAGMA user_version = {SCHEMA_VERSION}")
-    conn.commit()
 
 
 def get_setting(conn: sqlite3.Connection, key: str, default=None):

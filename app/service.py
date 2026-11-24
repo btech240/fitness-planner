@@ -252,6 +252,54 @@ def workout_has_sets(conn: sqlite3.Connection, workout_id: int) -> bool:
         "WHERE we.workout_id = ? LIMIT 1", (workout_id,)).fetchone() is not None
 
 
+def _has_sets(conn: sqlite3.Connection, we_id: int) -> bool:
+    return conn.execute("SELECT 1 FROM sets WHERE workout_exercise_id = ?", (we_id,)).fetchone() is not None
+
+
+def skipped_ids(conn: sqlite3.Connection, workout_id: int) -> set[str]:
+    """Exercises passed over in this workout (swapped, removed or regenerated away)."""
+    return {r["exercise_id"] for r in conn.execute(
+        "SELECT exercise_id FROM workout_skips WHERE workout_id = ?", (workout_id,))}
+
+
+def _skip(conn: sqlite3.Connection, workout_id: int, exercise_id: str) -> None:
+    conn.execute("INSERT OR IGNORE INTO workout_skips(workout_id, exercise_id) VALUES (?, ?)",
+                 (workout_id, exercise_id))
+
+
+def _replace(conn: sqlite3.Connection, pid: int, we, avoid: set[str], rng: random.Random | None) -> int | None:
+    """Swap the workout exercise `we` for another one aimed at the same muscle (falling back to the
+    day's other muscles). Exercises in `avoid` are used only when nothing else fits; the exercise
+    being replaced never comes back. Returns the new workout-exercise id, or None (left as it was)."""
+    s = settings(conn, pid)
+    old = catalog.get(we["exercise_id"])
+    others = [catalog.get(r["exercise_id"]) for r in conn.execute(
+        "SELECT exercise_id FROM workout_exercises WHERE workout_id = ? AND id != ?", (we["workout_id"], we["id"]))]
+    pool = [e for e in _pool(conn, pid, s) if e["id"] != we["exercise_id"]]
+    fresh = [e for e in pool if e["id"] not in avoid]
+    rec = current_recovery(conn, pid)
+    hist = exercise_history(conn, pid, we["workout_id"])
+    pins = pinned_ids(conn, pid)
+    rng = rng or random.Random()
+    w = conn.execute("SELECT pattern FROM workouts WHERE id = ?", (we["workout_id"],)).fetchone()
+    pattern_muscles = generator.PATTERNS.get(w["pattern"] if w else None, ("", []))[1]
+    primary = list(old["primary"]) if old else []
+    targets = primary + [m for m in pattern_muscles if m not in primary]
+    replacement = None
+    for candidates in (fresh, pool):
+        for target in targets:
+            replacement = generator.choose_exercise(candidates, target, others, rec, hist, pins, rng, core_slot=False)
+            if replacement:
+                break
+        if replacement:
+            break
+    if not replacement:
+        return None
+    conn.execute("DELETE FROM workout_exercises WHERE id = ?", (we["id"],))
+    _add_exercise(conn, pid, s, we["workout_id"], replacement, we["position"])
+    return conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+
+
 def exclude_and_replace(conn: sqlite3.Connection, pid: int, we_id: int, rng: random.Random | None = None) -> None:
     """Add the exercise to this profile's never-suggest list; replace it in the workout if it has no sets yet."""
     we = owned_we(conn, pid, we_id)
@@ -259,27 +307,58 @@ def exclude_and_replace(conn: sqlite3.Connection, pid: int, we_id: int, rng: ran
         return
     conn.execute("INSERT OR IGNORE INTO excluded(profile_id, exercise_id) VALUES (?, ?)", (pid, we["exercise_id"]))
     conn.execute("DELETE FROM pinned WHERE profile_id = ? AND exercise_id = ?", (pid, we["exercise_id"]))
-    if conn.execute("SELECT 1 FROM sets WHERE workout_exercise_id = ?", (we_id,)).fetchone():
+    if _has_sets(conn, we_id):
         return
-    s = settings(conn, pid)
-    old = catalog.get(we["exercise_id"])
-    others = [catalog.get(r["exercise_id"]) for r in conn.execute(
-        "SELECT exercise_id FROM workout_exercises WHERE workout_id = ? AND id != ?", (we["workout_id"], we_id))]
+    if _replace(conn, pid, we, skipped_ids(conn, we["workout_id"]), rng) is None:
+        conn.execute("DELETE FROM workout_exercises WHERE id = ?", (we_id,))
+
+
+def swap_exercise(conn: sqlite3.Connection, pid: int, we_id: int, rng: random.Random | None = None) -> int | None:
+    """Replace one exercise in today's workout (no sets logged on it yet) with the next-best one for
+    the same muscle. Swapped-away exercises don't come back in this workout while others fit.
+    Returns the new workout-exercise id, or None if nothing changed."""
+    we = owned_we(conn, pid, we_id)
+    if not we or _has_sets(conn, we_id) or not _is_open(conn, we["workout_id"]):
+        return None
+    _skip(conn, we["workout_id"], we["exercise_id"])
+    return _replace(conn, pid, we, skipped_ids(conn, we["workout_id"]), rng)
+
+
+def remove_exercise(conn: sqlite3.Connection, pid: int, we_id: int) -> bool:
+    """Drop an exercise from today's workout only (no sets logged on it, and never the last one)."""
+    we = owned_we(conn, pid, we_id)
+    if not we or _has_sets(conn, we_id) or not _is_open(conn, we["workout_id"]):
+        return False
+    count = conn.execute("SELECT COUNT(*) FROM workout_exercises WHERE workout_id = ?",
+                         (we["workout_id"],)).fetchone()[0]
+    if count <= 1:
+        return False
+    _skip(conn, we["workout_id"], we["exercise_id"])
     conn.execute("DELETE FROM workout_exercises WHERE id = ?", (we_id,))
-    pool = _pool(conn, pid, s)
-    rec = current_recovery(conn, pid)
-    hist = exercise_history(conn, pid, we["workout_id"])
-    pins = pinned_ids(conn, pid)
-    w = conn.execute("SELECT pattern FROM workouts WHERE id = ?", (we["workout_id"],)).fetchone()
-    pattern_muscles = generator.PATTERNS.get(w["pattern"] if w else None, ("", []))[1]
-    replacement = None
-    for target in list(old["primary"]) + [m for m in pattern_muscles if m not in old["primary"]]:
-        replacement = generator.choose_exercise(pool, target, others, rec, hist, pins,
-                                                rng or random.Random(), core_slot=False)
-        if replacement:
-            break
-    if replacement:
-        _add_exercise(conn, pid, s, we["workout_id"], replacement, we["position"])
+    return True
+
+
+def new_exercises(conn: sqlite3.Connection, pid: int, workout_id: int, rng: random.Random | None = None) -> bool:
+    """Rebuild a not-yet-started workout: same type of day, avoiding every exercise already shown in it."""
+    w = owned_workout(conn, pid, workout_id)
+    if not w or w["finished_at"] or workout_has_sets(conn, workout_id):
+        return False
+    for r in conn.execute("SELECT exercise_id FROM workout_exercises WHERE workout_id = ?", (workout_id,)).fetchall():
+        _skip(conn, workout_id, r["exercise_id"])
+    conn.execute("DELETE FROM workout_exercises WHERE workout_id = ?", (workout_id,))
+    s = settings(conn, pid)
+    plan = generator.generate(_pool(conn, pid, s), current_recovery(conn, pid),
+                              exercise_history(conn, pid, workout_id), pinned_ids(conn, pid),
+                              int(s["n_exercises"]), rng, last_pattern(conn, pid),
+                              pattern=w["pattern"], avoid=skipped_ids(conn, workout_id))
+    for i, e in enumerate(plan.exercises):
+        _add_exercise(conn, pid, s, workout_id, e, i)
+    return True
+
+
+def _is_open(conn: sqlite3.Connection, workout_id: int) -> bool:
+    row = conn.execute("SELECT finished_at FROM workouts WHERE id = ?", (workout_id,)).fetchone()
+    return bool(row) and row["finished_at"] is None
 
 
 def toggle_pin(conn: sqlite3.Connection, pid: int, exercise_id: str) -> bool:

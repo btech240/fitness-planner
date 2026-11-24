@@ -28,7 +28,9 @@ Tap **Generate workout**. The app picks a **day type** (shown as the title, e.g.
 - the goal summary, e.g. `HYP · 3×10 · 90s` = muscle building, 3 sets of 10, 90 seconds rest;
 - how recovered the day's target muscles are (bars fill up as they recover).
 
-Don't like the selection? Tap **Regenerate** for a new one (only before you've logged a set), or **Discard** to drop it.
+Don't like the selection? Tap **New exercises** at the bottom: you get the same type of day with all different exercises, and tapping again keeps finding new ones. **Discard** drops the workout. Both are only there before you've logged your first set.
+
+To change just one exercise, use **Swap** or **Remove** on its card (below).
 
 ### Exercise cards
 Each exercise is a card. Finished ones collapse with a ✓; the one you're on opens automatically. Tap any card to open or close it.
@@ -56,6 +58,14 @@ After each set, a pink bar at the bottom counts down your rest (length depends o
 
 ### How to (with photos)
 Open **How to** on any card for step-by-step instructions, with **start** and **end** position photos underneath. Tap a photo to see it full size.
+
+### Changing today's workout
+On an open card, before you've logged a set on that exercise:
+
+- **Swap** — replaces it with the next-best exercise for the same muscle. Tap again for another; an exercise you swapped away won't come back in this workout.
+- **Remove** — takes it out of today's workout. (You can't remove the last one.)
+
+Neither one changes what the app suggests on other days. Once you log a set on an exercise, its Swap and Remove buttons disappear.
 
 ### Shaping what you get
 At the bottom of each card:
@@ -97,7 +107,7 @@ How recovered each muscle group is, from 0% (just worked hard) to 100% (fresh). 
 - **Exercises per workout** — 2 to 10.
 - **Units** — lb or kg.
 
-Changes apply to your *next* workout. If one is already showing, tap **Regenerate** (before logging anything) to rebuild it.
+Changes apply to your *next* workout. If one is already showing, tap **New exercises** (before logging anything) to rebuild it.
 
 ### Equipment (shared with everyone)
 One list for the whole house; changes apply to every profile. Tick what you have, then:
