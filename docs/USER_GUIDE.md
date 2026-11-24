@@ -9,7 +9,11 @@ Everyone in the house can have their own profile. There are no passwords: you ju
 ## Getting started
 
 1. **Open the app** on your phone while you're on the home Wi-Fi. Ask whoever runs it for the address; it looks like `http://192.168.x.y:8000`.
-2. **Add it to your home screen** (iPhone: Share → **Add to Home Screen**). It then opens full-screen like an app.
+2. **Add it to your home screen** (iPhone: Share → **Add to Home Screen**). It then opens full-screen like an app, with the Rackmount icon:
+
+   <img src="../app/static/apple-touch-icon.png" alt="Rackmount icon" width="60">
+
+   Added it before the icon existed and see a plain letter instead? Delete the home-screen icon and add it again from Safari; iPhone only picks up the icon when you add it. Your workouts aren't affected.
 3. **Pick your name** on *Who's working out?*, or tap **Add person** and enter:
    - your **name**,
    - your **training goal** (see [Goals](#goals)),

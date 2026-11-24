@@ -1,3 +1,5 @@
+<img src="app/static/icon-512.png" alt="Rackmount app icon: a loaded barbell on a squat rack" width="112">
+
 # Rackmount
 
 **A self-hosted workout planner, builder and tracker for your home gym.**
@@ -92,4 +94,4 @@ python -m venv .venv
 
 ## License
 
-[MIT](LICENSE). Exercise data and photos come from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain). To refresh the data, see `scripts/build_exercises.py`.
+[MIT](LICENSE). The app icon is drawn in `scripts/build_icons.py` (run it with Pillow installed to regenerate the PNGs in `app/static`). Exercise data and photos come from [free-exercise-db](https://github.com/yuhonas/free-exercise-db) (public domain). To refresh the data, see `scripts/build_exercises.py`.

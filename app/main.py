@@ -10,7 +10,7 @@ from datetime import datetime
 from pathlib import Path
 
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import FileResponse, HTMLResponse, PlainTextResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, PlainTextResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
@@ -617,6 +617,33 @@ def photo(name: str):
     if not path.is_file():
         raise HTTPException(status_code=404)
     return FileResponse(path, media_type="image/jpeg", headers={"Cache-Control": "public, max-age=604800"})
+
+
+@app.get("/manifest.webmanifest")
+def manifest():
+    """Lets Android (and other browsers) install the app with its name and icon.
+    iPhone uses the apple-touch-icon link in base.html instead."""
+    return JSONResponse({
+        "name": "Rackmount",
+        "short_name": "Rackmount",
+        "start_url": "/",
+        "scope": "/",
+        "display": "standalone",
+        "background_color": "#140B24",
+        "theme_color": "#140B24",
+        "icons": [
+            {"src": asset("icon-192.png"), "sizes": "192x192", "type": "image/png"},
+            {"src": asset("icon-512.png"), "sizes": "512x512", "type": "image/png"},
+            {"src": asset("icon.svg"), "sizes": "any", "type": "image/svg+xml"},
+        ],
+    }, media_type="application/manifest+json")
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    """Browsers ask for this on their own; answer with the PNG favicon instead of a 404."""
+    return FileResponse(HERE / "static" / "favicon-32.png", media_type="image/png",
+                        headers={"Cache-Control": "public, max-age=86400"})
 
 
 @app.get("/healthz")
