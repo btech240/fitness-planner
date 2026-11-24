@@ -133,6 +133,21 @@
     </details>
   {% endfor %}
 
+  <section class="add-box" aria-labelledby="add-title">
+    <h2 id="add-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Add exercise</h2>
+    <form method="post" action="/workout/{{ workout.id }}/suggest">
+      <button class="add-choice">
+        <svg class="aqua" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5L18 18M6 18l2.5-2.5M15.5 8.5L18 6"/></svg>
+        <span><span class="label">Suggest one</span><span class="sub">Best fit for {{ pattern_label or "today" }}{% if pattern_label %} day{% endif %}{% if add_muscle %} · {{ add_muscle }}{% endif %}</span></span>
+      </button>
+    </form>
+    <a class="add-choice" href="/workout/{{ workout.id }}/add">
+      <svg class="pink" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+      <span><span class="label">Choose myself</span><span class="sub">Search or browse by muscle</span></span>
+      <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
   <div class="actions">
     <form method="post" action="/workout/{{ workout.id }}/finish"><button class="btn primary block">Finish workout</button></form>
     {% if not has_sets %}

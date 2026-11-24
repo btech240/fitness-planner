@@ -267,6 +267,16 @@ def choose_exercise(pool: list[dict], muscle: str, chosen: list[dict], recovery:
     return max(candidates, key=lambda e: _rotation_score(e, muscle, recovery, history, core_ids, loaded, rng))
 
 
+def rank_for_muscle(pool: list[dict], muscle: str, recovery: dict[str, int],
+                    history: dict[str, ExerciseHistory], pins: set[str], rng: random.Random) -> list[dict]:
+    """Every exercise in the pool aimed at `muscle`, best pick first (the rotation ranking)."""
+    core_ids = {e["id"] for e in core_lifts(muscle, pool, history, pins)}
+    loaded = _has_loaded_gear(pool)
+    scored = [(_rotation_score(e, muscle, recovery, history, core_ids, loaded, rng), e)
+              for e in pool if muscle in e["primary"]]
+    return [e for _, e in sorted(scored, key=lambda t: -t[0])]
+
+
 def generate(pool: list[dict], recovery: dict[str, int], history: dict[str, ExerciseHistory],
              pins: set[str], n_exercises: int, rng: random.Random | None = None,
              last_pattern: str | None = None, pattern: str | None = None,

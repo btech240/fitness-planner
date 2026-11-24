@@ -356,6 +356,115 @@ def new_exercises(conn: sqlite3.Connection, pid: int, workout_id: int, rng: rand
     return True
 
 
+def _workout_exercises(conn: sqlite3.Connection, workout_id: int) -> list[dict]:
+    return [e for e in (catalog.get(r["exercise_id"]) for r in conn.execute(
+        "SELECT exercise_id FROM workout_exercises WHERE workout_id = ? ORDER BY position, id", (workout_id,))) if e]
+
+
+def _append(conn, pid: int, s: dict, workout_id: int, exercise: dict) -> int:
+    pos = conn.execute("SELECT COALESCE(MAX(position), -1) + 1 FROM workout_exercises WHERE workout_id = ?",
+                       (workout_id,)).fetchone()[0]
+    _add_exercise(conn, pid, s, workout_id, exercise, pos)
+    return conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+
+
+def day_muscles(conn: sqlite3.Connection, pid: int, workout_id: int) -> list[str]:
+    """Today's muscles, least-trained in this workout first (ties keep the day's own order).
+    Only muscles this gym can train; recovered ones before tired ones."""
+    w = conn.execute("SELECT pattern FROM workouts WHERE id = ?", (workout_id,)).fetchone()
+    pattern = generator.PATTERNS.get(w["pattern"] if w else None, ("", generator.PATTERNS["full"][1]))[1]
+    have = {m for e in _pool(conn, pid, settings(conn, pid)) for m in e["primary"]}
+    rec = current_recovery(conn, pid)
+    current = _workout_exercises(conn, workout_id)
+    muscles = [m for m in pattern if m in have]
+    work = {m: sum(1 for e in current if m in e["primary"]) for m in muscles}
+    return sorted(muscles, key=lambda m: (rec.get(m, 100) < generator.READY, work[m], muscles.index(m)))
+
+
+def suggest_addition(conn: sqlite3.Connection, pid: int, workout_id: int,
+                     rng: random.Random | None = None) -> int | None:
+    """Add the best-fitting extra exercise for today's least-trained muscle, at the end.
+    Returns the new workout-exercise id, or None if nothing fits."""
+    w = owned_workout(conn, pid, workout_id)
+    if not w or w["finished_at"]:
+        return None
+    s = settings(conn, pid)
+    current = _workout_exercises(conn, workout_id)
+    in_workout = {e["id"] for e in current}
+    pool = [e for e in _pool(conn, pid, s) if e["id"] not in in_workout]
+    fresh = [e for e in pool if e["id"] not in skipped_ids(conn, workout_id)]
+    rec = current_recovery(conn, pid)
+    hist = exercise_history(conn, pid, workout_id)
+    pins = pinned_ids(conn, pid)
+    rng = rng or random.Random()
+    for candidates in (fresh, pool):
+        for muscle in day_muscles(conn, pid, workout_id):
+            e = generator.choose_exercise(candidates, muscle, current, rec, hist, pins, rng, core_slot=False)
+            if e:
+                return _append(conn, pid, s, workout_id, e)
+    return None
+
+
+def add_chosen(conn: sqlite3.Connection, pid: int, workout_id: int, exercise_id: str) -> int | None:
+    """Add an exercise the person picked. It must fit the gym, not be excluded, and not already be in
+    the workout. Returns the new workout-exercise id, or None."""
+    w = owned_workout(conn, pid, workout_id)
+    if not w or w["finished_at"]:
+        return None
+    s = settings(conn, pid)
+    exercise = next((e for e in _pool(conn, pid, s) if e["id"] == exercise_id), None)
+    if not exercise or exercise_id in {e["id"] for e in _workout_exercises(conn, workout_id)}:
+        return None
+    return _append(conn, pid, s, workout_id, exercise)
+
+
+def last_done(conn: sqlite3.Connection, pid: int) -> dict[str, str]:
+    """When each exercise last had a set logged, per profile (ISO timestamps)."""
+    return {r["exercise_id"]: r["at"] for r in conn.execute(
+        "SELECT we.exercise_id, MAX(s.logged_at) AS at FROM sets s "
+        "JOIN workout_exercises we ON we.id = s.workout_exercise_id "
+        "JOIN workouts w ON w.id = we.workout_id WHERE w.profile_id = ? GROUP BY we.exercise_id", (pid,))}
+
+
+def picker(conn: sqlite3.Connection, pid: int, workout_id: int, muscle: str | None, query: str) -> dict:
+    """Data for the Choose-an-exercise page: muscle chips and the matching exercises, best first."""
+    s = settings(conn, pid)
+    pool = _pool(conn, pid, s)
+    today_muscles = day_muscles(conn, pid, workout_id)
+    all_muscles = sorted({m for e in pool for m in e["primary"]})
+    other_muscles = [m for m in all_muscles if m not in today_muscles]
+    q = " ".join(query.lower().split())
+    if not q and muscle not in all_muscles:
+        muscle = today_muscles[0] if today_muscles else (all_muscles[0] if all_muscles else None)
+    rec = current_recovery(conn, pid)
+    hist = exercise_history(conn, pid, workout_id)
+    pins = pinned_ids(conn, pid)
+    rng = random.Random(workout_id)  # stable order while browsing
+    if q:
+        words = q.split()
+        matches = [e for e in pool if all(wd in e["name"].lower() for wd in words)]
+        ranked: list[dict] = []
+        for m in today_muscles + other_muscles:
+            ranked += [e for e in generator.rank_for_muscle(matches, m, rec, hist, pins, rng) if e not in ranked]
+        ranked += [e for e in matches if e not in ranked]
+    else:
+        ranked = generator.rank_for_muscle(pool, muscle, rec, hist, pins, rng) if muscle else []
+    in_workout = {e["id"] for e in _workout_exercises(conn, workout_id)}
+    done = last_done(conn, pid)
+    today_date = now().astimezone().date()
+    rows = []
+    for e in ranked:
+        at = done.get(e["id"])
+        if at:
+            days = (today_date - datetime.fromisoformat(at).astimezone().date()).days
+            when = "done today" if days <= 0 else ("last done yesterday" if days == 1 else f"last done {days} days ago")
+        else:
+            when = "never done"
+        rows.append({"exercise": e, "in_workout": e["id"] in in_workout, "when": when})
+    return {"muscle": None if q else muscle, "query": query.strip(), "today_muscles": today_muscles,
+            "other_muscles": other_muscles, "rows": rows}
+
+
 def _is_open(conn: sqlite3.Connection, workout_id: int) -> bool:
     row = conn.execute("SELECT finished_at FROM workouts WHERE id = ?", (workout_id,)).fetchone()
     return bool(row) and row["finished_at"] is None

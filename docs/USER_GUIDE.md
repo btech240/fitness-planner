@@ -67,6 +67,14 @@ On an open card, before you've logged a set on that exercise:
 
 Neither one changes what the app suggests on other days. Once you log a set on an exercise, its Swap and Remove buttons disappear.
 
+### Adding an exercise
+Want more? Below the last exercise there's an **Add exercise** box, usable any time before you finish, even mid-workout:
+
+- **Suggest one** — one tap adds the best fit for today's least-worked muscle (it shows which, e.g. *Best fit for Legs day · hamstrings*). Tap again for another.
+- **Choose myself** — opens a list where you pick any exercise your gym supports. Today's muscles are at the top (**Other muscles…** shows the rest), sorted best first, with when you last did each one. Or **search** by name, e.g. *curl* or *row*. Tap **+** to add it.
+
+Added exercises go to the end, get the usual sets, reps and weight suggestions, and can be swapped or removed like any other. Exercises already in the workout are marked **✓ In**; Never-suggest ones don't appear.
+
 ### Shaping what you get
 At the bottom of each card:
 

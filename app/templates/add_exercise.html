@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Add exercise · Rackmount{% endblock %}
+{% block content %}
+<header class="page-head">
+  <a class="back-link" href="/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>Back to {{ day_label }} day</a>
+  <div class="title-row"><h1>Add exercise</h1></div>
+  <div class="stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+</header>
+
+<form class="search" method="get" action="/workout/{{ workout.id }}/add" role="search">
+  <label>
+    <span class="sr">Search exercises</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>
+    <input type="search" name="q" value="{{ query }}" placeholder="Search all exercises" maxlength="60" autocomplete="off" enterkeyhint="search">
+  </label>
+</form>
+
+<div class="chip-group">
+  <span class="eyebrow">Today's muscles</span>
+  <div class="mchips">
+    {% for m in today_muscles %}
+      <a class="mchip" href="/workout/{{ workout.id }}/add?muscle={{ m|urlencode }}" {% if m == muscle %}aria-current="true"{% endif %}>{{ m|title }}</a>
+    {% endfor %}
+  </div>
+  {% if other_muscles %}
+  <details class="more-muscles" {% if muscle in other_muscles %}open{% endif %}>
+    <summary class="mchip more">Other muscles…</summary>
+    <div class="mchips">
+      {% for m in other_muscles %}
+        <a class="mchip" href="/workout/{{ workout.id }}/add?muscle={{ m|urlencode }}" {% if m == muscle %}aria-current="true"{% endif %}>{{ m|title }}</a>
+      {% endfor %}
+    </div>
+  </details>
+  {% endif %}
+</div>
+
+<div class="list-head">
+  <h2>{% if query %}“{{ query }}”{% else %}{{ (muscle or "")|title }}{% endif %}</h2>
+  <span class="meta">{{ rows|length }} fit your gym{% if not query %} · best first{% endif %}</span>
+</div>
+
+{% if rows %}
+<ul class="pick-list">
+  {% for r in rows %}{% set e = r.exercise %}
+    <li {% if r.in_workout %}class="in"{% endif %}>
+      <span class="pick-text">
+        <span class="name">{{ e.name }}</span>
+        <span class="sub">{{ e.equipment|gear }} · {% if r.in_workout %}already in today's workout{% else %}{{ r.when }}{% endif %}</span>
+      </span>
+      {% if r.in_workout %}
+        <span class="in-tag">✓ In</span>
+      {% else %}
+        <form method="post" action="/workout/{{ workout.id }}/add">
+          <input type="hidden" name="exercise_id" value="{{ e.id }}">
+          <button class="add-btn" aria-label="Add {{ e.name }}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        </form>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% else %}
+  <p class="notice">{% if query %}Nothing your gym supports matches “{{ query }}”.{% else %}Nothing your gym supports for this muscle.{% endif %}</p>
+{% endif %}
+<p class="muted small">Only exercises your gym supports. Never-suggest ones are hidden.</p>
+{% endblock %}

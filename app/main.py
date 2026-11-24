@@ -109,6 +109,8 @@ templates.env.filters["w"] = fmt_weight
 templates.env.filters["setfmt"] = fmt_set
 templates.env.globals["goal_codes"] = {"strength": "STR", "hypertrophy": "HYP", "endurance": "END"}
 templates.env.filters["local"] = local_time
+EQUIPMENT_LABELS = {"body only": "Bodyweight", "e-z curl bar": "EZ bar", "kettlebells": "Kettlebell"}
+templates.env.filters["gear"] = lambda tag: EQUIPMENT_LABELS.get(tag, tag.capitalize())
 
 
 @contextmanager
@@ -249,6 +251,7 @@ def today(request: Request):
                 has_sets=service.workout_has_sets(conn, w["id"]),
                 last_set=service.last_set_time(conn, w["id"]),
                 rest=generator.GOALS[w["goal"]].rest_seconds,
+                add_muscle=next(iter(service.day_muscles(conn, pid, w["id"])), None),
             )
         else:
             ctx["pool_size"] = len(service._pool(conn, pid, s))
@@ -275,6 +278,40 @@ def regenerate(request: Request, wid: int):
             return pick_profile()
         service.new_exercises(conn, p["id"], wid)
     return redirect("/")
+
+
+@app.post("/workout/{wid}/suggest")
+def suggest_exercise(request: Request, wid: int):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        new_id = service.suggest_addition(conn, p["id"], wid)
+    return redirect(f"/?open={new_id}#ex-{new_id}" if new_id else "/")
+
+
+@app.get("/workout/{wid}/add", response_class=HTMLResponse)
+def add_exercise_page(request: Request, wid: int, muscle: str = "", q: str = ""):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        w = service.owned_workout(conn, p["id"], wid)
+        if not w or w["finished_at"]:
+            return redirect("/")
+        data = service.picker(conn, p["id"], wid, muscle or None, q[:60])
+        label = generator.PATTERNS[w["pattern"]][0] if w["pattern"] in generator.PATTERNS else "Today"
+    return render(request, "add_exercise.html", workout=w, day_label=label, **data)
+
+
+@app.post("/workout/{wid}/add")
+def add_exercise(request: Request, wid: int, exercise_id: str = Form("")):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        new_id = service.add_chosen(conn, p["id"], wid, exercise_id)
+    return redirect(f"/?open={new_id}#ex-{new_id}" if new_id else "/")
 
 
 @app.post("/workout/{wid}/discard")
