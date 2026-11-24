@@ -54,6 +54,7 @@ After each set, a pink bar at the bottom counts down your rest (length depends o
 - When rest is over it **beeps**, shows **Go** for a few seconds, and disappears. Nothing to tap.
 - **Skip** ends the rest early.
 - The **speaker button** turns the beep off/on for your phone.
+- The beep plays **over your music** (it doesn't pause it), but it follows the ring/silent switch: on silent, you only get the on-screen timer.
 - iPhone notes: the beep only plays while the app is open on screen (set **Auto-Lock** to 5 minutes or more), and iPhones can't vibrate for websites.
 
 ### How to (with photos)
@@ -153,7 +154,7 @@ You don't need to know this to use the app, but it explains what you'll see:
 ## Tips and troubleshooting
 
 - **Looks wrong after an update?** Close the app fully and reopen it. If it still looks off: iPhone Settings → Safari → Advanced → Website Data → delete the entry for the app's address.
-- **No beep?** Make sure you tapped something after opening the page (logging a set counts), the speaker on the rest bar isn't muted, and the phone isn't on an old iOS version in silent mode.
+- **No beep?** Make sure you tapped something after opening the page (logging a set counts), the speaker on the rest bar isn't muted, and the phone's ring/silent switch isn't set to silent.
 - **Wrong person's workout?** Settings → **Switch profile**.
 - **An exercise needs equipment you don't have?** Check the Equipment settings (e.g. cable pulley positions, stations), or tap **Never suggest this**.
 - **Only works at home?** The app is only reachable on the home network, unless whoever runs the server has set up Tailscale or a VPN for use away from home.

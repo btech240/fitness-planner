@@ -27,7 +27,9 @@
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
     try {
-      if (navigator.audioSession) navigator.audioSession.type = "playback"; // play even in silent mode where supported
+      // "ambient": the beep mixes over music from other apps instead of pausing it.
+      // (It follows the ring/silent switch; "playback" ignored the switch but stopped the music.)
+      if (navigator.audioSession) navigator.audioSession.type = "ambient";
     } catch (e) { /* not supported */ }
     if (!ctx) ctx = new AC();
     if (ctx.state === "suspended") ctx.resume();
