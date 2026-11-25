@@ -21,21 +21,53 @@
     try { localStorage.setItem(SOUND_KEY, on ? "on" : "off"); } catch (e) { /* private mode */ }
   }
 
-  // Must run inside a tap handler: creates/resumes the AudioContext and plays a
-  // silent blip, which is what iOS requires before it allows sound later.
-  function unlockAudio() {
+  // iPhone takes audio away on screen lock, app switch, calls and Siri. Afterwards the
+  // context can be stuck on "interrupted" (a state only Safari has), or claim "running"
+  // with a frozen clock, and resume() may never finish (WebKit bugs 263627, 273511,
+  // 276016). So the rest timer watches it, and any tap that finds it dead throws it
+  // away and makes a new one.
+  var madeAt = 0;              // when ctx was created
+  var watch = null;            // { time, clock }: the last time ctx's clock was seen moving
+
+  // False when audio is missing, not running, or "running" with a stopped clock.
+  function audioAlive() {
+    if (!ctx || ctx.state !== "running") { watch = null; return false; }
+    var now = performance.now();
+    if (!watch || ctx.currentTime > watch.clock) {
+      watch = { time: now, clock: ctx.currentTime };
+      return true;
+    }
+    return now - watch.time < 1000;
+  }
+
+  function newContext() {
     var AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
+    if (ctx) { try { ctx.close().catch(function () {}); } catch (e) { /* already closed */ } }
+    ctx = new AC();
+    madeAt = performance.now();
+    watch = null;
+  }
+
+  function resumeAudio() {
+    if (!ctx || ctx.state === "running") return Promise.resolve();
+    try { return Promise.resolve(ctx.resume()).catch(function () {}); } catch (e) { return Promise.resolve(); }
+  }
+
+  // Must run inside a tap handler: iOS only allows sound after a tap, and a silent blip
+  // in that tap is what unlocks it.
+  function unlockAudio() {
     try {
       // "ambient": the beep mixes over music from other apps instead of pausing it.
       // (It follows the ring/silent switch; "playback" ignored the switch but stopped the music.)
       if (navigator.audioSession) navigator.audioSession.type = "ambient";
     } catch (e) { /* not supported */ }
-    if (!ctx) ctx = new AC();
-    if (ctx.state === "suspended") ctx.resume();
-    var buf = ctx.createBuffer(1, 1, 22050);
+    // one tap fires several events; give a context made by the first a moment to start
+    if (!ctx || (!audioAlive() && performance.now() - madeAt > 1000)) newContext();
+    if (!ctx) return;
+    resumeAudio();
     var src = ctx.createBufferSource();
-    src.buffer = buf;
+    src.buffer = ctx.createBuffer(1, 1, 22050);
     src.connect(ctx.destination);
     src.start(0);
   }
@@ -48,7 +80,15 @@
 
   function beep() {
     if (!ctx || !soundOn()) return;
-    if (ctx.state === "suspended") ctx.resume();
+    if (ctx.state === "running") { playCue(); return; }
+    var asked = performance.now();
+    resumeAudio().then(function () {
+      // a cue that arrives late is worse than none
+      if (ctx.state === "running" && performance.now() - asked < 3000) playCue();
+    });
+  }
+
+  function playCue() {
     var t = ctx.currentTime + 0.02;
     var comp = ctx.createDynamicsCompressor();
     comp.threshold.value = -18;
@@ -78,8 +118,18 @@
     });
   }
 
-  document.addEventListener("pointerdown", unlockAudio, { capture: true });
-  document.addEventListener("keydown", unlockAudio, { capture: true });
+  // touchend/click count as a tap for audio on iPhone; pointerdown alone may not.
+  ["pointerdown", "touchend", "click", "keydown"].forEach(function (name) {
+    document.addEventListener(name, unlockAudio, { capture: true, passive: true });
+  });
+
+  // Back from the lock screen or another app: try to wake the audio without waiting for a tap.
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) return;
+    resumeAudio();
+    setTimeout(resumeAudio, 500);
+    setTimeout(resumeAudio, 1500);
+  });
 
   // ---- rest timer ----------------------------------------------------------------------
   var restEl = document.getElementById("rest");
@@ -118,6 +168,7 @@
       return;
     }
     restEl.hidden = false;
+    renderNote();
     var left = timer.rest - elapsed;
     fill.style.width = Math.min(100, (elapsed / timer.rest) * 100) + "%";
     if (left > 0) {
@@ -134,6 +185,18 @@
         if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
       }
     }
+  }
+
+  // The line under the timer. A web page can't read the silent switch, so it's a standing
+  // reminder; if the phone has taken audio away, it says how to get it back instead.
+  function renderNote() {
+    var note = restEl.querySelector(".rest-note");
+    if (!note) return;
+    var alive = audioAlive();   // also keeps watching the clock while the beep is off
+    var text = "Turn off silent mode to hear the beep";
+    if (!soundOn()) text = "Beep is off";
+    else if (!alive) text = "Sound paused: tap anywhere to turn it on";
+    if (note.textContent !== text) note.textContent = text;
   }
 
   function renderSoundButton() {
