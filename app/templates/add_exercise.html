@@ -45,7 +45,7 @@
     <li {% if r.in_workout %}class="in"{% endif %}>
       <span class="pick-text">
         <span class="name">{{ e.name }}</span>
-        <span class="sub">{{ e.equipment|gear }} · {% if r.in_workout %}already in today's workout{% else %}{{ r.when }}{% endif %}</span>
+        <span class="sub">{{ e|gear }} · {% if r.in_workout %}already in today's workout{% else %}{{ r.when }}{% endif %}</span>
       </span>
       {% if r.in_workout %}
         <span class="in-tag">✓ In</span>

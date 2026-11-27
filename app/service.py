@@ -205,12 +205,14 @@ def current_workout(conn: sqlite3.Connection, pid: int):
         (pid,)).fetchone()
 
 
-def _pool(conn: sqlite3.Connection, pid: int, s: dict) -> list[dict]:
-    return generator.available_exercises(catalog.EXERCISES, s["inventory"], excluded_ids(conn, pid))
+def _pool(conn: sqlite3.Connection, pid: int, s: dict, add_only: bool = False) -> list[dict]:
+    """Exercises this profile can do. add_only=True also includes the ones only offered in
+    Add exercise (Olympic lifts, jumps, carries)."""
+    return generator.available_exercises(catalog.EXERCISES, s["inventory"], excluded_ids(conn, pid), add_only)
 
 
 def is_unloaded(exercise: dict) -> bool:
-    return exercise["equipment"] in ("body only", "bands")
+    return exercise["equipment"] in ("body only", "bands", "gear")
 
 
 def _targets(conn, pid: int, s: dict, exercise: dict, workout_id: int | None) -> tuple[int, float | None]:
@@ -219,8 +221,7 @@ def _targets(conn, pid: int, s: dict, exercise: dict, workout_id: int | None) ->
     last = last_session_sets(conn, pid, exercise["id"], workout_id)
     if is_unloaded(exercise) and not any(w for _, w in last):
         return generator.suggest_bodyweight_reps(last, goal.reps), None
-    kind = inv.kind_for_tag(exercise["equipment"])
-    options = inv.loadable_weights(s["inventory"], kind) if kind else None
+    options = inv.load_options(s["inventory"], exercise["equipment"], s["units"])
     return goal.reps, generator.suggest_weight(last, goal.reps, options)
 
 
@@ -412,7 +413,7 @@ def add_chosen(conn: sqlite3.Connection, pid: int, workout_id: int, exercise_id:
     if not w or w["finished_at"]:
         return None
     s = settings(conn, pid)
-    exercise = next((e for e in _pool(conn, pid, s) if e["id"] == exercise_id), None)
+    exercise = next((e for e in _pool(conn, pid, s, add_only=True) if e["id"] == exercise_id), None)
     if not exercise or exercise_id in {e["id"] for e in _workout_exercises(conn, workout_id)}:
         return None
     return _append(conn, pid, s, workout_id, exercise)
@@ -429,7 +430,7 @@ def last_done(conn: sqlite3.Connection, pid: int) -> dict[str, str]:
 def picker(conn: sqlite3.Connection, pid: int, workout_id: int, muscle: str | None, query: str) -> dict:
     """Data for the Choose-an-exercise page: muscle chips and the matching exercises, best first."""
     s = settings(conn, pid)
-    pool = _pool(conn, pid, s)
+    pool = _pool(conn, pid, s, add_only=True)
     today_muscles = day_muscles(conn, pid, workout_id)
     all_muscles = sorted({m for e in pool for m in e["primary"]})
     other_muscles = [m for m in all_muscles if m not in today_muscles]

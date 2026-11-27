@@ -9,7 +9,7 @@
 
 {% if not workout %}
   {% if pool_size == 0 %}
-    <p class="notice">No exercises match your equipment yet. <a href="/settings">Set up your gym</a> first.</p>
+    <p class="notice">No exercises match your equipment yet. <a href="/gym">Set up your gym</a> first.</p>
   {% else %}
     <p class="muted">{{ g.label }} · {{ s.n_exercises }} exercises · {{ pool_size }} fit your gym</p>
     <form method="post" action="/workout/new">
@@ -33,14 +33,14 @@
   {% endif %}
 
   {% if not items %}
-    <p class="notice">Couldn't find exercises for your equipment. Check <a href="/settings">Settings</a>.</p>
+    <p class="notice">Couldn't find exercises for your equipment. Check the <a href="/gym">Gym</a> tab.</p>
   {% endif %}
 
   {% for it in items %}
     {% set we = it.we %}{% set ex = it.exercise %}
     {% set n_done = it.sets|length %}
     {% set done = n_done >= we.target_sets %}
-    {% set bw = ex.equipment in ('body only', 'bands') %}
+    {% set bw = ex.equipment in ('body only', 'bands', 'gear') %}
     <details class="ex {% if done %}done{% endif %}" id="ex-{{ we.id }}" data-exercise="{{ ex.name }}" {% if we.id == active_id or (n_done and not done) %}open{% endif %}>
       <summary>
         <span class="num">{% if done %}✓{% else %}{{ '%02d' % loop.index }}{% endif %}</span>

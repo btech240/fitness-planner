@@ -92,6 +92,10 @@ STAPLES = {
     "Sumo_Deadlift", "Triceps_Pushdown", "Triceps_Pushdown_-_Rope_Attachment", "Upright_Barbell_Row",
     "Wide-Grip_Lat_Pulldown", "Dumbbell_Floor_Press", "Dumbbell_Squat", "Russian_Twist",
     "Standing_Barbell_Calf_Raise", "Standing_Dumbbell_Calf_Raise", "Good_Morning",
+    # machines and gear: only in the pool when the gym has them ticked
+    "Leg_Press", "Hack_Squat", "Leg_Extensions", "Seated_Leg_Curl", "Lying_Leg_Curls", "Seated_Calf_Raise",
+    "Standing_Calf_Raises", "Butterfly", "Trap_Bar_Deadlift", "Ab_Roller", "Glute_Ham_Raise",
+    "Hyperextensions_Back_Extensions",
 }
 
 # Bodyweight moves that are worthwhile even when weights are available.
@@ -142,12 +146,17 @@ def families(name: str) -> set[str]:
     return fams or {name.split(" - ")[0].strip().lower()}
 
 
-def available_exercises(catalog: list[dict], inventory: dict, excluded: set[str]) -> list[dict]:
+def available_exercises(catalog: list[dict], inventory: dict, excluded: set[str],
+                        include_add_only: bool = False) -> list[dict]:
+    """Exercises this gym supports. Add-only ones (Olympic lifts, jumps, carries) are left out
+    unless asked for: they are offered in Add exercise but never picked automatically."""
     tags = inv.available_equipment_tags(inventory)
     have = inv.available_features(inventory)
     out = []
     for e in catalog:
         if e["id"] in excluded or e["equipment"] not in tags:
+            continue
+        if e.get("add_only") and not include_add_only:
             continue
         if not set(e["requires"]) <= have:
             continue
@@ -159,7 +168,7 @@ def available_exercises(catalog: list[dict], inventory: dict, excluded: set[str]
 
 
 def _has_loaded_gear(pool: list[dict]) -> bool:
-    return any(e["equipment"] not in ("body only", "bands") for e in pool)
+    return any(e["equipment"] not in ("body only", "bands", "gear") for e in pool)
 
 
 # ---- step 1: pattern ----------------------------------------------------------------

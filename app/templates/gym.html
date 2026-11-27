@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Gym · Rackmount{% endblock %}
+{% block content %}
+{% set inv = s.inventory %}
+{% set head_title = "Gym" %}{% set head_meta = "Shared · all profiles" %}
+{% include "_head.html" %}
+{% if saved %}<p class="notice ok">Saved. {{ pool_size }} exercises fit your gym.</p>{% endif %}
+{% if errors %}<p class="notice">Some fields need fixing; nothing was saved.</p>{% endif %}
+
+<form method="post" action="/gym" class="settings">
+  <section class="card">
+    <p class="muted small">Everything in the house's gym. The whole household shares this list, and workouts only use what's ticked here. Bodyweight exercises are always available. Weights are in {{ s.units }}.</p>
+
+    <h2 class="eyebrow section">Bars &amp; weights</h2>
+    {% for kind, kdef in kinds.items() %}
+      {% set label, tag, spec = kdef %}
+      {% set cfg = inv[kind] %}
+      <fieldset class="equip">
+        <label class="check"><input type="checkbox" name="{{ kind }}_enabled" {% if cfg.enabled %}checked{% endif %}> {{ label }}</label>
+        {% if spec == 'plates' %}
+          <label class="row">Bar weight<input name="{{ kind }}_bar" type="number" inputmode="decimal" step="any" min="0" value="{{ cfg.bar|w }}"></label>
+        {% elif spec == 'list' and list_input[kind] == 'range' %}
+          {% set r = ranges[kind] %}
+          <div class="range-row">
+            <label>From<input name="{{ kind }}_from" type="number" inputmode="decimal" step="any" min="0" value="{{ r.from }}"></label>
+            <label>To<input name="{{ kind }}_to" type="number" inputmode="decimal" step="any" min="0" value="{{ r.to }}"></label>
+            <label>Step<input name="{{ kind }}_step" type="number" inputmode="decimal" step="any" min="0" value="{{ r.step }}"></label>
+          </div>
+          <p class="muted small hint-line">{% if kind == 'dumbbell' %}Weight of one dumbbell. Adjustables: lightest, heaviest and the jump between settings.{% else %}Lightest and heaviest pin setting, and the jump between plates in the stack.{% endif %}</p>
+          {% if r.irregular %}<p class="muted small">Your saved list ({{ cfg.weights }}) had uneven jumps; saving replaces it with this range.</p>{% endif %}
+          {% if kind == 'cable' %}
+            <p class="muted small" style="margin: 8px 0 0">Pulley positions</p>
+            <div class="inline-checks">
+              {% for p, plabel in pulleys.items() %}
+                <label class="check"><input type="checkbox" name="cable_pulley_{{ p }}" {% if p in cfg.pulleys %}checked{% endif %}> {{ plabel }}</label>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% elif spec == 'list' and list_input[kind] == 'chips' %}
+          <p class="muted small hint-line">Tap the weights you own.</p>
+          <div class="chips">
+            {% for w in kb_sizes %}
+              <label class="chip"><input type="checkbox" name="{{ kind }}_w" value="{{ w|w }}" {% if w in kb_saved %}checked{% endif %}><span>{{ w|w }}</span></label>
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if errors[kind] %}<p class="error">{{ errors[kind] }}</p>{% endif %}
+        {% if cfg.enabled and preview[kind] %}
+          <p class="muted small">Loadable: {{ preview[kind][0]|w }}–{{ preview[kind][-1]|w }} ({{ preview[kind]|length }} options)</p>
+        {% endif %}
+      </fieldset>
+    {% endfor %}
+    <fieldset class="equip">
+      <legend>Plates</legend>
+      <p class="muted small hint-line">Pairs you own of each size (one for each side of the bar). Shared by the barbell, EZ bar and trap bar.</p>
+      <div class="plates">
+        {% for w, n in plate_rows %}
+          <label class="plate-row"><span class="plate-size">{{ w|w }} {{ s.units }}</span>
+            <input name="plate_{{ w|w }}" type="number" inputmode="numeric" min="0" step="1" value="{{ n if n else '' }}" placeholder="0" aria-label="Pairs of {{ w|w }} {{ s.units }} plates"></label>
+        {% endfor %}
+      </div>
+      {% if errors.plates %}<p class="error">{{ errors.plates }}</p>{% endif %}
+    </fieldset>
+
+    <fieldset class="equip" id="stations">
+      <legend>Stations</legend>
+      {% for key, label in stations.items() %}
+        <label class="check"><input type="checkbox" name="station_{{ key }}" {% if key in inv.stations %}checked{% endif %}> {{ label }}</label>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset class="equip" id="machines">
+      <legend>Machines</legend>
+      <p class="muted small hint-line">Weights are suggested in {{ machine_step|w }} {{ s.units }} steps.</p>
+      {% for key, (label, hint) in machines.items() %}
+        <label class="check"><input type="checkbox" name="machine_{{ key }}" {% if key in inv.machines %}checked{% endif %}>
+          <span>{{ label }}{% if hint %}<small class="check-hint">{{ hint }}</small>{% endif %}</span></label>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset class="equip" id="gear">
+      <legend>Other gear</legend>
+      {% for key, (label, hint) in gear.items() %}
+        <label class="check"><input type="checkbox" name="gear_{{ key }}" {% if key in inv.gear %}checked{% endif %}>
+          <span>{{ label }}{% if hint %}<small class="check-hint">{{ hint }}</small>{% endif %}</span></label>
+      {% endfor %}
+    </fieldset>
+  </section>
+
+  <button class="btn primary block">Save gym</button>
+</form>
+{% endblock %}

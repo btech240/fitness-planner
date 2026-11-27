@@ -68,7 +68,8 @@ def test_pool_respects_equipment_stations_and_exclusions():
     pool = generator.available_exercises(catalog.EXERCISES, FULL_GYM, {"Pullups"})
     ids = {e["id"] for e in pool}
     assert "Pullups" not in ids
-    assert all(e["equipment"] in {"barbell", "dumbbell", "body only"} for e in pool)
+    assert all(e["equipment"] in {"barbell", "dumbbell", "body only", "plates"} for e in pool)  # plates: barbell owners
+    assert not any(e.get("add_only") for e in pool)
     assert all(set(e["requires"]) <= {"bench", "rack", "pullup_bar"} for e in pool)
 
 

@@ -16,13 +16,19 @@ GYM_FORM = {
 }
 
 
+def save_all(c, form, **kw):
+    """Save personal settings, then the shared gym (the Gym tab); returns the gym response."""
+    c.post("/settings", data=form)
+    return c.post("/gym", data=form, **kw)
+
+
 @pytest.fixture
 def client(tmp_path, monkeypatch):
     monkeypatch.setenv("FP_DB", str(tmp_path / "test.db"))
     from app.main import app
     c = TestClient(app)
     c.post("/profiles", data={"name": "Tester", "goal": "hypertrophy", "n_exercises": "4"})
-    c.post("/settings", data=GYM_FORM)
+    save_all(c, GYM_FORM)
     return c
 
 

@@ -20,7 +20,7 @@ Everyone in the house can have their own profile. There are no passwords: you ju
    - how many **exercises per workout** you want (2–10; 5 is a good start).
 4. Your phone remembers you from now on and opens straight to **Today**.
 
-The first person to set up the app should also fill in the gym's equipment under **Settings → Equipment** (see [Equipment](#equipment-shared-with-everyone)). Everyone shares that list.
+The first person to set up the app should also fill in the gym's equipment on the **Gym** tab (see [Gym tab](#gym-tab-shared-with-everyone)). Everyone shares that list.
 
 ---
 
@@ -100,6 +100,29 @@ How recovered each muscle group is, from 0% (just worked hard) to 100% (fresh). 
 
 ---
 
+## Gym tab (shared with everyone)
+
+<a id="equipment-shared-with-everyone"></a>
+One list for the whole house; changes apply to every profile. Tick what you have, then:
+
+| Equipment | How to enter it |
+|-----------|-----------------|
+| **Barbell / EZ curl bar / trap bar** | Bar weight. Plates are entered once below and shared by all three bars. |
+| **Dumbbells** | **From / To / Step** for one dumbbell, e.g. 5 / 50 / 5 for a 5–50 lb set. Adjustables: lightest, heaviest, and the jump between settings (e.g. 5 / 52.5 / 2.5). |
+| **Kettlebells** | Tap each weight you own. |
+| **Cable stack** | **From / To / Step** of the weight stack, plus which **pulley positions** you have (High, Low, Mid). Exercises that need a position you don't have are skipped. |
+| **Resistance bands** | Just tick it. |
+| **Plates** | How many **pairs** you own of each size (one for each side of the bar). With a bar ticked, single-plate exercises (plate raise, pinch, twist) are included too. |
+| **Stations** | Bench, squat rack/stands, pull-up bar, dip station / parallel bars, plyo box, glute-ham / back-extension bench. |
+| **Machines** | Tick the ones you have: Smith machine, leg press / hack squat, leg extension / curl, calf raise, hip abductor / adductor, pec deck, chest & shoulder press, arm machines, ab crunch, assisted dip, plate-loaded lever machines, reverse hyper. Machine weights are suggested in 5 lb (2.5 kg) steps. |
+| **Other gear** | Ab wheel, exercise ball, medicine ball, suspension trainer or rings, sled, battle ropes, wrist roller, sandbag. Reps go up over time like bodyweight moves. |
+
+Bodyweight exercises are always available. After saving, the app tells you how many exercises fit the gym.
+
+**Olympic lifts, jumps, throws and carries** (clean, snatch, push press, box jumps, medicine-ball throws, Farmer's Walk, sled work) are never picked for you, but you can add them to any workout with **Add exercise → Choose myself** when you have the gear.
+
+---
+
 ## Settings
 
 ### Profile (top of Settings)
@@ -122,21 +145,6 @@ How recovered each muscle group is, from 0% (just worked hard) to 100% (fresh). 
 - **Units** — lb or kg.
 
 Changes apply to your *next* workout. If one is already showing, tap **New exercises** (before logging anything) to rebuild it.
-
-### Equipment (shared with everyone)
-One list for the whole house; changes apply to every profile. Tick what you have, then:
-
-| Equipment | How to enter it |
-|-----------|-----------------|
-| **Barbell / EZ curl bar** | Bar weight. Plates are entered once below and shared by both bars. |
-| **Dumbbells** | **From / To / Step** for one dumbbell, e.g. 5 / 50 / 5 for a 5–50 lb set. Adjustables: lightest, heaviest, and the jump between settings (e.g. 5 / 52.5 / 2.5). |
-| **Kettlebells** | Tap each weight you own. |
-| **Cable stack** | **From / To / Step** of the weight stack, plus which **pulley positions** you have (High, Low, Mid). Exercises that need a position you don't have are skipped. |
-| **Resistance bands** | Just tick it. |
-| **Plates** | How many **pairs** you own of each size (one for each side of the bar). |
-| **Stations** | Bench, squat rack/stands, pull-up bar, dip station. |
-
-Bodyweight exercises are always available. After saving, the app tells you how many exercises fit the gym.
 
 ### Core lifts and Never suggest (just for you)
 Lists of what you've pinned and excluded, with **Unpin** / **Allow again** buttons.
@@ -161,5 +169,5 @@ You don't need to know this to use the app, but it explains what you'll see:
 - **Looks wrong after an update?** Close the app fully and reopen it. If it still looks off: iPhone Settings → Safari → Advanced → Website Data → delete the entry for the app's address.
 - **No beep?** Make sure you tapped something after opening the page (logging a set counts), the speaker on the rest bar isn't muted, and the phone's ring/silent switch isn't set to silent. If it stopped partway through a workout, tap anywhere on the page to bring it back.
 - **Wrong person's workout?** Settings → **Switch profile**.
-- **An exercise needs equipment you don't have?** Check the Equipment settings (e.g. cable pulley positions, stations), or tap **Never suggest this**.
+- **An exercise needs equipment you don't have?** Check the **Gym** tab (e.g. cable pulley positions, stations, machines), or tap **Never suggest this**.
 - **Only works at home?** The app is only reachable on the home network, unless whoever runs the server has set up Tailscale or a VPN for use away from home.

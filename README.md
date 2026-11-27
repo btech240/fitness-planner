@@ -13,7 +13,7 @@ Apps that plan your workout for you are usually subscriptions that keep your tra
 ## What it does
 
 - **Daily workouts** — Push, Pull, Legs, Upper, Lower or Full body, chosen by which muscles are most recovered. **Swap**, **Remove** or **Add** exercises (suggested, or picked from a searchable list), or get **New exercises** for the same day.
-- **Real equipment** — only exercises your gym supports (barbell + plates, EZ bar, dumbbells, kettlebells, cable stack with high/low/mid pulleys, bands, bench, rack, pull-up bar, dip station, bodyweight), and only weights you can actually load.
+- **Real equipment** — only exercises your gym supports (barbell + plates, EZ bar, trap bar, dumbbells, kettlebells, cable stack with high/low/mid pulleys, bands, a dozen kinds of machines, bench, rack, pull-up bar, dip station, plyo box, ab wheel, stability and medicine balls, suspension trainer and more), set up once on the shared **Gym** tab, and only weights you can actually load.
 - **Progression** — weight suggestions from your last session (up one loadable step when you hit every rep); rep targets that climb for bodyweight moves.
 - **Core lifts + variety** — a couple of main lifts per muscle keep coming back; the rest rotate. Pin favorites, exclude ones you never want.
 - **Fast logging** — a set table with last session's numbers beside each set, one tap to log, and a rest timer that beeps when rest is over.
@@ -50,7 +50,7 @@ bash /opt/fitness-planner/deploy/install.sh     # first time
 bash /opt/fitness-planner/deploy/update.sh      # every update after that
 ```
 
-Then open `http://<container-ip>:8000` on a phone on the home Wi-Fi, add yourself as a person, and fill in **Settings → Equipment**.
+Then open `http://<container-ip>:8000` on a phone on the home Wi-Fi, add yourself as a person, and fill in the **Gym** tab.
 
 There is no login by design: keep it on the home network and never port-forward it. For use away from home, see [Away from home](docs/SECURITY.md#away-from-home-tailscale-or-a-vpn).
 

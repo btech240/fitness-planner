@@ -10,8 +10,14 @@ The inventory is a plain dict (stored as JSON in settings):
       "kettlebell":{"enabled": False, "weights": "35, 53"},
       "cable":     {"enabled": False, "weights": "10-200/10"},
       "bands":     {"enabled": False},
+      "trap_bar":  {"enabled": False, "bar": 55},
       "stations":  ["bench", "rack", "pullup_bar"],
+      "machines":  ["smith", "leg_press"],
+      "gear":      ["ab_wheel"],
     }
+
+Exercises name the equipment that loads them (`equipment`) and everything else they
+need (`requires`: stations, machines, gear, cable pulley positions).
 """
 
 from __future__ import annotations
@@ -26,6 +32,7 @@ EQUIPMENT_KINDS = {
     "kettlebell": ("Kettlebells", "kettlebells", "list"),
     "cable": ("Cable stack", "cable", "list"),
     "bands": ("Resistance bands", "bands", "none"),
+    "trap_bar": ("Trap / hex bar", "trap bar", "plates"),
 }
 
 PULLEYS = {"high": "High", "low": "Low", "mid": "Mid (chest height)"}
@@ -42,7 +49,39 @@ STATIONS = {
     "bench": "Adjustable bench",
     "rack": "Squat rack / stands",
     "pullup_bar": "Pull-up bar",
-    "dip_station": "Dip station",
+    "dip_station": "Dip station / parallel bars",
+    "plyo_box": "Plyo box",
+    "ghd": "Glute-ham / back-extension bench",
+}
+
+# key -> (label, hint). Machine weights are suggested in MACHINE_STEP steps.
+MACHINES = {
+    "smith": ("Smith machine", "Squat, bench, rows, calf raises, shrugs"),
+    "leg_press": ("Leg press / hack squat", ""),
+    "leg_ext_curl": ("Leg extension / leg curl", ""),
+    "calf_machine": ("Calf raise machine", "Seated or standing"),
+    "hip_machine": ("Hip abductor / adductor", ""),
+    "pec_deck": ("Pec deck / rear-delt fly", ""),
+    "press_machine": ("Chest & shoulder press machine", ""),
+    "arm_machine": ("Arm machines", "Biceps curl, preacher, triceps extension"),
+    "ab_machine": ("Ab crunch machine", ""),
+    "dip_machine": ("Assisted dip machine", ""),
+    "lever": ("Plate-loaded lever machines", "Chest press, rows, shrugs, T-bar row"),
+    "reverse_hyper": ("Reverse hyper", ""),
+}
+MACHINE_STEP = {"lb": 5, "kg": 2.5}
+MACHINE_MAX = {"lb": 600, "kg": 300}
+
+# key -> (label, hint). Unloaded: reps progress like bodyweight moves.
+GEAR = {
+    "ab_wheel": ("Ab wheel", ""),
+    "stability_ball": ("Exercise (stability) ball", ""),
+    "medicine_ball": ("Medicine ball", ""),
+    "suspension": ("Suspension trainer or rings", "TRX-style straps or gymnastic rings"),
+    "sled": ("Sled", ""),
+    "battle_ropes": ("Battle ropes", ""),
+    "wrist_roller": ("Wrist roller", ""),
+    "sandbag": ("Sandbag", ""),
 }
 
 DEFAULT_INVENTORY = {
@@ -53,7 +92,10 @@ DEFAULT_INVENTORY = {
     "kettlebell": {"enabled": False, "weights": ""},
     "cable": {"enabled": False, "weights": "10-150/10", "pulleys": ["high", "low", "mid"]},
     "bands": {"enabled": False},
+    "trap_bar": {"enabled": False, "bar": 55},
     "stations": [],
+    "machines": [],
+    "gear": [],
 }
 
 
@@ -166,17 +208,47 @@ def loadable_weights(inventory: dict, kind: str) -> list[float] | None:
     return None
 
 
+def single_plates(inventory: dict) -> list[float]:
+    """Plate sizes owned, for exercises that use one plate (plate raise, pinch...), when a
+    plate-loaded bar is in the gym (the plates list always has defaults otherwise)."""
+    if not any((inventory.get(k) or {}).get("enabled") for k, d in EQUIPMENT_KINDS.items() if d[2] == "plates"):
+        return []
+    try:
+        return sorted(parse_plates(inventory.get("plates", "")))
+    except (WeightSyntaxError, ValueError):
+        return []
+
+
+def machine_weights(units: str) -> list[float]:
+    step = MACHINE_STEP.get(units, 5)
+    return [round(step * i, 2) for i in range(1, int(MACHINE_MAX.get(units, 600) / step) + 1)]
+
+
+def load_options(inventory: dict, tag: str, units: str = "lb") -> list[float] | None:
+    """Weights that can be suggested for an exercise loaded by `tag`; None = unloaded."""
+    if tag == "machine":
+        return machine_weights(units)
+    if tag == "plates":
+        return single_plates(inventory)
+    kind = kind_for_tag(tag)
+    return loadable_weights(inventory, kind) if kind else None
+
+
 def available_equipment_tags(inventory: dict) -> set[str]:
-    tags = {"body only"}
+    tags = {"body only", "gear"}          # gear exercises are gated by `requires`
     for kind, (_, tag, _) in EQUIPMENT_KINDS.items():
         if (inventory.get(kind) or {}).get("enabled"):
             tags.add(tag)
+    if inventory.get("machines"):
+        tags.add("machine")
+    if single_plates(inventory):
+        tags.add("plates")
     return tags
 
 
 def available_features(inventory: dict) -> set[str]:
-    """Station and pulley-position tags an exercise's `requires` list is checked against."""
-    have = set(inventory.get("stations") or [])
+    """Station, machine, gear and pulley-position tags an exercise's `requires` is checked against."""
+    have = set(inventory.get("stations") or []) | set(inventory.get("machines") or []) | set(inventory.get("gear") or [])
     cable = inventory.get("cable") or {}
     if cable.get("enabled"):
         have |= {f"pulley_{p}" for p in cable.get("pulleys", PULLEYS)}

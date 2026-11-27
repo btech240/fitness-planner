@@ -53,7 +53,7 @@ git clone git@github.com:<owner>/rackmount.git /opt/fitness-planner   # answer "
 bash /opt/fitness-planner/deploy/install.sh
 ```
 
-It prints the address to open, e.g. `http://192.168.x.y:8000`, and whether the full service sandbox is active. On a phone: open the address, Share → **Add to Home Screen**, then **Add person** and fill in **Settings → Equipment**. Hand the [user guide](USER_GUIDE.md) to everyone else.
+It prints the address to open, e.g. `http://192.168.x.y:8000`, and whether the full service sandbox is active. On a phone: open the address, Share → **Add to Home Screen**, then **Add person** and fill in the **Gym** tab. Hand the [user guide](USER_GUIDE.md) to everyone else.
 
 ## 5. Lock down container access
 

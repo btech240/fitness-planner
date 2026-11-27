@@ -11,6 +11,12 @@ GYM = {"goal": "hypertrophy", "n_exercises": "4", "units": "lb",
        "station_bench": "on", "station_rack": "on"}
 
 
+def save_all(c, form, **kw):
+    """Save personal settings, then the shared gym (the Gym tab); returns the gym response."""
+    c.post("/settings", data=form)
+    return c.post("/gym", data=form, **kw)
+
+
 @pytest.fixture
 def app_db(tmp_path, monkeypatch):
     monkeypatch.setenv("FP_DB", str(tmp_path / "test.db"))
@@ -65,7 +71,7 @@ def test_history_pins_and_training_settings_are_personal_but_gym_is_shared(app_d
     a, b = phone(app), phone(app)
     a.post("/profiles", data={"name": "Alex", "n_exercises": "4"})
     b.post("/profiles", data={"name": "Sam", "n_exercises": "3"})
-    a.post("/settings", data=GYM)                       # Alex sets up the gym
+    save_all(a, GYM)                       # Alex sets up the gym
     r = a.post("/workout/new")
     ids = we_ids(r.text)
     a.post(f"/we/{ids[0]}/set", data={"reps": "10", "weight": "95"})
@@ -73,7 +79,7 @@ def test_history_pins_and_training_settings_are_personal_but_gym_is_shared(app_d
 
     assert "Generate workout" in b.get("/").text          # Sam has no workout in progress
     sam_settings = b.get("/settings").text
-    assert 'name="barbell_enabled" checked' in sam_settings   # shared gym
+    assert 'name="barbell_enabled" checked' in b.get("/gym").text   # shared gym
     assert 'name="n_exercises" type="number" inputmode="numeric" min="2" max="10" value="3"' in sam_settings
     assert "None pinned" in sam_settings                     # Alex's pin isn't Sam's
     assert "No finished workouts yet" in b.get("/history").text
@@ -85,7 +91,7 @@ def test_one_profile_cannot_touch_anothers_workout(app_db):
     a, b = phone(app), phone(app)
     a.post("/profiles", data={"name": "Alex"})
     b.post("/profiles", data={"name": "Sam"})
-    a.post("/settings", data=GYM)
+    save_all(a, GYM)
     ids = we_ids(a.post("/workout/new").text)
     b.post(f"/we/{ids[0]}/set", data={"reps": "10", "weight": "95"})
     b.post(f"/we/{ids[0]}/pin")
@@ -108,7 +114,7 @@ def test_switch_rename_and_delete(app_db):
     assert "Renamed to Alexis" in c.get("/settings?renamed=1").text
     assert "already a profile called Sam" in c.post("/profile/rename", data={"name": "sam"}).text
 
-    c.post("/settings", data=GYM)
+    save_all(c, GYM)
     c.post("/workout/new")
     r = c.post("/profile/delete", data={"confirm": "Alex"}, follow_redirects=False)
     assert r.headers["location"].startswith("/settings")   # name didn't match: nothing deleted

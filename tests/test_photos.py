@@ -8,6 +8,12 @@ from app import catalog, fetch_photos, photos
 JPEG = b"\xff\xd8\xff\xe0fake-jpeg"
 
 
+def save_all(c, form, **kw):
+    """Save personal settings, then the shared gym (the Gym tab); returns the gym response."""
+    c.post("/settings", data=form)
+    return c.post("/gym", data=form, **kw)
+
+
 @pytest.fixture
 def photo_dir(tmp_path, monkeypatch):
     monkeypatch.setenv("FP_DB", str(tmp_path / "test.db"))
@@ -63,7 +69,7 @@ def test_today_shows_photos_in_how_to(photo_dir):
     from app.main import app
     client = TestClient(app)
     client.post("/profiles", data={"name": "Tester"})
-    client.post("/settings", data={"goal": "hypertrophy", "n_exercises": "4", "units": "lb",
+    save_all(client, {"goal": "hypertrophy", "n_exercises": "4", "units": "lb",
                                    "barbell_enabled": "on", "barbell_bar": "45", "plate_45": "2",
                                    "station_rack": "on", "station_bench": "on"})
     html = client.post("/workout/new").text

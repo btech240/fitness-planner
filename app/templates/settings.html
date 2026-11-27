@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 {% block title %}Settings · Rackmount{% endblock %}
 {% block content %}
-{% set inv = s.inventory %}
 {% set head_title = "Settings" %}{% set head_meta = "" %}
 {% include "_head.html" %}
-{% if saved %}<p class="notice ok">Saved. {{ pool_size }} exercises fit your gym.</p>{% endif %}
+{% if saved %}<p class="notice ok">Saved.</p>{% endif %}
 {% if errors %}<p class="notice">Some fields need fixing; nothing was saved.</p>{% endif %}
 {% if notice.renamed %}<p class="notice ok">Renamed to {{ profile.name }}.</p>{% endif %}
 {% if notice.profile_error %}<p class="notice">{{ notice.profile_error }}</p>{% endif %}
@@ -43,66 +42,7 @@
         <option value="kg" {% if s.units == 'kg' %}selected{% endif %}>kg</option>
       </select>
     </label>
-  </section>
-
-  <section class="card">
-    <div class="card-head"><h2>Equipment</h2><span class="badge shared">Shared with everyone</span></div>
-    <p class="muted small">One gym for the whole house: changes here apply to every profile. Bodyweight exercises are always available. Tick what you have and enter weights in {{ s.units }}.</p>
-    {% for kind, kdef in kinds.items() %}
-      {% set label, tag, spec = kdef %}
-      {% set cfg = inv[kind] %}
-      <fieldset class="equip">
-        <label class="check"><input type="checkbox" name="{{ kind }}_enabled" {% if cfg.enabled %}checked{% endif %}> {{ label }}</label>
-        {% if spec == 'plates' %}
-          <label class="row">Bar weight<input name="{{ kind }}_bar" type="number" inputmode="decimal" step="any" min="0" value="{{ cfg.bar|w }}"></label>
-        {% elif spec == 'list' and list_input[kind] == 'range' %}
-          {% set r = ranges[kind] %}
-          <div class="range-row">
-            <label>From<input name="{{ kind }}_from" type="number" inputmode="decimal" step="any" min="0" value="{{ r.from }}"></label>
-            <label>To<input name="{{ kind }}_to" type="number" inputmode="decimal" step="any" min="0" value="{{ r.to }}"></label>
-            <label>Step<input name="{{ kind }}_step" type="number" inputmode="decimal" step="any" min="0" value="{{ r.step }}"></label>
-          </div>
-          <p class="muted small hint-line">{% if kind == 'dumbbell' %}Weight of one dumbbell. Adjustables: lightest, heaviest and the jump between settings.{% else %}Lightest and heaviest pin setting, and the jump between plates in the stack.{% endif %}</p>
-          {% if r.irregular %}<p class="muted small">Your saved list ({{ cfg.weights }}) had uneven jumps; saving replaces it with this range.</p>{% endif %}
-          {% if kind == 'cable' %}
-            <p class="muted small" style="margin: 8px 0 0">Pulley positions</p>
-            <div class="inline-checks">
-              {% for p, plabel in pulleys.items() %}
-                <label class="check"><input type="checkbox" name="cable_pulley_{{ p }}" {% if p in cfg.pulleys %}checked{% endif %}> {{ plabel }}</label>
-              {% endfor %}
-            </div>
-          {% endif %}
-        {% elif spec == 'list' and list_input[kind] == 'chips' %}
-          <p class="muted small hint-line">Tap the weights you own.</p>
-          <div class="chips">
-            {% for w in kb_sizes %}
-              <label class="chip"><input type="checkbox" name="{{ kind }}_w" value="{{ w|w }}" {% if w in kb_saved %}checked{% endif %}><span>{{ w|w }}</span></label>
-            {% endfor %}
-          </div>
-        {% endif %}
-        {% if errors[kind] %}<p class="error">{{ errors[kind] }}</p>{% endif %}
-        {% if cfg.enabled and preview[kind] %}
-          <p class="muted small">Loadable: {{ preview[kind][0]|w }}–{{ preview[kind][-1]|w }} ({{ preview[kind]|length }} options)</p>
-        {% endif %}
-      </fieldset>
-    {% endfor %}
-    <fieldset class="equip">
-      <legend>Plates</legend>
-      <p class="muted small hint-line">Pairs you own of each size (one for each side of the bar). Shared by barbell and EZ bar.</p>
-      <div class="plates">
-        {% for w, n in plate_rows %}
-          <label class="plate-row"><span class="plate-size">{{ w|w }} {{ s.units }}</span>
-            <input name="plate_{{ w|w }}" type="number" inputmode="numeric" min="0" step="1" value="{{ n if n else '' }}" placeholder="0" aria-label="Pairs of {{ w|w }} {{ s.units }} plates"></label>
-        {% endfor %}
-      </div>
-      {% if errors.plates %}<p class="error">{{ errors.plates }}</p>{% endif %}
-    </fieldset>
-    <fieldset class="equip">
-      <legend>Stations</legend>
-      {% for key, label in stations.items() %}
-        <label class="check"><input type="checkbox" name="station_{{ key }}" {% if key in inv.stations %}checked{% endif %}> {{ label }}</label>
-      {% endfor %}
-    </fieldset>
+    <p class="muted small">Equipment is on the <a href="/gym">Gym</a> tab, shared by everyone in the house.</p>
   </section>
 
   <button class="btn primary block">Save settings</button>

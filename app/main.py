@@ -109,8 +109,20 @@ templates.env.filters["w"] = fmt_weight
 templates.env.filters["setfmt"] = fmt_set
 templates.env.globals["goal_codes"] = {"strength": "STR", "hypertrophy": "HYP", "endurance": "END"}
 templates.env.filters["local"] = local_time
-EQUIPMENT_LABELS = {"body only": "Bodyweight", "e-z curl bar": "EZ bar", "kettlebells": "Kettlebell"}
-templates.env.filters["gear"] = lambda tag: EQUIPMENT_LABELS.get(tag, tag.capitalize())
+EQUIPMENT_LABELS = {"body only": "Bodyweight", "e-z curl bar": "EZ bar", "kettlebells": "Kettlebell",
+                    "plates": "Weight plate", "trap bar": "Trap bar"}
+
+
+def equipment_label(exercise: dict) -> str:
+    """What an exercise is done with, for lists: 'Dumbbell', 'Smith machine', 'Medicine ball'..."""
+    tag = exercise["equipment"]
+    named = inv.MACHINES if tag == "machine" else inv.GEAR if tag == "gear" else None
+    if named:
+        return next((named[r][0] for r in exercise["requires"] if r in named), tag.capitalize())
+    return EQUIPMENT_LABELS.get(tag, tag.capitalize())
+
+
+templates.env.filters["gear"] = equipment_label
 
 
 @contextmanager
@@ -487,21 +499,10 @@ def _equipment_inputs(s: dict, raw: dict | None = None) -> dict:
     }
 
 
-def _settings_ctx(conn, p, s, errors=None, saved=False, raw=None, notice=None):
-    preview = {}
-    for kind in inv.EQUIPMENT_KINDS:
-        try:
-            ws = inv.loadable_weights(s["inventory"], kind)
-        except inv.WeightSyntaxError:
-            ws = None
-        if ws:
-            preview[kind] = ws
+def _settings_ctx(conn, p, s, saved=False, notice=None):
     excl = sorted((catalog.get(i) for i in service.excluded_ids(conn, p["id"])), key=lambda e: e["name"])
     pins = sorted((catalog.get(i) for i in service.pinned_ids(conn, p["id"])), key=lambda e: e["name"])
-    return {"s": s, "profile": p, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "pulleys": inv.PULLEYS,
-            "preview": preview, "excluded": excl, "pinned": pins, "errors": errors or {}, "saved": saved,
-            "pool_size": len(service._pool(conn, p["id"], s)) if not errors else None,
-            "notice": notice or {}, **_equipment_inputs(s, raw)}
+    return {"s": s, "profile": p, "excluded": excl, "pinned": pins, "saved": saved, "notice": notice or {}}
 
 
 @app.get("/settings", response_class=HTMLResponse)
@@ -516,16 +517,55 @@ def settings_page(request: Request, saved: int = 0, renamed: int = 0, profile_er
     return render(request, "settings.html", **ctx)
 
 
-@app.post("/settings", response_class=HTMLResponse)
+@app.post("/settings")
 async def save_settings(request: Request):
+    """Personal settings only: goal, workout length, units. Equipment is saved on /gym."""
     form = await request.form()
-    errors: dict[str, str] = {}
     goal = form.get("goal") if form.get("goal") in generator.GOALS else "hypertrophy"
     try:
         n = min(10, max(2, int(form.get("n_exercises", 5))))
     except ValueError:
         n = 5
     units = "kg" if form.get("units") == "kg" else "lb"
+    with tx() as conn:
+        prof = current_profile(request, conn)
+        if not prof:
+            return pick_profile()
+        service.save_personal_settings(conn, prof["id"], goal, n, units)
+    return redirect("/settings?saved=1")
+
+
+# ---- gym (shared equipment) ---------------------------------------------------------
+
+def _gym_ctx(conn, p, s, errors=None, saved=False, raw=None):
+    preview = {}
+    for kind in inv.EQUIPMENT_KINDS:
+        try:
+            ws = inv.loadable_weights(s["inventory"], kind)
+        except inv.WeightSyntaxError:
+            ws = None
+        if ws:
+            preview[kind] = ws
+    return {"s": s, "profile": p, "kinds": inv.EQUIPMENT_KINDS, "stations": inv.STATIONS, "pulleys": inv.PULLEYS,
+            "machines": inv.MACHINES, "gear": inv.GEAR, "machine_step": inv.MACHINE_STEP[s["units"]],
+            "preview": preview, "errors": errors or {}, "saved": saved,
+            "pool_size": len(service._pool(conn, p["id"], s)) if not errors else None,
+            **_equipment_inputs(s, raw)}
+
+
+@app.get("/gym", response_class=HTMLResponse)
+def gym_page(request: Request, saved: int = 0):
+    with tx() as conn:
+        p = current_profile(request, conn)
+        if not p:
+            return pick_profile()
+        ctx = _gym_ctx(conn, p, service.settings(conn, p["id"]), saved=bool(saved))
+    return render(request, "gym.html", **ctx)
+
+
+def _parse_inventory(form) -> tuple[dict, dict, dict]:
+    """(inventory, raw range inputs to redisplay, errors) from the Gym form."""
+    errors: dict[str, str] = {}
 
     def num(key: str) -> float | None:
         v = str(form.get(key, "")).strip()
@@ -536,9 +576,12 @@ async def save_settings(request: Request):
         except ValueError:
             raise inv.WeightSyntaxError("Numbers only") from None
 
-    inventory = {"stations": [k for k in inv.STATIONS if form.get(f"station_{k}")]}
+    inventory = {
+        "stations": [k for k in inv.STATIONS if form.get(f"station_{k}")],
+        "machines": [k for k in inv.MACHINES if form.get(f"machine_{k}")],
+        "gear": [k for k in inv.GEAR if form.get(f"gear_{k}")],
+    }
     raw: dict[str, dict] = {}
-
     # plates: one "pairs owned" box per size (legacy free-text "plates" field still accepted)
     plate_keys = [k for k in form.keys() if k.startswith("plate_")]
     if plate_keys:
@@ -587,16 +630,22 @@ async def save_settings(request: Request):
                 cfg["pulleys"] = [p for p in inv.PULLEYS if form.get(f"cable_pulley_{p}")]
         inventory[kind] = cfg
 
+    return inventory, raw, errors
+
+
+@app.post("/gym", response_class=HTMLResponse)
+async def save_gym(request: Request):
+    form = await request.form()
+    inventory, raw, errors = _parse_inventory(form)
     with tx() as conn:
         prof = current_profile(request, conn)
         if not prof:
             return pick_profile()
         if errors:
-            s = {"goal": goal, "n_exercises": n, "units": units, "inventory": inv.merged(inventory)}
-            return render(request, "settings.html", **_settings_ctx(conn, prof, s, errors, raw=raw))
-        service.save_personal_settings(conn, prof["id"], goal, n, units)
+            s = {**service.settings(conn, prof["id"]), "inventory": inv.merged(inventory)}
+            return render(request, "gym.html", **_gym_ctx(conn, prof, s, errors, raw=raw))
         db.set_setting(conn, "inventory", inventory)
-    return redirect("/settings?saved=1")
+    return redirect("/gym?saved=1")
 
 
 @app.post("/excluded/{exercise_id}/remove")
